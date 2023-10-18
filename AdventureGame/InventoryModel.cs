@@ -47,6 +47,8 @@ namespace AdventureGame
                 this.gun = gun;
             }
 
+            //Test
+
             public bool hasGun()
             {
                 if (gun == null) return false; return true;
