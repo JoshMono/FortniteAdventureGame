@@ -65,7 +65,7 @@ namespace AdventureGame.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _4619355_200 {
             get {
-                object obj = ResourceManager.GetObject("4619355-200", resourceCulture);
+                object obj = ResourceManager.GetObject("_4619355_200", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -105,7 +105,7 @@ namespace AdventureGame.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap download__1_ {
             get {
-                object obj = ResourceManager.GetObject("download (1)", resourceCulture);
+                object obj = ResourceManager.GetObject("download__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -115,7 +115,7 @@ namespace AdventureGame.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap download__2_ {
             get {
-                object obj = ResourceManager.GetObject("download (2)", resourceCulture);
+                object obj = ResourceManager.GetObject("download__2_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -125,8 +125,18 @@ namespace AdventureGame.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap download__4_ {
             get {
-                object obj = ResourceManager.GetObject("download (4)", resourceCulture);
+                object obj = ResourceManager.GetObject("download__4_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon fortniteIcon {
+            get {
+                object obj = ResourceManager.GetObject("fortniteIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         
@@ -137,6 +147,25 @@ namespace AdventureGame.Properties {
             get {
                 object obj = ResourceManager.GetObject("lobbyBG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] LobbyMusic {
+            get {
+                object obj = ResourceManager.GetObject("LobbyMusic", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream LobbyMusic1 {
+            get {
+                return ResourceManager.GetStream("LobbyMusic1", resourceCulture);
             }
         }
         
