@@ -1,9 +1,14 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.Devices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Media;
+using System.Numerics;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,30 +18,27 @@ namespace AdventureGame
     public partial class Settings : Form
     {
         public bool musicChecked;
-        System.Media.SoundPlayer music = new System.Media.SoundPlayer();
 
+        private SoundPlayer Player = null;
         public Settings()
         {
             InitializeComponent();
-            musicChecked = musicOn.Checked;
-
-            music.SoundLocation = "C:\\Users\\joshm_xprw9gv\\Documents\\IST\\Programming\\Visual Studio Projects\\AdventureGame\\AdventureGame\\Resources\\LobbyMusic.wav";
-
-            if (musicOn.Checked == true)
-            {
-                music.Play();
-            }
+            Player = new SoundPlayer(Properties.Resources.LobbyMusic);
+            musicOn_CheckedChanged(null, null);
+            
         }
+
 
         private void musicOn_CheckedChanged(object sender, EventArgs e)
         {
             if (musicOn.Checked == true)
             {
-                music.Play();
+                Player.Play();
+
             }
             else
             {
-                music.Stop();
+                Player.Stop();
             }
         }
     }
