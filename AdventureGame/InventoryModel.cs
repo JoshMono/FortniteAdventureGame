@@ -5,6 +5,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Drawing;
+using System.Windows.Forms;
+
 namespace AdventureGame
 {
     public class InventoryModel
@@ -27,14 +30,15 @@ namespace AdventureGame
             public string Name { get; set; }
             public string Rarity { get; set; }
             public int Damage { get; set; }
-
+            public int Speed { get; set; }
             public Image? Icon { get; set; }
 
-            public Gun(string name, string rarity, int damage, Image? icon)
+            public Gun(string name, string rarity, int damage, int speed, Image? icon)
             {
                 Name = name;
                 Rarity = rarity;
                 Damage = damage;
+                Speed = speed;
                 Icon = icon;
             }
         }
@@ -60,10 +64,10 @@ namespace AdventureGame
         public Gun GetGun()
         {
             Dictionary<int, Gun> gunsDict = new Dictionary<int, Gun>();
-            gunsDict.Add(1, new Gun("Scar", "Gold", 40, (Image)Properties.Resources.scar));
-            gunsDict.Add(2, new Gun("Bolt", "Blue", 50, (Image)Properties.Resources.bolt));
-            gunsDict.Add(3, new Gun("Pistol", "Gray", 10, (Image)Properties.Resources.pistol));
-            gunsDict.Add(4, new Gun("Pump", "Blue", 80, (Image)Properties.Resources.pump));
+            gunsDict.Add(1, new Gun("Scar", "Gold", 40, 5, (Image)Properties.Resources.scar));
+            gunsDict.Add(2, new Gun("Bolt", "Blue", 50, 10, (Image)Properties.Resources.bolt));
+            gunsDict.Add(3, new Gun("Pistol", "Gray", 10, 5, (Image)Properties.Resources.pistol));
+            gunsDict.Add(4, new Gun("Pump", "Blue", 80, 3,(Image)Properties.Resources.pump));
 
             Random rand = new Random();
             int gunId = rand.Next(1, 5);
@@ -122,6 +126,63 @@ namespace AdventureGame
             return playersLanding;
         }
 
+
+    }
+
+    public class Bullet
+    {
+        public string facingDirection {  get; set; }
+        public int bulletLeft { get; set; }
+        public int bulletTop { get; set;}
+        public int speed { get; set;}
+
+        public PictureBox bullet = new PictureBox();
+        private System.Windows.Forms.Timer bulletTimer = new System.Windows.Forms.Timer();
+
+        public void MakeBullet(Form form)
+        {
+            bullet.BackColor = Color.Black;
+            bullet.Size = new Size(5, 5);
+            bullet.Tag = "bullet";
+            bullet.Left = bulletLeft;
+            bullet.Top = bulletTop;
+            bullet.BringToFront();
+
+            form.Controls.Add(bullet);
+
+            bulletTimer.Interval = speed;
+            bulletTimer.Tick += new EventHandler(BulletTimerEvent);
+            bulletTimer.Start();
+        }
+
+        private void BulletTimerEvent(object sender, EventArgs e)
+        {
+            if (facingDirection == "left")
+            {
+                bullet.Left -= speed;
+            }
+            if (facingDirection == "right")
+            {
+                bullet.Left += speed;
+            }
+            if (facingDirection == "up")
+            {
+                bullet.Top -= speed;
+            }
+            if (facingDirection == "down")
+            {
+                bullet.Top += speed;
+            }
+
+
+            /*if (bullet.Left < 10 || bullet.Left > 700 || bullet.Top < 10 || bullet.Top > 300)
+            {
+                bulletTimer.Stop();
+                bulletTimer.Dispose();
+                bulletTimer = null;
+                bullet = null;
+            }*/
+        }
 
     }
 

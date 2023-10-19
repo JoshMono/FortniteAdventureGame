@@ -94,7 +94,7 @@
             // 
             slot6.BackColor = SystemColors.ButtonHighlight;
             slot6.BackgroundImageLayout = ImageLayout.Stretch;
-            slot6.Location = new Point(105, 191);
+            slot6.Location = new Point(94, 191);
             slot6.Name = "slot6";
             slot6.Size = new Size(67, 60);
             slot6.TabIndex = 24;
@@ -104,7 +104,7 @@
             // 
             slot4.BackColor = SystemColors.ButtonHighlight;
             slot4.BackgroundImageLayout = ImageLayout.Stretch;
-            slot4.Location = new Point(105, 121);
+            slot4.Location = new Point(94, 121);
             slot4.Name = "slot4";
             slot4.Size = new Size(67, 60);
             slot4.TabIndex = 23;
@@ -114,7 +114,7 @@
             // 
             slot2.BackColor = SystemColors.ButtonHighlight;
             slot2.BackgroundImageLayout = ImageLayout.Stretch;
-            slot2.Location = new Point(105, 52);
+            slot2.Location = new Point(94, 52);
             slot2.Name = "slot2";
             slot2.Size = new Size(67, 60);
             slot2.TabIndex = 22;

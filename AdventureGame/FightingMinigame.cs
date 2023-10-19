@@ -21,6 +21,10 @@ namespace AdventureGame
         bool left = false;
         bool right = false;
 
+        public List<InventoryModel.InventorySlot> InventorySlotsList;
+
+        public string direction = "right";
+
         public List<PictureBox> slotsList = new List<PictureBox>();
 
         public FightingMinigame(List<InventoryModel.InventorySlot> inventorySlots)
@@ -28,6 +32,8 @@ namespace AdventureGame
             InitializeComponent();
             playerX = player.Location.X;
             playerY = player.Location.Y;
+
+            InventorySlotsList = inventorySlots;
 
             slotsList.Add(slot1);
             slotsList.Add(slot2);
@@ -39,14 +45,25 @@ namespace AdventureGame
             Console.WriteLine("Test");
 
             InventoryModel.InventorySlot gun1 = inventorySlots[1];
-            Console.WriteLine(gun1.gun);
 
             InventoryModel.RefreshInventory(slotsList, inventorySlots);
+
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ShootBullet(string direction, int Speed)
+        {
+            Bullet bullet = new Bullet();
+            bullet.facingDirection = direction;
+            bullet.speed = Speed;
+            bullet.bulletLeft = player.Left + player.Width / 2;
+            bullet.bulletTop = player.Top + player.Height / 2;
+            bullet.MakeBullet(this);
+            bullet.bullet.BringToFront();
         }
 
         private void mainGameTimerEvent(object sender, EventArgs e)
@@ -92,19 +109,28 @@ namespace AdventureGame
             if (e.KeyValue == (char)Keys.W)
             {
                 foward = true;
+                direction = "up";
             }
             if (e.KeyValue == (char)Keys.A)
             {
                 left = true;
+                direction = "left";
             }
             if (e.KeyValue == (char)Keys.S)
             {
                 back = true;
+                direction = "down";
             }
             if (e.KeyValue == (char)Keys.D)
             {
                 right = true;
+                direction= "right";
             }
+            if (e.KeyValue == (char)Keys.Space)
+            {
+                ShootBullet(direction, InventorySlotsList[0].gun.Speed);
+            }
+            
 
 
         }
