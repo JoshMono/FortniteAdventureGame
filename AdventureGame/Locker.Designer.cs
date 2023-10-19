@@ -28,33 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            renegaterBTN = new Button();
+            defaultSkinBTN = new Button();
             skullTrooperBTN = new Button();
             SuspendLayout();
             // 
-            // renegaterBTN
+            // defaultSkinBTN
             // 
-            renegaterBTN.BackgroundImage = Properties.Resources.renegadetorSkin;
-            renegaterBTN.BackgroundImageLayout = ImageLayout.Stretch;
-            renegaterBTN.ForeColor = SystemColors.ActiveCaptionText;
-            renegaterBTN.Location = new Point(12, 45);
-            renegaterBTN.Name = "renegaterBTN";
-            renegaterBTN.Size = new Size(106, 137);
-            renegaterBTN.TabIndex = 0;
-            renegaterBTN.Text = "Renegater";
-            renegaterBTN.UseVisualStyleBackColor = true;
-            renegaterBTN.Click += renegaterBTN_Click;
+            defaultSkinBTN.BackgroundImage = Properties.Resources.default_skin;
+            defaultSkinBTN.BackgroundImageLayout = ImageLayout.Stretch;
+            defaultSkinBTN.ForeColor = SystemColors.ActiveCaptionText;
+            defaultSkinBTN.Location = new Point(28, 28);
+            defaultSkinBTN.Name = "defaultSkinBTN";
+            defaultSkinBTN.Size = new Size(120, 170);
+            defaultSkinBTN.TabIndex = 0;
+            defaultSkinBTN.UseVisualStyleBackColor = true;
+            defaultSkinBTN.Click += renegaterBTN_Click;
             // 
             // skullTrooperBTN
             // 
-            skullTrooperBTN.BackgroundImage = Properties.Resources.download;
+            skullTrooperBTN.BackgroundImage = Properties.Resources.skull_trooper;
             skullTrooperBTN.BackgroundImageLayout = ImageLayout.Stretch;
             skullTrooperBTN.ForeColor = SystemColors.ActiveCaptionText;
-            skullTrooperBTN.Location = new Point(656, 45);
+            skullTrooperBTN.Location = new Point(627, 28);
             skullTrooperBTN.Name = "skullTrooperBTN";
-            skullTrooperBTN.Size = new Size(106, 137);
+            skullTrooperBTN.Size = new Size(120, 170);
             skullTrooperBTN.TabIndex = 1;
-            skullTrooperBTN.Text = "Skull Trooper";
             skullTrooperBTN.UseVisualStyleBackColor = true;
             skullTrooperBTN.Click += skullTrooperBTN_Click;
             // 
@@ -66,7 +64,7 @@
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(776, 450);
             Controls.Add(skullTrooperBTN);
-            Controls.Add(renegaterBTN);
+            Controls.Add(defaultSkinBTN);
             Name = "Locker";
             Text = "Locker";
             ResumeLayout(false);
@@ -74,7 +72,7 @@
 
         #endregion
 
-        private Button renegaterBTN;
+        private Button defaultSkinBTN;
         private Button skullTrooperBTN;
     }
 }

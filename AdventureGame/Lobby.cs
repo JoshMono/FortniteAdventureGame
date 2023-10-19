@@ -22,13 +22,17 @@ namespace AdventureGame
         int zBucks;
         Settings settings;
         Locker locker;
+        public InventoryModel Player;
 
-
-        public Lobby(InventoryModel character)
+        public Lobby(InventoryModel player)
         {
             InitializeComponent();
-            zBucks = character.ZBucks;
+            zBucks = player.ZBucks;
             zBucksLabel.Text = Convert.ToString(zBucks);
+
+            Player = player;
+            skinAvaterIMG.BackgroundImage = Player.Skin;
+
 
             settings = new Settings() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             settings.FormBorderStyle = FormBorderStyle.None;
@@ -100,13 +104,14 @@ namespace AdventureGame
             lobbyBTN.BackColor = Color.FromArgb(255, 255, 128);
             lockerBTN.BackColor = Color.Transparent;
             BackgroundImage = (Image)Properties.Resources.lobbyBG;
+            
             if (locker.skin == 1)
             {
-                skinAvaterIMG.BackgroundImage = (Image)Properties.Resources.renegadetorSkin;
+                skinAvaterIMG.BackgroundImage = (Image)Properties.Resources.default_skin;
             }
             if (locker.skin == 2)
             {
-                skinAvaterIMG.BackgroundImage = (Image)Properties.Resources.download;
+                skinAvaterIMG.BackgroundImage = (Image)Properties.Resources.skull_trooper;
             }
             skinAvaterIMG.Show();
 

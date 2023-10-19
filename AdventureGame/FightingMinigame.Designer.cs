@@ -39,6 +39,7 @@
             slot5 = new PictureBox();
             slot3 = new PictureBox();
             slot1 = new PictureBox();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)player).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gameBoxPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)slot6).BeginInit();
@@ -87,7 +88,7 @@
             // 
             slot6.BackColor = SystemColors.ButtonHighlight;
             slot6.BackgroundImageLayout = ImageLayout.Stretch;
-            slot6.Location = new Point(120, 293);
+            slot6.Location = new Point(120, 255);
             slot6.Margin = new Padding(3, 4, 3, 4);
             slot6.Name = "slot6";
             slot6.Size = new Size(77, 80);
@@ -98,7 +99,7 @@
             // 
             slot4.BackColor = SystemColors.ButtonHighlight;
             slot4.BackgroundImageLayout = ImageLayout.Stretch;
-            slot4.Location = new Point(120, 170);
+            slot4.Location = new Point(120, 161);
             slot4.Margin = new Padding(3, 4, 3, 4);
             slot4.Name = "slot4";
             slot4.Size = new Size(77, 80);
@@ -109,7 +110,7 @@
             // 
             slot2.BackColor = SystemColors.ButtonHighlight;
             slot2.BackgroundImageLayout = ImageLayout.Stretch;
-            slot2.Location = new Point(120, 54);
+            slot2.Location = new Point(120, 70);
             slot2.Margin = new Padding(3, 4, 3, 4);
             slot2.Name = "slot2";
             slot2.Size = new Size(77, 80);
@@ -120,7 +121,7 @@
             // 
             slot5.BackColor = SystemColors.ButtonHighlight;
             slot5.BackgroundImageLayout = ImageLayout.Stretch;
-            slot5.Location = new Point(12, 293);
+            slot5.Location = new Point(12, 255);
             slot5.Margin = new Padding(3, 4, 3, 4);
             slot5.Name = "slot5";
             slot5.Size = new Size(77, 80);
@@ -131,7 +132,7 @@
             // 
             slot3.BackColor = SystemColors.ButtonHighlight;
             slot3.BackgroundImageLayout = ImageLayout.Stretch;
-            slot3.Location = new Point(12, 170);
+            slot3.Location = new Point(12, 161);
             slot3.Margin = new Padding(3, 4, 3, 4);
             slot3.Name = "slot3";
             slot3.Size = new Size(77, 80);
@@ -142,12 +143,24 @@
             // 
             slot1.BackColor = SystemColors.ButtonHighlight;
             slot1.BackgroundImageLayout = ImageLayout.Stretch;
-            slot1.Location = new Point(12, 54);
+            slot1.Location = new Point(12, 70);
             slot1.Margin = new Padding(3, 4, 3, 4);
             slot1.Name = "slot1";
             slot1.Size = new Size(77, 80);
             slot1.TabIndex = 19;
             slot1.TabStop = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.FromArgb(224, 224, 224);
+            label2.FlatStyle = FlatStyle.Flat;
+            label2.Font = new Font("Franklin Gothic Heavy", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(8, 14);
+            label2.Name = "label2";
+            label2.Size = new Size(198, 47);
+            label2.TabIndex = 25;
+            label2.Text = "Inventory";
             // 
             // FightingMinigame
             // 
@@ -155,6 +168,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(800, 450);
+            Controls.Add(label2);
             Controls.Add(slot6);
             Controls.Add(slot4);
             Controls.Add(slot2);
@@ -194,5 +208,6 @@
         private PictureBox slot5;
         private PictureBox slot3;
         private PictureBox slot1;
+        private Label label2;
     }
 }

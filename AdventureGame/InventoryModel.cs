@@ -13,10 +13,13 @@ namespace AdventureGame
         public int Health { get; set; }
         public int ZBucks { get; set; }
 
-        public InventoryModel(int Health, int ZBucks)
+        public Image Skin { get; set; }
+
+        public InventoryModel(int Health, int ZBucks, Image Skin)
         {
             this.Health = Health;
             this.ZBucks = ZBucks;
+            this.Skin = Skin;
         }
 
         public class Gun
@@ -46,8 +49,6 @@ namespace AdventureGame
                 this.slot = slot;
                 this.gun = gun;
             }
-
-            //Test
 
             public bool hasGun()
             {

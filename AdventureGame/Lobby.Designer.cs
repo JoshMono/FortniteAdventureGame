@@ -162,11 +162,10 @@
             // skinAvaterIMG
             // 
             skinAvaterIMG.BackColor = Color.Transparent;
-            skinAvaterIMG.BackgroundImage = Properties.Resources.download;
             skinAvaterIMG.BackgroundImageLayout = ImageLayout.Stretch;
-            skinAvaterIMG.Location = new Point(329, 152);
+            skinAvaterIMG.Location = new Point(330, 188);
             skinAvaterIMG.Name = "skinAvaterIMG";
-            skinAvaterIMG.Size = new Size(163, 254);
+            skinAvaterIMG.Size = new Size(150, 212);
             skinAvaterIMG.TabIndex = 0;
             skinAvaterIMG.TabStop = false;
             // 

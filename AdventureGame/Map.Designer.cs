@@ -41,7 +41,6 @@
             retryBTN = new Button();
             healthBar = new ProgressBar();
             label1 = new Label();
-            Inventory = new Button();
             slot1 = new PictureBox();
             slot3 = new PictureBox();
             slot5 = new PictureBox();
@@ -50,6 +49,7 @@
             slot6 = new PictureBox();
             settingsBTN = new Button();
             settingsPannel = new Panel();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)slot1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)slot3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)slot5).BeginInit();
@@ -201,17 +201,6 @@
             label1.Text = "Health";
             label1.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // Inventory
-            // 
-            Inventory.Font = new Font("Franklin Gothic Heavy", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            Inventory.Location = new Point(695, 36);
-            Inventory.Margin = new Padding(3, 4, 3, 4);
-            Inventory.Name = "Inventory";
-            Inventory.Size = new Size(185, 49);
-            Inventory.TabIndex = 12;
-            Inventory.Text = "Inventory";
-            Inventory.UseVisualStyleBackColor = true;
-            // 
             // slot1
             // 
             slot1.BackColor = Color.Transparent;
@@ -298,12 +287,25 @@
             settingsPannel.TabIndex = 20;
             settingsPannel.Visible = false;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.FromArgb(224, 224, 224);
+            label2.FlatStyle = FlatStyle.Flat;
+            label2.Font = new Font("Franklin Gothic Heavy", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(687, 37);
+            label2.Name = "label2";
+            label2.Size = new Size(198, 47);
+            label2.TabIndex = 21;
+            label2.Text = "Inventory";
+            // 
             // Map
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
             ClientSize = new Size(914, 522);
+            Controls.Add(label2);
             Controls.Add(settingsBTN);
             Controls.Add(settingsPannel);
             Controls.Add(slot6);
@@ -312,7 +314,6 @@
             Controls.Add(slot5);
             Controls.Add(slot3);
             Controls.Add(slot1);
-            Controls.Add(Inventory);
             Controls.Add(label1);
             Controls.Add(healthBar);
             Controls.Add(retryBTN);
@@ -353,7 +354,6 @@
         private Button btn2x2;
         private Button retryBTN;
         private ProgressBar healthBar;
-        private Button Inventory;
         private Label label1;
         private PictureBox slot6;
         private PictureBox slot4;
@@ -363,5 +363,6 @@
         private PictureBox slot1;
         private Button settingsBTN;
         private Panel settingsPannel;
+        private Label label2;
     }
 }

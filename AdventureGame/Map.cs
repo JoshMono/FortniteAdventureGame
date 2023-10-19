@@ -39,7 +39,7 @@ namespace AdventureGame
         public List<InventoryModel.InventorySlot> inventorySlots = new List<InventoryModel.InventorySlot>();
 
 
-        InventoryModel inventory = new InventoryModel(100, 100);
+        InventoryModel inventory = new InventoryModel(100, 100, null);
 
         public void AddSlots()
         {
