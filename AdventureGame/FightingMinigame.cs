@@ -79,19 +79,19 @@ namespace AdventureGame
             {
                 playerY = playerY - 2;
                 player.Location = new Point(player.Location.X, playerY);
-                
+
             }
             if (left && gameBoxPicture.Location.X < playerX)
             {
                 playerX = playerX - 2;
                 player.Location = new Point(playerX, player.Location.Y);
-               
+
             }
             if (back && playerY + player.Height - topGap.Height < gameBoxPicture.Height)
             {
                 playerY = playerY + 2;
                 player.Location = new Point(player.Location.X, playerY);
-                
+
             }
             if (right && playerX + player.Width - sideGap.Width < gameBoxPicture.Width)
             {
@@ -133,7 +133,7 @@ namespace AdventureGame
                 right = true;
                 direction = "right";
             }
-            
+
             if (foward == true && left == true)
             {
                 direction = "WA";
@@ -157,7 +157,7 @@ namespace AdventureGame
                 ShootBullet(direction, InventorySlotsList[0].gun.Speed);
 
             }
-            
+
 
 
         }
@@ -167,22 +167,22 @@ namespace AdventureGame
             if (e.KeyValue == (char)Keys.W)
             {
                 foward = false;
-                
+
             }
             if (e.KeyValue == (char)Keys.A)
             {
                 left = false;
-                
+
             }
             if (e.KeyValue == (char)Keys.S)
             {
                 back = false;
-                
+
             }
             if (e.KeyValue == (char)Keys.D)
             {
                 right = false;
-                
+
             }
             if (e.KeyValue == (char)Keys.Space)
             {

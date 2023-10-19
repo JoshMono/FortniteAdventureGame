@@ -56,7 +56,7 @@
             // 
             // player
             // 
-            player.BackgroundImage = Properties.Resources.bolt;
+            player.BackColor = SystemColors.Control;
             player.BackgroundImageLayout = ImageLayout.Stretch;
             player.Location = new Point(405, 122);
             player.Margin = new Padding(3, 2, 3, 2);

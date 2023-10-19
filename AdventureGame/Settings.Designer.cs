@@ -30,15 +30,17 @@
         {
             sadasd = new Label();
             musicOn = new CheckBox();
+            musicVolumeSlider = new TrackBar();
+            ((System.ComponentModel.ISupportInitialize)musicVolumeSlider).BeginInit();
             SuspendLayout();
             // 
             // sadasd
             // 
             sadasd.AutoSize = true;
             sadasd.Font = new Font("Franklin Gothic Heavy", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            sadasd.Location = new Point(11, 89);
+            sadasd.Location = new Point(10, 67);
             sadasd.Name = "sadasd";
-            sadasd.Size = new Size(101, 38);
+            sadasd.Size = new Size(80, 30);
             sadasd.TabIndex = 0;
             sadasd.Text = "Music";
             // 
@@ -47,25 +49,37 @@
             musicOn.Checked = true;
             musicOn.CheckState = CheckState.Checked;
             musicOn.Font = new Font("Franklin Gothic Heavy", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            musicOn.Location = new Point(141, 101);
-            musicOn.Margin = new Padding(3, 4, 3, 4);
+            musicOn.Location = new Point(123, 76);
             musicOn.Name = "musicOn";
-            musicOn.Size = new Size(45, 20);
+            musicOn.Size = new Size(39, 15);
             musicOn.TabIndex = 1;
             musicOn.UseVisualStyleBackColor = true;
             musicOn.CheckedChanged += musicOn_CheckedChanged;
             // 
+            // musicVolumeSlider
+            // 
+            musicVolumeSlider.BackColor = SystemColors.HotTrack;
+            musicVolumeSlider.Location = new Point(10, 100);
+            musicVolumeSlider.Name = "musicVolumeSlider";
+            musicVolumeSlider.Size = new Size(164, 45);
+            musicVolumeSlider.TabIndex = 2;
+            musicVolumeSlider.TickStyle = TickStyle.None;
+            musicVolumeSlider.Scroll += musicVolumeSlider_Scroll;
+            // 
             // Settings
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.HotTrack;
-            ClientSize = new Size(213, 451);
+            ClientSize = new Size(186, 338);
+            Controls.Add(musicVolumeSlider);
             Controls.Add(musicOn);
             Controls.Add(sadasd);
+            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "Settings";
             Text = "Settings";
+            ((System.ComponentModel.ISupportInitialize)musicVolumeSlider).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -74,5 +88,6 @@
 
         private Label sadasd;
         private CheckBox musicOn;
+        private TrackBar musicVolumeSlider;
     }
 }
