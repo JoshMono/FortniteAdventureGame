@@ -63,12 +63,13 @@ namespace AdventureGame
                 player.Location = new Point(playerX, player.Location.Y);
                 Console.WriteLine("a");
             }
-            if (back && playerY < gameBoxPicture.Height - 50)
+            if (back && playerY + player.Height - topGap.Height < gameBoxPicture.Height)
             {
                 playerY = playerY + 2;
                 player.Location = new Point(player.Location.X, playerY);
+                Console.WriteLine(playerY);
             }
-            if (right && playerX < gameBoxPicture.Width + 150)
+            if (right && playerX + player.Width - sideGap.Width < gameBoxPicture.Width)
             {
                 playerX = playerX + 2;
                 player.Location = new Point(playerX, player.Location.Y);

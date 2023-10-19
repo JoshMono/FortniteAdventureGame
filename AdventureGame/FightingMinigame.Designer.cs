@@ -40,6 +40,8 @@
             slot3 = new PictureBox();
             slot1 = new PictureBox();
             label2 = new Label();
+            topGap = new PictureBox();
+            sideGap = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)player).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gameBoxPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)slot6).BeginInit();
@@ -48,15 +50,18 @@
             ((System.ComponentModel.ISupportInitialize)slot5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)slot3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)slot1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)topGap).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)sideGap).BeginInit();
             SuspendLayout();
             // 
             // player
             // 
             player.BackgroundImage = Properties.Resources.bolt;
             player.BackgroundImageLayout = ImageLayout.Stretch;
-            player.Location = new Point(463, 162);
+            player.Location = new Point(405, 122);
+            player.Margin = new Padding(3, 2, 3, 2);
             player.Name = "player";
-            player.Size = new Size(65, 60);
+            player.Size = new Size(50, 50);
             player.TabIndex = 0;
             player.TabStop = false;
             player.Click += pictureBox1_Click;
@@ -70,28 +75,28 @@
             // gameBoxPicture
             // 
             gameBoxPicture.BackColor = SystemColors.Control;
-            gameBoxPicture.Location = new Point(216, 12);
+            gameBoxPicture.Location = new Point(189, 10);
+            gameBoxPicture.Margin = new Padding(3, 2, 3, 2);
             gameBoxPicture.Name = "gameBoxPicture";
-            gameBoxPicture.Size = new Size(572, 426);
+            gameBoxPicture.Size = new Size(499, 317);
             gameBoxPicture.TabIndex = 1;
             gameBoxPicture.TabStop = false;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(19, 71);
+            label1.Location = new Point(17, 53);
             label1.Name = "label1";
-            label1.Size = new Size(0, 20);
+            label1.Size = new Size(0, 15);
             label1.TabIndex = 2;
             // 
             // slot6
             // 
             slot6.BackColor = SystemColors.ButtonHighlight;
             slot6.BackgroundImageLayout = ImageLayout.Stretch;
-            slot6.Location = new Point(120, 255);
-            slot6.Margin = new Padding(3, 4, 3, 4);
+            slot6.Location = new Point(105, 191);
             slot6.Name = "slot6";
-            slot6.Size = new Size(77, 80);
+            slot6.Size = new Size(67, 60);
             slot6.TabIndex = 24;
             slot6.TabStop = false;
             // 
@@ -99,10 +104,9 @@
             // 
             slot4.BackColor = SystemColors.ButtonHighlight;
             slot4.BackgroundImageLayout = ImageLayout.Stretch;
-            slot4.Location = new Point(120, 161);
-            slot4.Margin = new Padding(3, 4, 3, 4);
+            slot4.Location = new Point(105, 121);
             slot4.Name = "slot4";
-            slot4.Size = new Size(77, 80);
+            slot4.Size = new Size(67, 60);
             slot4.TabIndex = 23;
             slot4.TabStop = false;
             // 
@@ -110,10 +114,9 @@
             // 
             slot2.BackColor = SystemColors.ButtonHighlight;
             slot2.BackgroundImageLayout = ImageLayout.Stretch;
-            slot2.Location = new Point(120, 70);
-            slot2.Margin = new Padding(3, 4, 3, 4);
+            slot2.Location = new Point(105, 52);
             slot2.Name = "slot2";
-            slot2.Size = new Size(77, 80);
+            slot2.Size = new Size(67, 60);
             slot2.TabIndex = 22;
             slot2.TabStop = false;
             // 
@@ -121,10 +124,9 @@
             // 
             slot5.BackColor = SystemColors.ButtonHighlight;
             slot5.BackgroundImageLayout = ImageLayout.Stretch;
-            slot5.Location = new Point(12, 255);
-            slot5.Margin = new Padding(3, 4, 3, 4);
+            slot5.Location = new Point(10, 191);
             slot5.Name = "slot5";
-            slot5.Size = new Size(77, 80);
+            slot5.Size = new Size(67, 60);
             slot5.TabIndex = 21;
             slot5.TabStop = false;
             // 
@@ -132,10 +134,9 @@
             // 
             slot3.BackColor = SystemColors.ButtonHighlight;
             slot3.BackgroundImageLayout = ImageLayout.Stretch;
-            slot3.Location = new Point(12, 161);
-            slot3.Margin = new Padding(3, 4, 3, 4);
+            slot3.Location = new Point(10, 121);
             slot3.Name = "slot3";
-            slot3.Size = new Size(77, 80);
+            slot3.Size = new Size(67, 60);
             slot3.TabIndex = 20;
             slot3.TabStop = false;
             // 
@@ -143,10 +144,9 @@
             // 
             slot1.BackColor = SystemColors.ButtonHighlight;
             slot1.BackgroundImageLayout = ImageLayout.Stretch;
-            slot1.Location = new Point(12, 70);
-            slot1.Margin = new Padding(3, 4, 3, 4);
+            slot1.Location = new Point(10, 52);
             slot1.Name = "slot1";
-            slot1.Size = new Size(77, 80);
+            slot1.Size = new Size(67, 60);
             slot1.TabIndex = 19;
             slot1.TabStop = false;
             // 
@@ -156,18 +156,36 @@
             label2.BackColor = Color.FromArgb(224, 224, 224);
             label2.FlatStyle = FlatStyle.Flat;
             label2.Font = new Font("Franklin Gothic Heavy", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(8, 14);
+            label2.Location = new Point(7, 10);
             label2.Name = "label2";
-            label2.Size = new Size(198, 47);
+            label2.Size = new Size(159, 37);
             label2.TabIndex = 25;
             label2.Text = "Inventory";
             // 
+            // topGap
+            // 
+            topGap.BackColor = Color.Transparent;
+            topGap.Location = new Point(227, 0);
+            topGap.Name = "topGap";
+            topGap.Size = new Size(461, 9);
+            topGap.TabIndex = 26;
+            topGap.TabStop = false;
+            // 
+            // sideGap
+            // 
+            sideGap.BackColor = Color.Transparent;
+            sideGap.Location = new Point(1, 0);
+            sideGap.Name = "sideGap";
+            sideGap.Size = new Size(188, 335);
+            sideGap.TabIndex = 27;
+            sideGap.TabStop = false;
+            // 
             // FightingMinigame
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 338);
             Controls.Add(label2);
             Controls.Add(slot6);
             Controls.Add(slot4);
@@ -178,6 +196,9 @@
             Controls.Add(label1);
             Controls.Add(player);
             Controls.Add(gameBoxPicture);
+            Controls.Add(topGap);
+            Controls.Add(sideGap);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FightingMinigame";
             Text = "FightingMinigame";
             KeyDown += FightingMinigame_KeyDown;
@@ -191,6 +212,8 @@
             ((System.ComponentModel.ISupportInitialize)slot5).EndInit();
             ((System.ComponentModel.ISupportInitialize)slot3).EndInit();
             ((System.ComponentModel.ISupportInitialize)slot1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)topGap).EndInit();
+            ((System.ComponentModel.ISupportInitialize)sideGap).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -209,5 +232,7 @@
         private PictureBox slot3;
         private PictureBox slot1;
         private Label label2;
+        private PictureBox topGap;
+        private PictureBox sideGap;
     }
 }
