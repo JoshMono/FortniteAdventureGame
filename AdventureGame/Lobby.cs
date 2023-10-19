@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using System.Reflection;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrayNotify;
 using System.Net.NetworkInformation;
+using System.Numerics;
 
 namespace AdventureGame
 {
@@ -38,7 +39,7 @@ namespace AdventureGame
             settings.FormBorderStyle = FormBorderStyle.None;
             this.settingsPannel.Controls.Add(settings);
 
-            locker = new Locker() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
+            locker = new Locker(Player) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             locker.FormBorderStyle = FormBorderStyle.None;
             this.lockerPannel.Controls.Add(locker);
 
@@ -77,7 +78,7 @@ namespace AdventureGame
 
         private void playBTN_Click(object sender, EventArgs e)
         {
-            Map map = new Map();
+            Map map = new Map(Player);
             this.Hide();
             map.Show();
         }
@@ -104,15 +105,8 @@ namespace AdventureGame
             lobbyBTN.BackColor = Color.FromArgb(255, 255, 128);
             lockerBTN.BackColor = Color.Transparent;
             BackgroundImage = (Image)Properties.Resources.lobbyBG;
-            
-            if (locker.skin == 1)
-            {
-                skinAvaterIMG.BackgroundImage = (Image)Properties.Resources.default_skin;
-            }
-            if (locker.skin == 2)
-            {
-                skinAvaterIMG.BackgroundImage = (Image)Properties.Resources.skull_trooper;
-            }
+
+            skinAvaterIMG.BackgroundImage = Player.Skin;
             skinAvaterIMG.Show();
 
         }

@@ -61,10 +61,9 @@
             // btn0x0
             // 
             btn0x0.Font = new Font("Franklin Gothic Heavy", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            btn0x0.Location = new Point(247, 36);
-            btn0x0.Margin = new Padding(3, 4, 3, 4);
+            btn0x0.Location = new Point(216, 27);
             btn0x0.Name = "btn0x0";
-            btn0x0.Size = new Size(118, 132);
+            btn0x0.Size = new Size(103, 99);
             btn0x0.TabIndex = 0;
             btn0x0.Text = "button1";
             btn0x0.UseVisualStyleBackColor = true;
@@ -73,10 +72,9 @@
             // btn1x0
             // 
             btn1x0.Font = new Font("Franklin Gothic Heavy", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            btn1x0.Location = new Point(394, 36);
-            btn1x0.Margin = new Padding(3, 4, 3, 4);
+            btn1x0.Location = new Point(345, 27);
             btn1x0.Name = "btn1x0";
-            btn1x0.Size = new Size(118, 132);
+            btn1x0.Size = new Size(103, 99);
             btn1x0.TabIndex = 1;
             btn1x0.Text = "button2";
             btn1x0.UseVisualStyleBackColor = true;
@@ -85,10 +83,9 @@
             // btn2x0
             // 
             btn2x0.Font = new Font("Franklin Gothic Heavy", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            btn2x0.Location = new Point(536, 36);
-            btn2x0.Margin = new Padding(3, 4, 3, 4);
+            btn2x0.Location = new Point(469, 27);
             btn2x0.Name = "btn2x0";
-            btn2x0.Size = new Size(118, 132);
+            btn2x0.Size = new Size(103, 99);
             btn2x0.TabIndex = 2;
             btn2x0.Text = "button3";
             btn2x0.UseVisualStyleBackColor = true;
@@ -97,10 +94,9 @@
             // btn0x1
             // 
             btn0x1.Font = new Font("Franklin Gothic Heavy", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            btn0x1.Location = new Point(247, 207);
-            btn0x1.Margin = new Padding(3, 4, 3, 4);
+            btn0x1.Location = new Point(216, 155);
             btn0x1.Name = "btn0x1";
-            btn0x1.Size = new Size(118, 132);
+            btn0x1.Size = new Size(103, 99);
             btn0x1.TabIndex = 3;
             btn0x1.Text = "button4";
             btn0x1.UseVisualStyleBackColor = true;
@@ -109,10 +105,9 @@
             // btn1x1
             // 
             btn1x1.Font = new Font("Franklin Gothic Heavy", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            btn1x1.Location = new Point(394, 207);
-            btn1x1.Margin = new Padding(3, 4, 3, 4);
+            btn1x1.Location = new Point(345, 155);
             btn1x1.Name = "btn1x1";
-            btn1x1.Size = new Size(118, 132);
+            btn1x1.Size = new Size(103, 99);
             btn1x1.TabIndex = 4;
             btn1x1.Text = "button5";
             btn1x1.UseVisualStyleBackColor = true;
@@ -121,10 +116,9 @@
             // btn2x1
             // 
             btn2x1.Font = new Font("Franklin Gothic Heavy", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            btn2x1.Location = new Point(536, 207);
-            btn2x1.Margin = new Padding(3, 4, 3, 4);
+            btn2x1.Location = new Point(469, 155);
             btn2x1.Name = "btn2x1";
-            btn2x1.Size = new Size(118, 132);
+            btn2x1.Size = new Size(103, 99);
             btn2x1.TabIndex = 5;
             btn2x1.Text = "button6";
             btn2x1.UseVisualStyleBackColor = true;
@@ -133,10 +127,9 @@
             // btn1x2
             // 
             btn1x2.Font = new Font("Franklin Gothic Heavy", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            btn1x2.Location = new Point(394, 376);
-            btn1x2.Margin = new Padding(3, 4, 3, 4);
+            btn1x2.Location = new Point(345, 282);
             btn1x2.Name = "btn1x2";
-            btn1x2.Size = new Size(118, 132);
+            btn1x2.Size = new Size(103, 99);
             btn1x2.TabIndex = 6;
             btn1x2.Text = "button7";
             btn1x2.UseVisualStyleBackColor = true;
@@ -145,10 +138,9 @@
             // btn0x2
             // 
             btn0x2.Font = new Font("Franklin Gothic Heavy", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            btn0x2.Location = new Point(247, 376);
-            btn0x2.Margin = new Padding(3, 4, 3, 4);
+            btn0x2.Location = new Point(216, 282);
             btn0x2.Name = "btn0x2";
-            btn0x2.Size = new Size(118, 132);
+            btn0x2.Size = new Size(103, 99);
             btn0x2.TabIndex = 7;
             btn0x2.Text = "button8";
             btn0x2.UseVisualStyleBackColor = true;
@@ -157,10 +149,9 @@
             // btn2x2
             // 
             btn2x2.Font = new Font("Franklin Gothic Heavy", 10.8F, FontStyle.Regular, GraphicsUnit.Point);
-            btn2x2.Location = new Point(536, 376);
-            btn2x2.Margin = new Padding(3, 4, 3, 4);
+            btn2x2.Location = new Point(469, 282);
             btn2x2.Name = "btn2x2";
-            btn2x2.Size = new Size(118, 132);
+            btn2x2.Size = new Size(103, 99);
             btn2x2.TabIndex = 8;
             btn2x2.Text = "button9";
             btn2x2.UseVisualStyleBackColor = true;
@@ -170,10 +161,9 @@
             // 
             retryBTN.BackColor = Color.Red;
             retryBTN.Font = new Font("Franklin Gothic Heavy", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
-            retryBTN.Location = new Point(732, 445);
-            retryBTN.Margin = new Padding(3, 4, 3, 4);
+            retryBTN.Location = new Point(640, 334);
             retryBTN.Name = "retryBTN";
-            retryBTN.Size = new Size(170, 63);
+            retryBTN.Size = new Size(149, 47);
             retryBTN.TabIndex = 9;
             retryBTN.Text = "Retry";
             retryBTN.UseVisualStyleBackColor = false;
@@ -183,10 +173,9 @@
             // healthBar
             // 
             healthBar.ForeColor = SystemColors.ControlDark;
-            healthBar.Location = new Point(23, 465);
-            healthBar.Margin = new Padding(3, 4, 3, 4);
+            healthBar.Location = new Point(20, 349);
             healthBar.Name = "healthBar";
-            healthBar.Size = new Size(162, 29);
+            healthBar.Size = new Size(142, 22);
             healthBar.TabIndex = 10;
             healthBar.Value = 100;
             // 
@@ -194,9 +183,9 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Franklin Gothic Heavy", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(23, 427);
+            label1.Location = new Point(20, 320);
             label1.Name = "label1";
-            label1.Size = new Size(99, 34);
+            label1.Size = new Size(76, 26);
             label1.TabIndex = 11;
             label1.Text = "Health";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -205,60 +194,54 @@
             // 
             slot1.BackColor = Color.Transparent;
             slot1.BackgroundImageLayout = ImageLayout.Stretch;
-            slot1.Location = new Point(695, 100);
-            slot1.Margin = new Padding(3, 4, 3, 4);
+            slot1.Location = new Point(608, 75);
             slot1.Name = "slot1";
-            slot1.Size = new Size(77, 80);
+            slot1.Size = new Size(67, 60);
             slot1.TabIndex = 13;
             slot1.TabStop = false;
             // 
             // slot3
             // 
             slot3.BackgroundImageLayout = ImageLayout.Stretch;
-            slot3.Location = new Point(695, 216);
-            slot3.Margin = new Padding(3, 4, 3, 4);
+            slot3.Location = new Point(608, 162);
             slot3.Name = "slot3";
-            slot3.Size = new Size(77, 80);
+            slot3.Size = new Size(67, 60);
             slot3.TabIndex = 14;
             slot3.TabStop = false;
             // 
             // slot5
             // 
             slot5.BackgroundImageLayout = ImageLayout.Stretch;
-            slot5.Location = new Point(695, 339);
-            slot5.Margin = new Padding(3, 4, 3, 4);
+            slot5.Location = new Point(608, 254);
             slot5.Name = "slot5";
-            slot5.Size = new Size(77, 80);
+            slot5.Size = new Size(67, 60);
             slot5.TabIndex = 15;
             slot5.TabStop = false;
             // 
             // slot2
             // 
             slot2.BackgroundImageLayout = ImageLayout.Stretch;
-            slot2.Location = new Point(803, 100);
-            slot2.Margin = new Padding(3, 4, 3, 4);
+            slot2.Location = new Point(703, 75);
             slot2.Name = "slot2";
-            slot2.Size = new Size(77, 80);
+            slot2.Size = new Size(67, 60);
             slot2.TabIndex = 16;
             slot2.TabStop = false;
             // 
             // slot4
             // 
             slot4.BackgroundImageLayout = ImageLayout.Stretch;
-            slot4.Location = new Point(803, 216);
-            slot4.Margin = new Padding(3, 4, 3, 4);
+            slot4.Location = new Point(703, 162);
             slot4.Name = "slot4";
-            slot4.Size = new Size(77, 80);
+            slot4.Size = new Size(67, 60);
             slot4.TabIndex = 17;
             slot4.TabStop = false;
             // 
             // slot6
             // 
             slot6.BackgroundImageLayout = ImageLayout.Stretch;
-            slot6.Location = new Point(803, 339);
-            slot6.Margin = new Padding(3, 4, 3, 4);
+            slot6.Location = new Point(703, 254);
             slot6.Name = "slot6";
-            slot6.Size = new Size(77, 80);
+            slot6.Size = new Size(67, 60);
             slot6.TabIndex = 18;
             slot6.TabStop = false;
             // 
@@ -272,9 +255,10 @@
             settingsBTN.FlatStyle = FlatStyle.Flat;
             settingsBTN.Font = new Font("Franklin Gothic Demi Cond", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             settingsBTN.ForeColor = Color.Black;
-            settingsBTN.Location = new Point(24, 37);
+            settingsBTN.Location = new Point(21, 28);
+            settingsBTN.Margin = new Padding(3, 2, 3, 2);
             settingsBTN.Name = "settingsBTN";
-            settingsBTN.Size = new Size(45, 51);
+            settingsBTN.Size = new Size(39, 38);
             settingsBTN.TabIndex = 19;
             settingsBTN.UseVisualStyleBackColor = false;
             settingsBTN.Click += settingsBTN_Click;
@@ -282,8 +266,9 @@
             // settingsPannel
             // 
             settingsPannel.Location = new Point(-1, 0);
+            settingsPannel.Margin = new Padding(3, 2, 3, 2);
             settingsPannel.Name = "settingsPannel";
-            settingsPannel.Size = new Size(242, 526);
+            settingsPannel.Size = new Size(212, 394);
             settingsPannel.TabIndex = 20;
             settingsPannel.Visible = false;
             // 
@@ -293,18 +278,20 @@
             label2.BackColor = Color.FromArgb(224, 224, 224);
             label2.FlatStyle = FlatStyle.Flat;
             label2.Font = new Font("Franklin Gothic Heavy", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(687, 37);
+            label2.Location = new Point(601, 28);
             label2.Name = "label2";
-            label2.Size = new Size(198, 47);
+            label2.Size = new Size(159, 37);
             label2.TabIndex = 21;
             label2.Text = "Inventory";
             // 
             // Map
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
-            ClientSize = new Size(914, 522);
+            BackgroundImage = Properties.Resources.download__2_;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(800, 392);
             Controls.Add(label2);
             Controls.Add(settingsBTN);
             Controls.Add(settingsPannel);
@@ -327,7 +314,6 @@
             Controls.Add(btn1x0);
             Controls.Add(btn0x0);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 4, 3, 4);
             Name = "Map";
             Text = "Map";
             Load += Map_Load;

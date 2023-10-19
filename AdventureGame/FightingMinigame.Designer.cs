@@ -185,6 +185,8 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
+            BackgroundImage = Properties.Resources.download__2_;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(700, 338);
             Controls.Add(label2);
             Controls.Add(slot6);

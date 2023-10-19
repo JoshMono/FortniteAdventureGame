@@ -14,7 +14,7 @@ namespace AdventureGame
 
         private void BattleRoyalBTN_Click(object sender, EventArgs e)
         {
-            InventoryModel Player = new InventoryModel(100, 100, Properties.Resources.default_skin);
+            InventoryModel Player = new InventoryModel(100, 100, Properties.Resources.defaultSkin);
             Lobby lobby = new Lobby(Player);
             this.Hide();
             lobby.Show();
@@ -22,7 +22,7 @@ namespace AdventureGame
 
         private void SaveWorldBTN_Click(object sender, EventArgs e)
         {
-            FightingMinigame comingSoon = new FightingMinigame(null);
+            FightingMinigame comingSoon = new FightingMinigame(null, null);
             this.Hide();
             comingSoon.Show();
         }

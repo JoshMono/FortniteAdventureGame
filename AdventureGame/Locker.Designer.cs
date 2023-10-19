@@ -34,7 +34,7 @@
             // 
             // defaultSkinBTN
             // 
-            defaultSkinBTN.BackgroundImage = Properties.Resources.default_skin;
+            defaultSkinBTN.BackgroundImage = Properties.Resources.defaultSkin;
             defaultSkinBTN.BackgroundImageLayout = ImageLayout.Stretch;
             defaultSkinBTN.ForeColor = SystemColors.ActiveCaptionText;
             defaultSkinBTN.Location = new Point(28, 28);
@@ -42,11 +42,11 @@
             defaultSkinBTN.Size = new Size(120, 170);
             defaultSkinBTN.TabIndex = 0;
             defaultSkinBTN.UseVisualStyleBackColor = true;
-            defaultSkinBTN.Click += renegaterBTN_Click;
+            defaultSkinBTN.Click += deafaultSkinBTN_Click;
             // 
             // skullTrooperBTN
             // 
-            skullTrooperBTN.BackgroundImage = Properties.Resources.skull_trooper;
+            skullTrooperBTN.BackgroundImage = Properties.Resources.skullTrooper;
             skullTrooperBTN.BackgroundImageLayout = ImageLayout.Stretch;
             skullTrooperBTN.ForeColor = SystemColors.ActiveCaptionText;
             skullTrooperBTN.Location = new Point(627, 28);

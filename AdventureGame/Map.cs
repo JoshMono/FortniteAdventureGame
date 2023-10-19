@@ -91,10 +91,12 @@ namespace AdventureGame
         }
 
         Settings settings;
+        public InventoryModel Player;
 
-        public Map()
+        public Map(InventoryModel player)
         {
             InitializeComponent();
+            Player = player;
             healthBar.Value = inventory.Health;
 
             settings = new Settings() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
@@ -141,9 +143,9 @@ namespace AdventureGame
                 InventoryModel.Gun gun = inventory.GetGun();
                 available.gun = gun;
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame map = new FightingMinigame(inventorySlots);
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
                 this.Hide();
-                map.Show();
+                miniGame.Show();
             }
             else
             {
@@ -153,7 +155,7 @@ namespace AdventureGame
                 if (healthBar.Value <= 0)
                 {
                     this.Close();
-                    Map main = new Map();
+                    Map main = new Map(Player);
                     main.Show();
                 }
                 else
@@ -173,7 +175,9 @@ namespace AdventureGame
                 available.gun = gun;
 
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                btn1x0.BackColor = Color.Yellow;
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                this.Hide();
+                miniGame.Show();
             }
             else
             {
@@ -182,7 +186,7 @@ namespace AdventureGame
                 if (healthBar.Value <= 0)
                 {
                     this.Close();
-                    Map main = new Map();
+                    Map main = new Map(Player);
                     main.Show();
                 }
                 else
@@ -202,7 +206,9 @@ namespace AdventureGame
                 InventoryModel.Gun gun = inventory.GetGun();
                 available.gun = gun;
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                btn2x0.BackColor = Color.Yellow;
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                this.Hide();
+                miniGame.Show();
             }
             else
             {
@@ -211,7 +217,7 @@ namespace AdventureGame
                 if (healthBar.Value <= 0)
                 {
                     this.Close();
-                    Map main = new Map();
+                    Map main = new Map(Player);
                     main.Show();
                 }
                 else
@@ -231,7 +237,9 @@ namespace AdventureGame
                 InventoryModel.Gun gun = inventory.GetGun();
                 available.gun = gun;
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                btn0x1.BackColor = Color.Yellow;
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                this.Hide();
+                miniGame.Show();
             }
             else
             {
@@ -240,7 +248,7 @@ namespace AdventureGame
                 if (healthBar.Value <= 0)
                 {
                     this.Close();
-                    Map main = new Map();
+                    Map main = new Map(Player);
                     main.Show();
                 }
                 else
@@ -261,7 +269,9 @@ namespace AdventureGame
                 InventoryModel.Gun gun = inventory.GetGun();
                 available.gun = gun;
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                btn1x1.BackColor = Color.Yellow;
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                this.Hide();
+                miniGame.Show();
             }
             else
             {
@@ -270,7 +280,7 @@ namespace AdventureGame
                 if (healthBar.Value <= 0)
                 {
                     this.Close();
-                    Map main = new Map();
+                    Map main = new Map(Player);
                     main.Show();
                 }
                 else
@@ -290,7 +300,9 @@ namespace AdventureGame
                 InventoryModel.Gun gun = inventory.GetGun();
                 available.gun = gun;
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                btn2x1.BackColor = Color.Yellow;
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                this.Hide();
+                miniGame.Show();
             }
             else
             {
@@ -299,7 +311,7 @@ namespace AdventureGame
                 if (healthBar.Value <= 0)
                 {
                     this.Close();
-                    Map main = new Map();
+                    Map main = new Map(Player);
                     main.Show();
                 }
                 else
@@ -319,7 +331,9 @@ namespace AdventureGame
                 InventoryModel.Gun gun = inventory.GetGun();
                 available.gun = gun;
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                btn0x2.BackColor = Color.Yellow;
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                this.Hide();
+                miniGame.Show();
             }
             else
             {
@@ -328,7 +342,7 @@ namespace AdventureGame
                 if (healthBar.Value <= 0)
                 {
                     this.Close();
-                    Map main = new Map();
+                    Map main = new Map(Player);
                     main.Show();
                 }
                 else
@@ -348,7 +362,9 @@ namespace AdventureGame
                 InventoryModel.Gun gun = inventory.GetGun();
                 available.gun = gun;
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                btn1x2.BackColor = Color.Yellow;
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                this.Hide();
+                miniGame.Show();
             }
             else
             {
@@ -357,7 +373,7 @@ namespace AdventureGame
                 if (healthBar.Value <= 0)
                 {
                     this.Close();
-                    Map main = new Map();
+                    Map main = new Map(Player);
                     main.Show();
                 }
                 else
@@ -377,7 +393,9 @@ namespace AdventureGame
                 InventoryModel.Gun gun = inventory.GetGun();
                 available.gun = gun;
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                btn2x2.BackColor = Color.Yellow;
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                this.Hide();
+                miniGame.Show();
             }
             else
             {
@@ -387,7 +405,7 @@ namespace AdventureGame
                 if (healthBar.Value <= 0)
                 {
                     this.Close();
-                    Map main = new Map();
+                    Map main = new Map(Player);
                     main.Show();
                 }
                 else
@@ -402,7 +420,7 @@ namespace AdventureGame
         private void retryBTN_Click(object sender, EventArgs e)
         {
             this.Close();
-            Map main = new Map();
+            Map main = new Map(Player);
             main.Show();
         }
 

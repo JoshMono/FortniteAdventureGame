@@ -13,21 +13,23 @@ namespace AdventureGame
     public partial class Locker : Form
     {
 
-        public int skin;
+        public InventoryModel Player;
 
-        public Locker()
+
+        public Locker(InventoryModel player)
         {
+            Player = player;
             InitializeComponent();
         }
 
-        private void renegaterBTN_Click(object sender, EventArgs e)
+        private void deafaultSkinBTN_Click(object sender, EventArgs e)
         {
-            skin = 1;
+            Player.Skin = (Image)Properties.Resources.defaultSkin;
         }
 
         private void skullTrooperBTN_Click(object sender, EventArgs e)
         {
-            skin = 2;
+            Player.Skin = (Image)Properties.Resources.skullTrooper;
         }
     }
 }

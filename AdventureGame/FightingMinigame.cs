@@ -27,9 +27,13 @@ namespace AdventureGame
 
         public List<PictureBox> slotsList = new List<PictureBox>();
 
-        public FightingMinigame(List<InventoryModel.InventorySlot> inventorySlots)
+        public InventoryModel Player;
+
+        public FightingMinigame(List<InventoryModel.InventorySlot> inventorySlots, InventoryModel players)
         {
             InitializeComponent();
+            Player = players;
+
             playerX = player.Location.X;
             playerY = player.Location.Y;
 
@@ -47,7 +51,7 @@ namespace AdventureGame
             InventoryModel.InventorySlot gun1 = inventorySlots[1];
 
             InventoryModel.RefreshInventory(slotsList, inventorySlots);
-
+            player.BackgroundImage = Player.Skin;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -62,6 +66,9 @@ namespace AdventureGame
             bullet.speed = Speed;
             bullet.bulletLeft = player.Left + player.Width / 2;
             bullet.bulletTop = player.Top + player.Height / 2;
+            bullet.sideGap = sideGap;
+            bullet.topGap = topGap;
+            bullet.gameBoxPicture = gameBoxPicture;
             bullet.MakeBullet(this);
             bullet.bullet.BringToFront();
         }
@@ -72,19 +79,19 @@ namespace AdventureGame
             {
                 playerY = playerY - 2;
                 player.Location = new Point(player.Location.X, playerY);
-                Console.WriteLine("a");
+                
             }
             if (left && gameBoxPicture.Location.X < playerX)
             {
                 playerX = playerX - 2;
                 player.Location = new Point(playerX, player.Location.Y);
-                Console.WriteLine("a");
+               
             }
             if (back && playerY + player.Height - topGap.Height < gameBoxPicture.Height)
             {
                 playerY = playerY + 2;
                 player.Location = new Point(player.Location.X, playerY);
-                Console.WriteLine(playerY);
+                
             }
             if (right && playerX + player.Width - sideGap.Width < gameBoxPicture.Width)
             {
@@ -124,11 +131,31 @@ namespace AdventureGame
             if (e.KeyValue == (char)Keys.D)
             {
                 right = true;
-                direction= "right";
+                direction = "right";
             }
+            
+            if (foward == true && left == true)
+            {
+                direction = "WA";
+            }
+            if (foward == true && right == true)
+            {
+                direction = "WD";
+            }
+            if (back == true && left == true)
+            {
+                direction = "SA";
+            }
+            if (back == true && right == true)
+            {
+                direction = "SD";
+            }
+
+
             if (e.KeyValue == (char)Keys.Space)
             {
                 ShootBullet(direction, InventorySlotsList[0].gun.Speed);
+
             }
             
 
@@ -140,18 +167,41 @@ namespace AdventureGame
             if (e.KeyValue == (char)Keys.W)
             {
                 foward = false;
+                
             }
             if (e.KeyValue == (char)Keys.A)
             {
                 left = false;
+                
             }
             if (e.KeyValue == (char)Keys.S)
             {
                 back = false;
+                
             }
             if (e.KeyValue == (char)Keys.D)
             {
                 right = false;
+                
+            }
+            if (e.KeyValue == (char)Keys.Space)
+            {
+                if (foward)
+                {
+                    direction = "up";
+                }
+                if (left)
+                {
+                    direction = "left";
+                }
+                if (back)
+                {
+                    direction = "down";
+                }
+                if (right)
+                {
+                    direction = "right";
+                }
             }
         }
     }

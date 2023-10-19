@@ -93,9 +93,9 @@ namespace AdventureGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap dark_knight {
+        internal static System.Drawing.Bitmap darkKnight {
             get {
-                object obj = ResourceManager.GetObject("dark_knight", resourceCulture);
+                object obj = ResourceManager.GetObject("darkKnight", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace AdventureGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap default_skin {
+        internal static System.Drawing.Bitmap defaultSkin {
             get {
-                object obj = ResourceManager.GetObject("default_skin", resourceCulture);
+                object obj = ResourceManager.GetObject("defaultSkin", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -222,9 +222,9 @@ namespace AdventureGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap skull_trooper {
+        internal static System.Drawing.Bitmap skullTrooper {
             get {
-                object obj = ResourceManager.GetObject("skull_trooper", resourceCulture);
+                object obj = ResourceManager.GetObject("skullTrooper", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

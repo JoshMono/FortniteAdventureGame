@@ -15,8 +15,9 @@ namespace AdventureGame
 
         public int Health { get; set; }
         public int ZBucks { get; set; }
-
         public Image Skin { get; set; }
+
+
 
         public InventoryModel(int Health, int ZBucks, Image Skin)
         {
@@ -135,6 +136,10 @@ namespace AdventureGame
         public int bulletLeft { get; set; }
         public int bulletTop { get; set;}
         public int speed { get; set;}
+        public PictureBox gameBoxPicture { get; set; }
+        public PictureBox topGap { get; set; }
+        public PictureBox sideGap { get; set; }
+
 
         public PictureBox bullet = new PictureBox();
         private System.Windows.Forms.Timer bulletTimer = new System.Windows.Forms.Timer();
@@ -173,15 +178,36 @@ namespace AdventureGame
             {
                 bullet.Top += speed;
             }
+            if (facingDirection == "WD")
+            {
+                bullet.Top -= speed;
+                bullet.Left += speed;
+            }
+            if (facingDirection == "WA")
+            {
+                bullet.Top -= speed;
+                bullet.Left -= speed;
+            }
+            if (facingDirection == "SD")
+            {
+                bullet.Top += speed;
+                bullet.Left += speed;
+            }
+            if (facingDirection == "SA")
+            {
+                bullet.Top += speed;
+                bullet.Left -= speed;
+            }
 
 
-            /*if (bullet.Left < 10 || bullet.Left > 700 || bullet.Top < 10 || bullet.Top > 300)
+            if (bullet.Left < gameBoxPicture.Location.X || bullet.Left > sideGap.Width + gameBoxPicture.Width || bullet.Top < gameBoxPicture.Location.Y || bullet.Top > topGap.Height + gameBoxPicture.Height)
             {
                 bulletTimer.Stop();
                 bulletTimer.Dispose();
+                bullet.Dispose();
                 bulletTimer = null;
                 bullet = null;
-            }*/
+            }
         }
 
     }
