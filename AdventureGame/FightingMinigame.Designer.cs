@@ -42,6 +42,77 @@
             label2 = new Label();
             topGap = new PictureBox();
             sideGap = new PictureBox();
+            L0x0 = new PictureBox();
+            L1x0 = new PictureBox();
+            R1x0 = new PictureBox();
+            L2x0 = new PictureBox();
+            R2x0 = new PictureBox();
+            L3x0 = new PictureBox();
+            R3x0 = new PictureBox();
+            L4x0 = new PictureBox();
+            R4x0 = new PictureBox();
+            L5x0 = new PictureBox();
+            R5x0 = new PictureBox();
+            L6x0 = new PictureBox();
+            R6x0 = new PictureBox();
+            L7x0 = new PictureBox();
+            L7x1 = new PictureBox();
+            L6x1 = new PictureBox();
+            R6x1 = new PictureBox();
+            L5x1 = new PictureBox();
+            R5x1 = new PictureBox();
+            L4x1 = new PictureBox();
+            R4x1 = new PictureBox();
+            L3x1 = new PictureBox();
+            R3x1 = new PictureBox();
+            L2x1 = new PictureBox();
+            R2x1 = new PictureBox();
+            L1x1 = new PictureBox();
+            R1x1 = new PictureBox();
+            L0x1 = new PictureBox();
+            R0x1 = new PictureBox();
+            L7x2 = new PictureBox();
+            L6x2 = new PictureBox();
+            R6x2 = new PictureBox();
+            L5x2 = new PictureBox();
+            R5x2 = new PictureBox();
+            L4x2 = new PictureBox();
+            R4x2 = new PictureBox();
+            L3x2 = new PictureBox();
+            R3x2 = new PictureBox();
+            L2x2 = new PictureBox();
+            R2x2 = new PictureBox();
+            L1x2 = new PictureBox();
+            R1x2 = new PictureBox();
+            L0x2 = new PictureBox();
+            R0x2 = new PictureBox();
+            L7x3 = new PictureBox();
+            L6x3 = new PictureBox();
+            R6x3 = new PictureBox();
+            L5x3 = new PictureBox();
+            R5x3 = new PictureBox();
+            L4x3 = new PictureBox();
+            R4x3 = new PictureBox();
+            L3x3 = new PictureBox();
+            R3x3 = new PictureBox();
+            L2x3 = new PictureBox();
+            R2x3 = new PictureBox();
+            L1x3 = new PictureBox();
+            R1x3 = new PictureBox();
+            L0x3 = new PictureBox();
+            R0x3 = new PictureBox();
+            R6x4 = new PictureBox();
+            R5x4 = new PictureBox();
+            R4x4 = new PictureBox();
+            R3x4 = new PictureBox();
+            R2x4 = new PictureBox();
+            R1x4 = new PictureBox();
+            R0x4 = new PictureBox();
+            R0x0 = new PictureBox();
+            visionBoxR = new PictureBox();
+            visionBoxL = new PictureBox();
+            visionBoxU = new PictureBox();
+            visionBoxD = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)player).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gameBoxPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)slot6).BeginInit();
@@ -52,16 +123,87 @@
             ((System.ComponentModel.ISupportInitialize)slot1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)topGap).BeginInit();
             ((System.ComponentModel.ISupportInitialize)sideGap).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L0x0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L1x0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R1x0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L2x0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R2x0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L3x0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R3x0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L4x0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R4x0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L5x0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R5x0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L6x0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R6x0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L7x0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L7x1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L6x1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R6x1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L5x1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R5x1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L4x1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R4x1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L3x1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R3x1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L2x1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R2x1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L1x1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R1x1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L0x1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R0x1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L7x2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L6x2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R6x2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L5x2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R5x2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L4x2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R4x2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L3x2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R3x2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L2x2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R2x2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L1x2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R1x2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L0x2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R0x2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L7x3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L6x3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R6x3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L5x3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R5x3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L4x3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R4x3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L3x3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R3x3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L2x3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R2x3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L1x3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R1x3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)L0x3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R0x3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R6x4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R5x4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R4x4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R3x4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R2x4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R1x4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R0x4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)R0x0).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)visionBoxR).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)visionBoxL).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)visionBoxU).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)visionBoxD).BeginInit();
             SuspendLayout();
             // 
             // player
             // 
             player.BackColor = SystemColors.Control;
             player.BackgroundImageLayout = ImageLayout.Stretch;
-            player.Location = new Point(405, 122);
+            player.Location = new Point(216, 262);
             player.Margin = new Padding(3, 2, 3, 2);
             player.Name = "player";
-            player.Size = new Size(50, 50);
+            player.Size = new Size(30, 42);
             player.TabIndex = 0;
             player.TabStop = false;
             player.Click += pictureBox1_Click;
@@ -69,16 +211,16 @@
             // timer1
             // 
             timer1.Enabled = true;
-            timer1.Interval = 1;
+            timer1.Interval = 20;
             timer1.Tick += mainGameTimerEvent;
             // 
             // gameBoxPicture
             // 
             gameBoxPicture.BackColor = SystemColors.Control;
-            gameBoxPicture.Location = new Point(189, 10);
+            gameBoxPicture.Location = new Point(202, 21);
             gameBoxPicture.Margin = new Padding(3, 2, 3, 2);
             gameBoxPicture.Name = "gameBoxPicture";
-            gameBoxPicture.Size = new Size(499, 317);
+            gameBoxPicture.Size = new Size(476, 296);
             gameBoxPicture.TabIndex = 1;
             gameBoxPicture.TabStop = false;
             // 
@@ -167,7 +309,7 @@
             topGap.BackColor = Color.Transparent;
             topGap.Location = new Point(227, 0);
             topGap.Name = "topGap";
-            topGap.Size = new Size(461, 9);
+            topGap.Size = new Size(461, 21);
             topGap.TabIndex = 26;
             topGap.TabStop = false;
             // 
@@ -176,9 +318,786 @@
             sideGap.BackColor = Color.Transparent;
             sideGap.Location = new Point(1, 0);
             sideGap.Name = "sideGap";
-            sideGap.Size = new Size(188, 335);
+            sideGap.Size = new Size(200, 335);
             sideGap.TabIndex = 27;
             sideGap.TabStop = false;
+            // 
+            // L0x0
+            // 
+            L0x0.BackColor = Color.Olive;
+            L0x0.Location = new Point(202, 71);
+            L0x0.Name = "L0x0";
+            L0x0.Size = new Size(60, 10);
+            L0x0.TabIndex = 29;
+            L0x0.TabStop = false;
+            L0x0.Tag = "wall";
+            L0x0.Visible = false;
+            // 
+            // L1x0
+            // 
+            L1x0.BackColor = Color.Olive;
+            L1x0.Location = new Point(261, 71);
+            L1x0.Name = "L1x0";
+            L1x0.Size = new Size(60, 10);
+            L1x0.TabIndex = 31;
+            L1x0.TabStop = false;
+            L1x0.Tag = "wall";
+            L1x0.Visible = false;
+            // 
+            // R1x0
+            // 
+            R1x0.BackColor = Color.Olive;
+            R1x0.Location = new Point(311, 21);
+            R1x0.Name = "R1x0";
+            R1x0.Size = new Size(10, 60);
+            R1x0.TabIndex = 30;
+            R1x0.TabStop = false;
+            R1x0.Tag = "wall";
+            R1x0.Visible = false;
+            // 
+            // L2x0
+            // 
+            L2x0.BackColor = Color.Olive;
+            L2x0.Location = new Point(321, 71);
+            L2x0.Name = "L2x0";
+            L2x0.Size = new Size(60, 10);
+            L2x0.TabIndex = 33;
+            L2x0.TabStop = false;
+            L2x0.Tag = "wall";
+            L2x0.Visible = false;
+            // 
+            // R2x0
+            // 
+            R2x0.BackColor = Color.Olive;
+            R2x0.Location = new Point(371, 21);
+            R2x0.Name = "R2x0";
+            R2x0.Size = new Size(10, 60);
+            R2x0.TabIndex = 32;
+            R2x0.TabStop = false;
+            R2x0.Tag = "wall";
+            R2x0.Visible = false;
+            // 
+            // L3x0
+            // 
+            L3x0.BackColor = Color.Olive;
+            L3x0.Location = new Point(381, 71);
+            L3x0.Name = "L3x0";
+            L3x0.Size = new Size(60, 10);
+            L3x0.TabIndex = 35;
+            L3x0.TabStop = false;
+            L3x0.Tag = "wall";
+            L3x0.Visible = false;
+            // 
+            // R3x0
+            // 
+            R3x0.BackColor = Color.Olive;
+            R3x0.Location = new Point(431, 21);
+            R3x0.Name = "R3x0";
+            R3x0.Size = new Size(10, 60);
+            R3x0.TabIndex = 34;
+            R3x0.TabStop = false;
+            R3x0.Tag = "wall";
+            R3x0.Visible = false;
+            // 
+            // L4x0
+            // 
+            L4x0.BackColor = Color.Olive;
+            L4x0.Location = new Point(441, 71);
+            L4x0.Name = "L4x0";
+            L4x0.Size = new Size(60, 10);
+            L4x0.TabIndex = 37;
+            L4x0.TabStop = false;
+            L4x0.Tag = "wall";
+            L4x0.Visible = false;
+            // 
+            // R4x0
+            // 
+            R4x0.BackColor = Color.Olive;
+            R4x0.Location = new Point(491, 21);
+            R4x0.Name = "R4x0";
+            R4x0.Size = new Size(10, 60);
+            R4x0.TabIndex = 36;
+            R4x0.TabStop = false;
+            R4x0.Tag = "wall";
+            R4x0.Visible = false;
+            // 
+            // L5x0
+            // 
+            L5x0.BackColor = Color.Olive;
+            L5x0.Location = new Point(500, 71);
+            L5x0.Name = "L5x0";
+            L5x0.Size = new Size(60, 10);
+            L5x0.TabIndex = 39;
+            L5x0.TabStop = false;
+            L5x0.Tag = "wall";
+            L5x0.Visible = false;
+            // 
+            // R5x0
+            // 
+            R5x0.BackColor = Color.Olive;
+            R5x0.Location = new Point(550, 21);
+            R5x0.Name = "R5x0";
+            R5x0.Size = new Size(10, 60);
+            R5x0.TabIndex = 38;
+            R5x0.TabStop = false;
+            R5x0.Tag = "wall";
+            R5x0.Visible = false;
+            // 
+            // L6x0
+            // 
+            L6x0.BackColor = Color.Olive;
+            L6x0.Location = new Point(559, 71);
+            L6x0.Name = "L6x0";
+            L6x0.Size = new Size(60, 10);
+            L6x0.TabIndex = 41;
+            L6x0.TabStop = false;
+            L6x0.Tag = "wall";
+            L6x0.Visible = false;
+            // 
+            // R6x0
+            // 
+            R6x0.BackColor = Color.Olive;
+            R6x0.Location = new Point(609, 21);
+            R6x0.Name = "R6x0";
+            R6x0.Size = new Size(10, 60);
+            R6x0.TabIndex = 40;
+            R6x0.TabStop = false;
+            R6x0.Tag = "wall";
+            R6x0.Visible = false;
+            // 
+            // L7x0
+            // 
+            L7x0.BackColor = Color.Olive;
+            L7x0.Location = new Point(618, 71);
+            L7x0.Name = "L7x0";
+            L7x0.Size = new Size(60, 10);
+            L7x0.TabIndex = 43;
+            L7x0.TabStop = false;
+            L7x0.Tag = "wall";
+            L7x0.Visible = false;
+            // 
+            // L7x1
+            // 
+            L7x1.BackColor = Color.Olive;
+            L7x1.Location = new Point(618, 130);
+            L7x1.Name = "L7x1";
+            L7x1.Size = new Size(60, 10);
+            L7x1.TabIndex = 58;
+            L7x1.TabStop = false;
+            L7x1.Tag = "wall";
+            L7x1.Visible = false;
+            // 
+            // L6x1
+            // 
+            L6x1.BackColor = Color.Olive;
+            L6x1.Location = new Point(559, 130);
+            L6x1.Name = "L6x1";
+            L6x1.Size = new Size(60, 10);
+            L6x1.TabIndex = 57;
+            L6x1.TabStop = false;
+            L6x1.Tag = "wall";
+            L6x1.Visible = false;
+            // 
+            // R6x1
+            // 
+            R6x1.BackColor = Color.Olive;
+            R6x1.Location = new Point(609, 80);
+            R6x1.Name = "R6x1";
+            R6x1.Size = new Size(10, 60);
+            R6x1.TabIndex = 56;
+            R6x1.TabStop = false;
+            R6x1.Tag = "wall";
+            R6x1.Visible = false;
+            // 
+            // L5x1
+            // 
+            L5x1.BackColor = Color.Olive;
+            L5x1.Location = new Point(500, 130);
+            L5x1.Name = "L5x1";
+            L5x1.Size = new Size(60, 10);
+            L5x1.TabIndex = 55;
+            L5x1.TabStop = false;
+            L5x1.Tag = "wall";
+            L5x1.Visible = false;
+            // 
+            // R5x1
+            // 
+            R5x1.BackColor = Color.Olive;
+            R5x1.Location = new Point(550, 80);
+            R5x1.Name = "R5x1";
+            R5x1.Size = new Size(10, 60);
+            R5x1.TabIndex = 54;
+            R5x1.TabStop = false;
+            R5x1.Tag = "wall";
+            R5x1.Visible = false;
+            // 
+            // L4x1
+            // 
+            L4x1.BackColor = Color.Olive;
+            L4x1.Location = new Point(441, 130);
+            L4x1.Name = "L4x1";
+            L4x1.Size = new Size(60, 10);
+            L4x1.TabIndex = 53;
+            L4x1.TabStop = false;
+            L4x1.Tag = "wall";
+            L4x1.Visible = false;
+            // 
+            // R4x1
+            // 
+            R4x1.BackColor = Color.Olive;
+            R4x1.Location = new Point(491, 80);
+            R4x1.Name = "R4x1";
+            R4x1.Size = new Size(10, 60);
+            R4x1.TabIndex = 52;
+            R4x1.TabStop = false;
+            R4x1.Tag = "wall";
+            R4x1.Visible = false;
+            // 
+            // L3x1
+            // 
+            L3x1.BackColor = Color.Olive;
+            L3x1.Location = new Point(381, 130);
+            L3x1.Name = "L3x1";
+            L3x1.Size = new Size(60, 10);
+            L3x1.TabIndex = 51;
+            L3x1.TabStop = false;
+            L3x1.Tag = "wall";
+            L3x1.Visible = false;
+            // 
+            // R3x1
+            // 
+            R3x1.BackColor = Color.Olive;
+            R3x1.Location = new Point(431, 80);
+            R3x1.Name = "R3x1";
+            R3x1.Size = new Size(10, 60);
+            R3x1.TabIndex = 50;
+            R3x1.TabStop = false;
+            R3x1.Tag = "wall";
+            R3x1.Visible = false;
+            // 
+            // L2x1
+            // 
+            L2x1.BackColor = Color.Olive;
+            L2x1.Location = new Point(321, 130);
+            L2x1.Name = "L2x1";
+            L2x1.Size = new Size(60, 10);
+            L2x1.TabIndex = 49;
+            L2x1.TabStop = false;
+            L2x1.Tag = "wall";
+            L2x1.Visible = false;
+            // 
+            // R2x1
+            // 
+            R2x1.BackColor = Color.Olive;
+            R2x1.Location = new Point(371, 80);
+            R2x1.Name = "R2x1";
+            R2x1.Size = new Size(10, 60);
+            R2x1.TabIndex = 48;
+            R2x1.TabStop = false;
+            R2x1.Tag = "wall";
+            R2x1.Visible = false;
+            // 
+            // L1x1
+            // 
+            L1x1.BackColor = Color.Olive;
+            L1x1.Location = new Point(261, 130);
+            L1x1.Name = "L1x1";
+            L1x1.Size = new Size(60, 10);
+            L1x1.TabIndex = 47;
+            L1x1.TabStop = false;
+            L1x1.Tag = "wall";
+            L1x1.Visible = false;
+            // 
+            // R1x1
+            // 
+            R1x1.BackColor = Color.Olive;
+            R1x1.Location = new Point(311, 80);
+            R1x1.Name = "R1x1";
+            R1x1.Size = new Size(10, 60);
+            R1x1.TabIndex = 46;
+            R1x1.TabStop = false;
+            R1x1.Tag = "wall";
+            R1x1.Visible = false;
+            // 
+            // L0x1
+            // 
+            L0x1.BackColor = Color.Olive;
+            L0x1.Location = new Point(202, 130);
+            L0x1.Name = "L0x1";
+            L0x1.Size = new Size(60, 10);
+            L0x1.TabIndex = 45;
+            L0x1.TabStop = false;
+            L0x1.Tag = "wall";
+            L0x1.Visible = false;
+            // 
+            // R0x1
+            // 
+            R0x1.BackColor = Color.Olive;
+            R0x1.Location = new Point(252, 80);
+            R0x1.Name = "R0x1";
+            R0x1.Size = new Size(10, 60);
+            R0x1.TabIndex = 44;
+            R0x1.TabStop = false;
+            R0x1.Tag = "wall";
+            R0x1.Visible = false;
+            // 
+            // L7x2
+            // 
+            L7x2.BackColor = Color.Olive;
+            L7x2.Location = new Point(618, 189);
+            L7x2.Name = "L7x2";
+            L7x2.Size = new Size(60, 10);
+            L7x2.TabIndex = 73;
+            L7x2.TabStop = false;
+            L7x2.Tag = "wall";
+            L7x2.Visible = false;
+            // 
+            // L6x2
+            // 
+            L6x2.BackColor = Color.Olive;
+            L6x2.Location = new Point(559, 189);
+            L6x2.Name = "L6x2";
+            L6x2.Size = new Size(60, 10);
+            L6x2.TabIndex = 72;
+            L6x2.TabStop = false;
+            L6x2.Tag = "wall";
+            L6x2.Visible = false;
+            // 
+            // R6x2
+            // 
+            R6x2.BackColor = Color.Olive;
+            R6x2.Location = new Point(609, 139);
+            R6x2.Name = "R6x2";
+            R6x2.Size = new Size(10, 60);
+            R6x2.TabIndex = 71;
+            R6x2.TabStop = false;
+            R6x2.Tag = "wall";
+            R6x2.Visible = false;
+            // 
+            // L5x2
+            // 
+            L5x2.BackColor = Color.Olive;
+            L5x2.Location = new Point(500, 189);
+            L5x2.Name = "L5x2";
+            L5x2.Size = new Size(60, 10);
+            L5x2.TabIndex = 70;
+            L5x2.TabStop = false;
+            L5x2.Tag = "wall";
+            L5x2.Visible = false;
+            // 
+            // R5x2
+            // 
+            R5x2.BackColor = Color.Olive;
+            R5x2.Location = new Point(550, 139);
+            R5x2.Name = "R5x2";
+            R5x2.Size = new Size(10, 60);
+            R5x2.TabIndex = 69;
+            R5x2.TabStop = false;
+            R5x2.Tag = "wall";
+            R5x2.Visible = false;
+            // 
+            // L4x2
+            // 
+            L4x2.BackColor = Color.Olive;
+            L4x2.Location = new Point(441, 189);
+            L4x2.Name = "L4x2";
+            L4x2.Size = new Size(60, 10);
+            L4x2.TabIndex = 68;
+            L4x2.TabStop = false;
+            L4x2.Tag = "wall";
+            L4x2.Visible = false;
+            // 
+            // R4x2
+            // 
+            R4x2.BackColor = Color.Olive;
+            R4x2.Location = new Point(491, 139);
+            R4x2.Name = "R4x2";
+            R4x2.Size = new Size(10, 60);
+            R4x2.TabIndex = 67;
+            R4x2.TabStop = false;
+            R4x2.Tag = "wall";
+            R4x2.Visible = false;
+            // 
+            // L3x2
+            // 
+            L3x2.BackColor = Color.Olive;
+            L3x2.Location = new Point(381, 189);
+            L3x2.Name = "L3x2";
+            L3x2.Size = new Size(60, 10);
+            L3x2.TabIndex = 66;
+            L3x2.TabStop = false;
+            L3x2.Tag = "wall";
+            L3x2.Visible = false;
+            // 
+            // R3x2
+            // 
+            R3x2.BackColor = Color.Olive;
+            R3x2.Location = new Point(431, 139);
+            R3x2.Name = "R3x2";
+            R3x2.Size = new Size(10, 60);
+            R3x2.TabIndex = 65;
+            R3x2.TabStop = false;
+            R3x2.Tag = "wall";
+            R3x2.Visible = false;
+            // 
+            // L2x2
+            // 
+            L2x2.BackColor = Color.Olive;
+            L2x2.Location = new Point(321, 189);
+            L2x2.Name = "L2x2";
+            L2x2.Size = new Size(60, 10);
+            L2x2.TabIndex = 64;
+            L2x2.TabStop = false;
+            L2x2.Tag = "wall";
+            L2x2.Visible = false;
+            // 
+            // R2x2
+            // 
+            R2x2.BackColor = Color.Olive;
+            R2x2.Location = new Point(371, 139);
+            R2x2.Name = "R2x2";
+            R2x2.Size = new Size(10, 60);
+            R2x2.TabIndex = 63;
+            R2x2.TabStop = false;
+            R2x2.Tag = "wall";
+            R2x2.Visible = false;
+            // 
+            // L1x2
+            // 
+            L1x2.BackColor = Color.Olive;
+            L1x2.Location = new Point(261, 189);
+            L1x2.Name = "L1x2";
+            L1x2.Size = new Size(60, 10);
+            L1x2.TabIndex = 62;
+            L1x2.TabStop = false;
+            L1x2.Tag = "wall";
+            L1x2.Visible = false;
+            // 
+            // R1x2
+            // 
+            R1x2.BackColor = Color.Olive;
+            R1x2.Location = new Point(311, 139);
+            R1x2.Name = "R1x2";
+            R1x2.Size = new Size(10, 60);
+            R1x2.TabIndex = 61;
+            R1x2.TabStop = false;
+            R1x2.Tag = "wall";
+            R1x2.Visible = false;
+            // 
+            // L0x2
+            // 
+            L0x2.BackColor = Color.Olive;
+            L0x2.Location = new Point(202, 189);
+            L0x2.Name = "L0x2";
+            L0x2.Size = new Size(60, 10);
+            L0x2.TabIndex = 60;
+            L0x2.TabStop = false;
+            L0x2.Tag = "wall";
+            L0x2.Visible = false;
+            // 
+            // R0x2
+            // 
+            R0x2.BackColor = Color.Olive;
+            R0x2.Location = new Point(252, 139);
+            R0x2.Name = "R0x2";
+            R0x2.Size = new Size(10, 60);
+            R0x2.TabIndex = 59;
+            R0x2.TabStop = false;
+            R0x2.Tag = "wall";
+            R0x2.Visible = false;
+            // 
+            // L7x3
+            // 
+            L7x3.BackColor = Color.Olive;
+            L7x3.Location = new Point(618, 247);
+            L7x3.Name = "L7x3";
+            L7x3.Size = new Size(60, 10);
+            L7x3.TabIndex = 88;
+            L7x3.TabStop = false;
+            L7x3.Tag = "wall";
+            L7x3.Visible = false;
+            // 
+            // L6x3
+            // 
+            L6x3.BackColor = Color.Olive;
+            L6x3.Location = new Point(559, 247);
+            L6x3.Name = "L6x3";
+            L6x3.Size = new Size(60, 10);
+            L6x3.TabIndex = 87;
+            L6x3.TabStop = false;
+            L6x3.Tag = "wall";
+            L6x3.Visible = false;
+            // 
+            // R6x3
+            // 
+            R6x3.BackColor = Color.Olive;
+            R6x3.Location = new Point(609, 197);
+            R6x3.Name = "R6x3";
+            R6x3.Size = new Size(10, 60);
+            R6x3.TabIndex = 86;
+            R6x3.TabStop = false;
+            R6x3.Tag = "wall";
+            R6x3.Visible = false;
+            // 
+            // L5x3
+            // 
+            L5x3.BackColor = Color.Olive;
+            L5x3.Location = new Point(500, 247);
+            L5x3.Name = "L5x3";
+            L5x3.Size = new Size(60, 10);
+            L5x3.TabIndex = 85;
+            L5x3.TabStop = false;
+            L5x3.Tag = "wall";
+            L5x3.Visible = false;
+            // 
+            // R5x3
+            // 
+            R5x3.BackColor = Color.Olive;
+            R5x3.Location = new Point(550, 197);
+            R5x3.Name = "R5x3";
+            R5x3.Size = new Size(10, 60);
+            R5x3.TabIndex = 84;
+            R5x3.TabStop = false;
+            R5x3.Tag = "wall";
+            R5x3.Visible = false;
+            // 
+            // L4x3
+            // 
+            L4x3.BackColor = Color.Olive;
+            L4x3.Location = new Point(441, 247);
+            L4x3.Name = "L4x3";
+            L4x3.Size = new Size(60, 10);
+            L4x3.TabIndex = 83;
+            L4x3.TabStop = false;
+            L4x3.Tag = "wall";
+            L4x3.Visible = false;
+            // 
+            // R4x3
+            // 
+            R4x3.BackColor = Color.Olive;
+            R4x3.Location = new Point(491, 197);
+            R4x3.Name = "R4x3";
+            R4x3.Size = new Size(10, 60);
+            R4x3.TabIndex = 82;
+            R4x3.TabStop = false;
+            R4x3.Tag = "wall";
+            R4x3.Visible = false;
+            // 
+            // L3x3
+            // 
+            L3x3.BackColor = Color.Olive;
+            L3x3.Location = new Point(381, 247);
+            L3x3.Name = "L3x3";
+            L3x3.Size = new Size(60, 10);
+            L3x3.TabIndex = 81;
+            L3x3.TabStop = false;
+            L3x3.Tag = "wall";
+            L3x3.Visible = false;
+            // 
+            // R3x3
+            // 
+            R3x3.BackColor = Color.Olive;
+            R3x3.Location = new Point(431, 197);
+            R3x3.Name = "R3x3";
+            R3x3.Size = new Size(10, 60);
+            R3x3.TabIndex = 80;
+            R3x3.TabStop = false;
+            R3x3.Tag = "wall";
+            R3x3.Visible = false;
+            // 
+            // L2x3
+            // 
+            L2x3.BackColor = Color.Olive;
+            L2x3.Location = new Point(321, 247);
+            L2x3.Name = "L2x3";
+            L2x3.Size = new Size(60, 10);
+            L2x3.TabIndex = 79;
+            L2x3.TabStop = false;
+            L2x3.Tag = "wall";
+            L2x3.Visible = false;
+            // 
+            // R2x3
+            // 
+            R2x3.BackColor = Color.Olive;
+            R2x3.Location = new Point(371, 197);
+            R2x3.Name = "R2x3";
+            R2x3.Size = new Size(10, 60);
+            R2x3.TabIndex = 78;
+            R2x3.TabStop = false;
+            R2x3.Tag = "wall";
+            R2x3.Visible = false;
+            // 
+            // L1x3
+            // 
+            L1x3.BackColor = Color.Olive;
+            L1x3.Location = new Point(261, 247);
+            L1x3.Name = "L1x3";
+            L1x3.Size = new Size(60, 10);
+            L1x3.TabIndex = 77;
+            L1x3.TabStop = false;
+            L1x3.Tag = "wall";
+            L1x3.Visible = false;
+            // 
+            // R1x3
+            // 
+            R1x3.BackColor = Color.Olive;
+            R1x3.Location = new Point(311, 197);
+            R1x3.Name = "R1x3";
+            R1x3.Size = new Size(10, 60);
+            R1x3.TabIndex = 76;
+            R1x3.TabStop = false;
+            R1x3.Tag = "wall";
+            R1x3.Visible = false;
+            // 
+            // L0x3
+            // 
+            L0x3.BackColor = Color.Olive;
+            L0x3.Location = new Point(202, 247);
+            L0x3.Name = "L0x3";
+            L0x3.Size = new Size(60, 10);
+            L0x3.TabIndex = 75;
+            L0x3.TabStop = false;
+            L0x3.Tag = "wall";
+            L0x3.Visible = false;
+            // 
+            // R0x3
+            // 
+            R0x3.BackColor = Color.Olive;
+            R0x3.Location = new Point(252, 197);
+            R0x3.Name = "R0x3";
+            R0x3.Size = new Size(10, 60);
+            R0x3.TabIndex = 74;
+            R0x3.TabStop = false;
+            R0x3.Tag = "wall";
+            R0x3.Visible = false;
+            // 
+            // R6x4
+            // 
+            R6x4.BackColor = Color.Olive;
+            R6x4.Location = new Point(609, 257);
+            R6x4.Name = "R6x4";
+            R6x4.Size = new Size(10, 60);
+            R6x4.TabIndex = 101;
+            R6x4.TabStop = false;
+            R6x4.Tag = "wall";
+            R6x4.Visible = false;
+            // 
+            // R5x4
+            // 
+            R5x4.BackColor = Color.Olive;
+            R5x4.Location = new Point(550, 257);
+            R5x4.Name = "R5x4";
+            R5x4.Size = new Size(10, 60);
+            R5x4.TabIndex = 99;
+            R5x4.TabStop = false;
+            R5x4.Tag = "wall";
+            R5x4.Visible = false;
+            // 
+            // R4x4
+            // 
+            R4x4.BackColor = Color.Olive;
+            R4x4.Location = new Point(491, 257);
+            R4x4.Name = "R4x4";
+            R4x4.Size = new Size(10, 60);
+            R4x4.TabIndex = 97;
+            R4x4.TabStop = false;
+            R4x4.Tag = "wall";
+            R4x4.Visible = false;
+            // 
+            // R3x4
+            // 
+            R3x4.BackColor = Color.Olive;
+            R3x4.Location = new Point(431, 257);
+            R3x4.Name = "R3x4";
+            R3x4.Size = new Size(10, 60);
+            R3x4.TabIndex = 95;
+            R3x4.TabStop = false;
+            R3x4.Tag = "wall";
+            R3x4.Visible = false;
+            // 
+            // R2x4
+            // 
+            R2x4.BackColor = Color.Olive;
+            R2x4.Location = new Point(371, 257);
+            R2x4.Name = "R2x4";
+            R2x4.Size = new Size(10, 60);
+            R2x4.TabIndex = 93;
+            R2x4.TabStop = false;
+            R2x4.Tag = "wall";
+            R2x4.Visible = false;
+            // 
+            // R1x4
+            // 
+            R1x4.BackColor = Color.Olive;
+            R1x4.Location = new Point(311, 257);
+            R1x4.Name = "R1x4";
+            R1x4.Size = new Size(10, 60);
+            R1x4.TabIndex = 91;
+            R1x4.TabStop = false;
+            R1x4.Tag = "wall";
+            R1x4.Visible = false;
+            // 
+            // R0x4
+            // 
+            R0x4.BackColor = Color.Olive;
+            R0x4.Location = new Point(252, 257);
+            R0x4.Name = "R0x4";
+            R0x4.Size = new Size(10, 60);
+            R0x4.TabIndex = 89;
+            R0x4.TabStop = false;
+            R0x4.Tag = "wall";
+            R0x4.Visible = false;
+            // 
+            // R0x0
+            // 
+            R0x0.BackColor = Color.Olive;
+            R0x0.Location = new Point(252, 21);
+            R0x0.Name = "R0x0";
+            R0x0.Size = new Size(10, 60);
+            R0x0.TabIndex = 102;
+            R0x0.TabStop = false;
+            R0x0.Tag = "wall";
+            R0x0.Visible = false;
+            // 
+            // visionBoxR
+            // 
+            visionBoxR.BackColor = Color.Red;
+            visionBoxR.Location = new Point(239, 281);
+            visionBoxR.Name = "visionBoxR";
+            visionBoxR.Size = new Size(20, 10);
+            visionBoxR.TabIndex = 103;
+            visionBoxR.TabStop = false;
+            visionBoxR.Visible = false;
+            // 
+            // visionBoxL
+            // 
+            visionBoxL.BackColor = Color.Red;
+            visionBoxL.Location = new Point(205, 281);
+            visionBoxL.Name = "visionBoxL";
+            visionBoxL.Size = new Size(20, 10);
+            visionBoxL.TabIndex = 104;
+            visionBoxL.TabStop = false;
+            visionBoxL.Visible = false;
+            // 
+            // visionBoxU
+            // 
+            visionBoxU.BackColor = Color.Red;
+            visionBoxU.Location = new Point(227, 257);
+            visionBoxU.Name = "visionBoxU";
+            visionBoxU.Size = new Size(10, 20);
+            visionBoxU.TabIndex = 105;
+            visionBoxU.TabStop = false;
+            visionBoxU.Visible = false;
+            // 
+            // visionBoxD
+            // 
+            visionBoxD.BackColor = Color.Red;
+            visionBoxD.Location = new Point(227, 292);
+            visionBoxD.Name = "visionBoxD";
+            visionBoxD.Size = new Size(10, 20);
+            visionBoxD.TabIndex = 106;
+            visionBoxD.TabStop = false;
+            visionBoxD.Visible = false;
             // 
             // FightingMinigame
             // 
@@ -188,6 +1107,77 @@
             BackgroundImage = Properties.Resources.download__2_;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(700, 338);
+            Controls.Add(visionBoxD);
+            Controls.Add(visionBoxU);
+            Controls.Add(visionBoxL);
+            Controls.Add(visionBoxR);
+            Controls.Add(R0x0);
+            Controls.Add(R6x4);
+            Controls.Add(R5x4);
+            Controls.Add(R4x4);
+            Controls.Add(R3x4);
+            Controls.Add(R2x4);
+            Controls.Add(R1x4);
+            Controls.Add(R0x4);
+            Controls.Add(L7x3);
+            Controls.Add(L6x3);
+            Controls.Add(R6x3);
+            Controls.Add(L5x3);
+            Controls.Add(R5x3);
+            Controls.Add(L4x3);
+            Controls.Add(R4x3);
+            Controls.Add(L3x3);
+            Controls.Add(R3x3);
+            Controls.Add(L2x3);
+            Controls.Add(R2x3);
+            Controls.Add(L1x3);
+            Controls.Add(R1x3);
+            Controls.Add(L0x3);
+            Controls.Add(R0x3);
+            Controls.Add(L7x2);
+            Controls.Add(L6x2);
+            Controls.Add(R6x2);
+            Controls.Add(L5x2);
+            Controls.Add(R5x2);
+            Controls.Add(L4x2);
+            Controls.Add(R4x2);
+            Controls.Add(L3x2);
+            Controls.Add(R3x2);
+            Controls.Add(L2x2);
+            Controls.Add(R2x2);
+            Controls.Add(L1x2);
+            Controls.Add(R1x2);
+            Controls.Add(L0x2);
+            Controls.Add(R0x2);
+            Controls.Add(L7x1);
+            Controls.Add(L6x1);
+            Controls.Add(R6x1);
+            Controls.Add(L5x1);
+            Controls.Add(R5x1);
+            Controls.Add(L4x1);
+            Controls.Add(R4x1);
+            Controls.Add(L3x1);
+            Controls.Add(R3x1);
+            Controls.Add(L2x1);
+            Controls.Add(R2x1);
+            Controls.Add(L1x1);
+            Controls.Add(R1x1);
+            Controls.Add(L0x1);
+            Controls.Add(R0x1);
+            Controls.Add(L7x0);
+            Controls.Add(L6x0);
+            Controls.Add(R6x0);
+            Controls.Add(L5x0);
+            Controls.Add(R5x0);
+            Controls.Add(L4x0);
+            Controls.Add(R4x0);
+            Controls.Add(L3x0);
+            Controls.Add(R3x0);
+            Controls.Add(L2x0);
+            Controls.Add(R2x0);
+            Controls.Add(L1x0);
+            Controls.Add(R1x0);
+            Controls.Add(L0x0);
             Controls.Add(label2);
             Controls.Add(slot6);
             Controls.Add(slot4);
@@ -216,6 +1206,77 @@
             ((System.ComponentModel.ISupportInitialize)slot1).EndInit();
             ((System.ComponentModel.ISupportInitialize)topGap).EndInit();
             ((System.ComponentModel.ISupportInitialize)sideGap).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L0x0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L1x0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R1x0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L2x0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R2x0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L3x0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R3x0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L4x0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R4x0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L5x0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R5x0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L6x0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R6x0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L7x0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L7x1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L6x1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R6x1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L5x1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R5x1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L4x1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R4x1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L3x1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R3x1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L2x1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R2x1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L1x1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R1x1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L0x1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R0x1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L7x2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L6x2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R6x2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L5x2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R5x2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L4x2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R4x2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L3x2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R3x2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L2x2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R2x2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L1x2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R1x2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L0x2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R0x2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L7x3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L6x3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R6x3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L5x3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R5x3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L4x3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R4x3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L3x3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R3x3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L2x3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R2x3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L1x3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R1x3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)L0x3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R0x3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R6x4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R5x4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R4x4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R3x4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R2x4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R1x4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R0x4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)R0x0).EndInit();
+            ((System.ComponentModel.ISupportInitialize)visionBoxR).EndInit();
+            ((System.ComponentModel.ISupportInitialize)visionBoxL).EndInit();
+            ((System.ComponentModel.ISupportInitialize)visionBoxU).EndInit();
+            ((System.ComponentModel.ISupportInitialize)visionBoxD).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -236,5 +1297,77 @@
         private Label label2;
         private PictureBox topGap;
         private PictureBox sideGap;
+        private PictureBox aaaR0x0;
+        private PictureBox L0x0;
+        private PictureBox L1x0;
+        private PictureBox R1x0;
+        private PictureBox L2x0;
+        private PictureBox R2x0;
+        private PictureBox L3x0;
+        private PictureBox R3x0;
+        private PictureBox L4x0;
+        private PictureBox R4x0;
+        private PictureBox L5x0;
+        private PictureBox R5x0;
+        private PictureBox L6x0;
+        private PictureBox R6x0;
+        private PictureBox L7x0;
+        private PictureBox L7x1;
+        private PictureBox L6x1;
+        private PictureBox R6x1;
+        private PictureBox L5x1;
+        private PictureBox R5x1;
+        private PictureBox L4x1;
+        private PictureBox R4x1;
+        private PictureBox L3x1;
+        private PictureBox R3x1;
+        private PictureBox L2x1;
+        private PictureBox R2x1;
+        private PictureBox L1x1;
+        private PictureBox R1x1;
+        private PictureBox L0x1;
+        private PictureBox R0x1;
+        private PictureBox L7x2;
+        private PictureBox L6x2;
+        private PictureBox R6x2;
+        private PictureBox L5x2;
+        private PictureBox R5x2;
+        private PictureBox L4x2;
+        private PictureBox R4x2;
+        private PictureBox L3x2;
+        private PictureBox R3x2;
+        private PictureBox L2x2;
+        private PictureBox R2x2;
+        private PictureBox L1x2;
+        private PictureBox R1x2;
+        private PictureBox L0x2;
+        private PictureBox R0x2;
+        private PictureBox L7x3;
+        private PictureBox L6x3;
+        private PictureBox R6x3;
+        private PictureBox L5x3;
+        private PictureBox R5x3;
+        private PictureBox L4x3;
+        private PictureBox R4x3;
+        private PictureBox L3x3;
+        private PictureBox R3x3;
+        private PictureBox L2x3;
+        private PictureBox R2x3;
+        private PictureBox L1x3;
+        private PictureBox R1x3;
+        private PictureBox L0x3;
+        private PictureBox R0x3;
+        private PictureBox R6x4;
+        private PictureBox R5x4;
+        private PictureBox R4x4;
+        private PictureBox R3x4;
+        private PictureBox R2x4;
+        private PictureBox R1x4;
+        private PictureBox R0x4;
+        private PictureBox R0x0;
+        private PictureBox visionBoxR;
+        private PictureBox visionBoxL;
+        private PictureBox visionBoxU;
+        private PictureBox visionBoxD;
     }
 }

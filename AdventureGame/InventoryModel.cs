@@ -94,6 +94,23 @@ namespace AdventureGame
 
     }
 
+    public class Wall
+    {
+        public int Health;
+        public string Material { get; set;}
+        public bool Alive {  get; set;}
+        public PictureBox formWall {  get; set;}
+
+        public Wall(int Health, string material, bool alive, PictureBox wall)
+        {
+            this.Material = material;
+            this.Health = Health;
+            Alive = alive;
+            formWall = wall;
+        }
+
+    }
+
     public class MapLocation
     {
         public string locationName { get; set; }

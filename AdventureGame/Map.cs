@@ -26,6 +26,8 @@ namespace AdventureGame
         MapLocation pos1x2 = new MapLocation("Fatal Fields");
         MapLocation pos2x2 = new MapLocation("Paradise Palms");
 
+        
+
         InventoryModel.InventorySlot inventory1 = new InventoryModel.InventorySlot(1, null);
         InventoryModel.InventorySlot inventory2 = new InventoryModel.InventorySlot(2, null);
         InventoryModel.InventorySlot inventory3 = new InventoryModel.InventorySlot(3, null);
