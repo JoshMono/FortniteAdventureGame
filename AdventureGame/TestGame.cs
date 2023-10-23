@@ -22,7 +22,8 @@ namespace AdventureGame
         int playerX;
         int playerY;
 
-        PictureBox picturePlayer;
+        PictureBox picturePlayerH;
+        PictureBox picturePlayerC;
 
         byte[] x = { 0 };
 
@@ -44,11 +45,11 @@ namespace AdventureGame
                 server = new TcpListener(System.Net.IPAddress.Any, 5732);
                 server.Start();
                 sock = server.AcceptSocket();
-                picturePlayer = pictureBox1;
+                picturePlayerH = pictureBox1;
 
 
-                playerXHost = picturePlayer.Location.X;
-                playerYHost = picturePlayer.Location.Y;
+                playerXHost = picturePlayerH.Location.X;
+                playerYHost = picturePlayerH.Location.Y;
 
             }
             else
@@ -58,9 +59,9 @@ namespace AdventureGame
                     client = new TcpClient("127.0.0.1", 5732);
                     sock = client.Client;
                     MessageReceiver.RunWorkerAsync();
-                    picturePlayer = pictureBox2;
-                    playerX = picturePlayer.Location.X;
-                    playerY = picturePlayer.Location.Y;
+                    picturePlayerC = pictureBox2;
+                    playerX = picturePlayerC.Location.X;
+                    playerY = picturePlayerC.Location.Y;
                 }
                 catch (Exception ex)
                 {
@@ -76,10 +77,10 @@ namespace AdventureGame
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int xInt = picturePlayer.Location.X + 10;
-            int yInt = picturePlayer.Location.Y + 10;
-            byte x = Convert.ToByte(picturePlayer.Location.X);
-            byte y = Convert.ToByte(picturePlayer.Location.Y);
+            int xInt = picturePlayerH.Location.X + 10;
+            int yInt = picturePlayerH.Location.Y + 10;
+            byte x = Convert.ToByte(picturePlayerH.Location.X);
+            byte y = Convert.ToByte(picturePlayerH.Location.Y);
             byte[] num = { x, y, 10 };
             sock.Send(num);
             MessageReceiver.RunWorkerAsync();
@@ -98,18 +99,18 @@ namespace AdventureGame
 
                 if (buffer[3] == Convert.ToByte(0) && buffer[4] == Convert.ToByte(0))
                 {
-                    if (Host) 
+                    if (Host == false) 
                     { 
                         Console.WriteLine("0");
                         int playerXHost = Convert.ToInt16(buffer[0]);
                         int playerYHost = Convert.ToInt16(buffer[1]);
-                        picturePlayer.Location = new Point(playerXHost, playerYHost);
+                        picturePlayerH.Location = new Point(playerXHost, playerYHost);
                     }
                     else
                     {
                         int playerX = Convert.ToInt16(buffer[0]);
                         int playerY = Convert.ToInt16(buffer[1]);
-                        picturePlayer.Location = new Point(playerX, playerY);
+                        picturePlayerC.Location = new Point(playerX, playerY);
                     }
                 }
                 else
@@ -118,14 +119,14 @@ namespace AdventureGame
                     {
                         int playerXHost = Convert.ToInt16(buffer[0] + buffer[4]);
                         int playerYHost = Convert.ToInt16(buffer[1] + buffer[3]);
-                        picturePlayer.Location = new Point(playerXHost, playerYHost);
+                        picturePlayerC.Location = new Point(playerXHost, playerYHost);
 
                     }
                     else
                     {
                         int playerX = Convert.ToInt16(buffer[0] + buffer[4]);
                         int playerY = Convert.ToInt16(buffer[1] + buffer[3]);
-                        picturePlayer.Location = new Point(playerX, playerY);
+                        picturePlayerH.Location = new Point(playerX, playerY);
                     }
                     Console.WriteLine("1");
               
@@ -174,7 +175,7 @@ namespace AdventureGame
                 if (Host)
                 {
                     playerYHost = playerYHost - 2;
-                    picturePlayer.Location = new Point(playerXHost, playerYHost);
+                    picturePlayerH.Location = new Point(playerXHost, playerYHost);
 
                     byte x1;
                     byte x2;
@@ -185,7 +186,7 @@ namespace AdventureGame
                     if (playerXHost > 255)
                     {
 
-                        int x1Int = picturePlayer.Location.X;
+                        int x1Int = picturePlayerH.Location.X;
                         int x2Int = x1Int - 256;
                         x1Int = 255;
 
@@ -200,9 +201,9 @@ namespace AdventureGame
                         x1 = Convert.ToByte(playerX);
                         x2 = 0;
                     }
-                    if (picturePlayer.Location.Y > 255)
+                    if (picturePlayerH.Location.Y > 255)
                     {
-                        int y1Int = picturePlayer.Location.Y;
+                        int y1Int = picturePlayerH.Location.Y;
 
                         int y2Int = y1Int - 256;
                         y1Int = 255;
@@ -223,7 +224,7 @@ namespace AdventureGame
                 else
                 {
                     playerY = playerY - 2;
-                    picturePlayer.Location = new Point(playerX, playerY);
+                    picturePlayerH.Location = new Point(playerX, playerY);
 
                     byte x1;
                     byte x2;
@@ -234,7 +235,7 @@ namespace AdventureGame
                     if (playerXHost > 255)
                     {
 
-                        int x1Int = picturePlayer.Location.X;
+                        int x1Int = picturePlayerH.Location.X;
                         int x2Int = x1Int - 256;
                         x1Int = 255;
 
@@ -249,9 +250,9 @@ namespace AdventureGame
                         x1 = Convert.ToByte(playerX);
                         x2 = 0;
                     }
-                    if (picturePlayer.Location.Y > 255)
+                    if (picturePlayerH.Location.Y > 255)
                     {
-                        int y1Int = picturePlayer.Location.Y;
+                        int y1Int = picturePlayerH.Location.Y;
 
                         int y2Int = y1Int - 256;
                         y1Int = 255;
@@ -278,8 +279,8 @@ namespace AdventureGame
             {
                 Console.WriteLine("test123");
                 playerY = playerY + 2;
-                playerX = picturePlayer.Location.X;
-                picturePlayer.Location = new Point(playerX, playerY);
+                playerX = picturePlayerH.Location.X;
+                picturePlayerH.Location = new Point(playerX, playerY);
 
                 byte x1;
                 byte x2;
@@ -290,7 +291,7 @@ namespace AdventureGame
                 if (playerX > 255)
                 {
 
-                    int x1Int = picturePlayer.Location.X;
+                    int x1Int = picturePlayerH.Location.X;
                     int x2Int = x1Int - 256;
                     x1Int = 255;
 
@@ -305,9 +306,9 @@ namespace AdventureGame
                     x1 = Convert.ToByte(playerX);
                     x2 = 0;
                 }
-                if (picturePlayer.Location.Y > 255)
+                if (picturePlayerH.Location.Y > 255)
                 {
-                    int y1Int = picturePlayer.Location.Y;
+                    int y1Int = picturePlayerH.Location.Y;
 
                     int y2Int = y1Int - 256;
                     y1Int = 255;
@@ -329,9 +330,9 @@ namespace AdventureGame
             if (direction == "left")
             {
                 Console.WriteLine("test123");
-                playerY = picturePlayer.Location.Y;
+                playerY = picturePlayerH.Location.Y;
                 playerX = playerX - 2;
-                picturePlayer.Location = new Point(playerX, playerY);
+                picturePlayerH.Location = new Point(playerX, playerY);
 
                 byte x1;
                 byte x2;
@@ -342,7 +343,7 @@ namespace AdventureGame
                 if (playerX > 255)
                 {
 
-                    int x1Int = picturePlayer.Location.X;
+                    int x1Int = picturePlayerH.Location.X;
                     int x2Int = x1Int - 256;
                     x1Int = 255;
 
@@ -357,9 +358,9 @@ namespace AdventureGame
                     x1 = Convert.ToByte(playerX);
                     x2 = 0;
                 }
-                if (picturePlayer.Location.Y > 255)
+                if (picturePlayerH.Location.Y > 255)
                 {
-                    int y1Int = picturePlayer.Location.Y;
+                    int y1Int = picturePlayerH.Location.Y;
 
                     int y2Int = y1Int - 256;
                     y1Int = 255;
@@ -381,8 +382,8 @@ namespace AdventureGame
             {
                 Console.WriteLine("test123");
                 playerX = playerX + 2;
-                playerY = picturePlayer.Location.Y;
-                picturePlayer.Location = new Point(playerX, playerY);
+                playerY = picturePlayerH.Location.Y;
+                picturePlayerH.Location = new Point(playerX, playerY);
 
                 byte x1;
                 byte x2;
@@ -393,7 +394,7 @@ namespace AdventureGame
                 if (playerX > 255)
                 {
 
-                    int x1Int = picturePlayer.Location.X;
+                    int x1Int = picturePlayerH.Location.X;
                     int x2Int = x1Int - 256;
                     x1Int = 255;
 
@@ -408,9 +409,9 @@ namespace AdventureGame
                     x1 = Convert.ToByte(playerX);
                     x2 = 0;
                 }
-                if (picturePlayer.Location.Y > 255)
+                if (picturePlayerH.Location.Y > 255)
                 {
-                    int y1Int = picturePlayer.Location.Y;
+                    int y1Int = picturePlayerH.Location.Y;
 
                     int y2Int = y1Int - 256;
                     y1Int = 255;
