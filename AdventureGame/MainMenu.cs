@@ -20,11 +20,18 @@ namespace AdventureGame
             lobby.Show();
         }
 
+        bool Host = false;
+
         private void SaveWorldBTN_Click(object sender, EventArgs e)
         {
-            FightingMinigame comingSoon = new FightingMinigame(null, null);
+            TestGame comingSoon = new TestGame(Host);
             this.Hide();
             comingSoon.Show();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            Host = true;
         }
     }
 }
