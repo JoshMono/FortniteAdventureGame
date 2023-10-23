@@ -39,7 +39,9 @@
             playBTN = new Button();
             lockerPannel = new Panel();
             skinAvaterIMG = new PictureBox();
+            itemShopPannel = new Panel();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            lockerPannel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)skinAvaterIMG).BeginInit();
             SuspendLayout();
             // 
@@ -89,6 +91,7 @@
             shopBTN.TabIndex = 2;
             shopBTN.Text = "Shop";
             shopBTN.UseVisualStyleBackColor = false;
+            shopBTN.Click += shopBTN_Click;
             // 
             // settingsBTN
             // 
@@ -153,6 +156,7 @@
             // 
             // lockerPannel
             // 
+            lockerPannel.Controls.Add(itemShopPannel);
             lockerPannel.Location = new Point(15, 82);
             lockerPannel.Name = "lockerPannel";
             lockerPannel.Size = new Size(778, 364);
@@ -168,6 +172,15 @@
             skinAvaterIMG.Size = new Size(150, 212);
             skinAvaterIMG.TabIndex = 0;
             skinAvaterIMG.TabStop = false;
+            // 
+            // itemShopPannel
+            // 
+            itemShopPannel.Location = new Point(-1, 0);
+            itemShopPannel.Name = "itemShopPannel";
+            itemShopPannel.Size = new Size(778, 364);
+            itemShopPannel.TabIndex = 8;
+            itemShopPannel.Visible = false;
+            itemShopPannel.Paint += itemShopPannel_Paint;
             // 
             // Lobby
             // 
@@ -191,6 +204,7 @@
             Text = "Lobby";
             Load += Lobby_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            lockerPannel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)skinAvaterIMG).EndInit();
             ResumeLayout(false);
         }
@@ -207,5 +221,6 @@
         private Label zBucksLabel;
         private Panel lockerPannel;
         private PictureBox skinAvaterIMG;
+        private Panel itemShopPannel;
     }
 }

@@ -115,5 +115,18 @@ namespace AdventureGame
         {
 
         }
+
+        private void itemShopPannel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void shopBTN_Click(object sender, EventArgs e)
+        {
+            itemShopPannel.Hide();
+            lobbyBTN.BackColor = Color.FromArgb(255, 255, 128);
+            shopBTN.BackColor = Color.Transparent;
+            BackgroundImage = (Image)Properties.Resources.lobbyBG;
+        }
     }
 }

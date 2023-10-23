@@ -32,6 +32,11 @@ namespace AdventureGame
         bool left = false;
         bool right = false;
 
+        bool hitWallL = false;
+        bool hitWallR = false;
+        bool hitWallU = false;
+        bool hitWallD = false;
+
         public List<InventoryModel.InventorySlot> InventorySlotsList;
 
         public string direction = "right";
@@ -78,6 +83,7 @@ namespace AdventureGame
 
             Console.WriteLine("Test");
 
+            
             InventoryModel.InventorySlot gun1 = inventorySlots[1];
 
             InventoryModel.RefreshInventory(slotsList, inventorySlots);
@@ -237,6 +243,10 @@ namespace AdventureGame
             horizontalWall[7, 3] = posL7x3;
         }
 
+
+        List<PictureBox> aliveHorizontal = new List<PictureBox>();
+        List<PictureBox> aliveVertical = new List<PictureBox>();
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -258,25 +268,124 @@ namespace AdventureGame
 
         private void mainGameTimerEvent(object sender, EventArgs e)
         {
+            //
+            // Foward
+            //
             if (foward && gameBoxPicture.Location.Y < playerY)
             {
-                playerY = playerY - 2;
 
-                yVisionD = yVisionD - 2;
-                yVisionU = yVisionU - 2;
-                yVisionL = yVisionL - 2;
-                yVisionR = yVisionR - 2;
+                foreach (PictureBox c in aliveVertical)
+                {
 
-                visionBoxD.Location = new Point(visionBoxD.Location.X, yVisionD);
-                visionBoxU.Location = new Point(visionBoxU.Location.X, yVisionU);
-                visionBoxL.Location = new Point(visionBoxL.Location.X, yVisionL);
-                visionBoxR.Location = new Point(visionBoxR.Location.X, yVisionR);
+                    if (hitWallD)
+                    {
+                        playerY = playerY + 2;
 
-                player.Location = new Point(player.Location.X, playerY);
+                        yVisionD = yVisionD + 2;
+                        yVisionU = yVisionU + 2;
+                        yVisionL = yVisionL + 2;
+                        yVisionR = yVisionR + 2;
+
+                        visionBoxD.Location = new Point(visionBoxD.Location.X, yVisionD);
+                        visionBoxU.Location = new Point(visionBoxU.Location.X, yVisionU);
+                        visionBoxL.Location = new Point(visionBoxL.Location.X, yVisionL);
+                        visionBoxR.Location = new Point(visionBoxR.Location.X, yVisionR);
+
+                        player.Location = new Point(player.Location.X, playerY);
+                        hitWallD = false;
+
+                        Console.WriteLine("Foward");
+                    }
+
+                    if (player.Left <= c.Right && c.Left <= player.Right && player.Top <= c.Bottom && c.Top <= player.Bottom)
+                    {
+                        Console.WriteLine(c.Name);
+                        hitWallU = true; break;
+                    }
+                }
+                foreach (PictureBox c in aliveHorizontal)
+                {
+
+                    if (player.Left <= c.Right && c.Left <= player.Right && player.Top <= c.Bottom && c.Top <= player.Bottom)
+                    {
+
+                        hitWallU = true; break;
+                    }
+                }
+                if (hitWallU)
+                {
+                    Console.WriteLine("wall");
+                }
+                else
+                {
+                    playerY = playerY - 2;
+
+                    yVisionD = yVisionD - 2;
+                    yVisionU = yVisionU - 2;
+                    yVisionL = yVisionL - 2;
+                    yVisionR = yVisionR - 2;
+
+                    visionBoxD.Location = new Point(visionBoxD.Location.X, yVisionD);
+                    visionBoxU.Location = new Point(visionBoxU.Location.X, yVisionU);
+                    visionBoxL.Location = new Point(visionBoxL.Location.X, yVisionL);
+                    visionBoxR.Location = new Point(visionBoxR.Location.X, yVisionR);
+
+                    player.Location = new Point(player.Location.X, playerY);
+                }
+                
+                
 
             }
+
+            //
+            //Left
+            //
             if (left && gameBoxPicture.Location.X < playerX)
             {
+
+                if (hitWallR)
+                {
+                    playerX = playerX - 2;
+
+                    xVisionD = xVisionD - 2;
+                    xVisionU = xVisionU - 2;
+                    xVisionL = xVisionL - 2;
+                    xVisionR = xVisionR - 2;
+
+                    visionBoxD.Location = new Point(xVisionD, visionBoxD.Location.Y);
+                    visionBoxU.Location = new Point(xVisionU, visionBoxU.Location.Y);
+                    visionBoxL.Location = new Point(xVisionL, visionBoxL.Location.Y);
+                    visionBoxR.Location = new Point(xVisionR, visionBoxR.Location.Y);
+
+                    player.Location = new Point(playerX, player.Location.Y);
+                    hitWallR = false;
+
+                    Console.WriteLine("Left");
+                }
+
+                foreach (PictureBox c in aliveHorizontal)
+                {
+
+                    if (player.Left <= c.Right && c.Left <= player.Right && player.Top <= c.Bottom && c.Top <= player.Bottom)
+                    {
+
+                        hitWallL = true; break;
+                        
+                    }
+                }
+                foreach (PictureBox c in aliveVertical)
+                {
+
+                    if (player.Left <= c.Right && c.Left <= player.Right && player.Top <= c.Bottom && c.Top <= player.Bottom)
+                    {
+
+                        hitWallL = true; break;
+                    }
+                }
+
+            if (hitWallL == false)
+            {
+                Console.WriteLine("asdsandjasn");
                 playerX = playerX - 2;
 
                 xVisionD = xVisionD - 2;
@@ -290,10 +399,61 @@ namespace AdventureGame
                 visionBoxR.Location = new Point(xVisionR, visionBoxR.Location.Y);
 
                 player.Location = new Point(playerX, player.Location.Y);
-
             }
-            if (back && playerY + player.Height - topGap.Height < gameBoxPicture.Height)
+
+        }
+
+        //
+        // Back
+        //
+        if (back && playerY + player.Height - topGap.Height < gameBoxPicture.Height)
+        {
+            if (hitWallU)
+                {
+                    playerX = playerX - 2;
+
+                    xVisionD = xVisionD - 2;
+                    xVisionU = xVisionU - 2;
+                    xVisionL = xVisionL - 2;
+                    xVisionR = xVisionR - 2;
+
+                    visionBoxD.Location = new Point(xVisionD, visionBoxD.Location.Y);
+                    visionBoxU.Location = new Point(xVisionU, visionBoxU.Location.Y);
+                    visionBoxL.Location = new Point(xVisionL, visionBoxL.Location.Y);
+                    visionBoxR.Location = new Point(xVisionR, visionBoxR.Location.Y);
+
+                    player.Location = new Point(playerX, player.Location.Y);
+                    hitWallU = false;
+
+                    Console.WriteLine("Back");
+                }
+            
+
+            foreach (PictureBox c in aliveVertical)
             {
+
+                if (player.Bounds.IntersectsWith(c.Bounds))
+                {
+                     Console.WriteLine(c.Name);
+                     hitWallD = true; break;
+                }
+            }
+            foreach (PictureBox c in aliveHorizontal)
+            {
+
+                if (player.Bounds.IntersectsWith(c.Bounds))
+                {
+
+                    hitWallD = true; break;
+                }
+            }
+            if (hitWallD)
+            {
+                Console.WriteLine("wall");
+            }
+            else
+            {
+
                 playerY = playerY + 2;
 
                 yVisionD = yVisionD + 2;
@@ -309,21 +469,90 @@ namespace AdventureGame
                 player.Location = new Point(player.Location.X, playerY);
 
             }
-            if (right && playerX + player.Width - sideGap.Width < gameBoxPicture.Width)
-            {
-                playerX = playerX + 2;
 
-                xVisionD = xVisionD + 2;
-                xVisionU = xVisionU + 2;
-                xVisionL = xVisionL + 2;
-                xVisionR = xVisionR + 2;
+
+
+
+        }
+
+        //
+        // Right
+        //
+        if (right && playerX + player.Width - sideGap.Width < gameBoxPicture.Width)
+        {
+            
+            if (hitWallL)
+                {
+                    playerX = playerX + 2;
+
+                    xVisionD = xVisionD + 2;
+                    xVisionU = xVisionU + 2;
+                    xVisionL = xVisionL + 2;
+                    xVisionR = xVisionR + 2;
+
+                    visionBoxD.Location = new Point(xVisionD, visionBoxD.Location.Y);
+                    visionBoxU.Location = new Point(xVisionU, visionBoxU.Location.Y);
+                    visionBoxL.Location = new Point(xVisionL, visionBoxL.Location.Y);
+                    visionBoxR.Location = new Point(xVisionR, visionBoxR.Location.Y);
+
+                    player.Location = new Point(playerX, player.Location.Y);
+                    hitWallL = false;
+                    Console.WriteLine("Right");
+                }
+
+
+            foreach (PictureBox c in aliveHorizontal)
+            {
+
+                if (player.Left <= c.Right && c.Left <= player.Right && player.Top <= c.Bottom && c.Top <= player.Bottom)
+                {
+
+                    hitWallR = true; break;
+                }
+            }
+            foreach (PictureBox c in aliveVertical)
+            {
+
+                if (player.Left <= c.Right && c.Left <= player.Right && player.Top <= c.Bottom && c.Top <= player.Bottom)
+                {
+
+                    hitWallR = true; break;
+                }
+            }
+            if (hitWallR)
+            {
+                Console.WriteLine("wall");
+                /*playerX = playerX - 4;
+
+                xVisionD = xVisionD - 4;
+                xVisionU = xVisionU - 4;
+                xVisionL = xVisionL - 4;
+                xVisionR = xVisionR - 4;
 
                 visionBoxD.Location = new Point(xVisionD, visionBoxD.Location.Y);
                 visionBoxU.Location = new Point(xVisionU, visionBoxU.Location.Y);
                 visionBoxL.Location = new Point(xVisionL, visionBoxL.Location.Y);
                 visionBoxR.Location = new Point(xVisionR, visionBoxR.Location.Y);
 
-                player.Location = new Point(playerX, player.Location.Y);
+                player.Location = new Point(playerX, player.Location.Y);*/
+                }
+                else
+                {
+                    playerX = playerX + 2;
+
+                    xVisionD = xVisionD + 2;
+                    xVisionU = xVisionU + 2;
+                    xVisionL = xVisionL + 2;
+                    xVisionR = xVisionR + 2;
+
+                    visionBoxD.Location = new Point(xVisionD, visionBoxD.Location.Y);
+                    visionBoxU.Location = new Point(xVisionU, visionBoxU.Location.Y);
+                    visionBoxL.Location = new Point(xVisionL, visionBoxL.Location.Y);
+                    visionBoxR.Location = new Point(xVisionR, visionBoxR.Location.Y);
+
+                    player.Location = new Point(playerX, player.Location.Y);
+                }
+                        
             }
 
             for (int k = 0; k < verticalWall.GetLength(0); k++)
@@ -358,6 +587,10 @@ namespace AdventureGame
                         {
                             verticalWall[k, c].formWall.Visible = false;
                         }
+                    }
+                    else if (verticalWall[k, c].Alive)
+                    {
+                        aliveVertical.Add(verticalWall[k, c].formWall);
                     }
                 }
             }
@@ -394,6 +627,10 @@ namespace AdventureGame
                         {
                             horizontalWall[k, c].formWall.Visible = false;
                         }
+                    }
+                    else if (horizontalWall[k, c].Alive)
+                    {
+                        aliveHorizontal.Add(horizontalWall[k, c].formWall);
                     }
                 }
             }
