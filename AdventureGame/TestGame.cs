@@ -224,7 +224,7 @@ namespace AdventureGame
                 else
                 {
                     playerY = playerY - 2;
-                    picturePlayerH.Location = new Point(playerX, playerY);
+                    picturePlayerC.Location = new Point(playerX, playerY);
 
                     byte x1;
                     byte x2;
@@ -232,7 +232,7 @@ namespace AdventureGame
                     byte y1;
                     byte y2;
 
-                    if (playerXHost > 255)
+                    if (playerX > 255)
                     {
 
                         int x1Int = picturePlayerH.Location.X;
@@ -250,9 +250,9 @@ namespace AdventureGame
                         x1 = Convert.ToByte(playerX);
                         x2 = 0;
                     }
-                    if (picturePlayerH.Location.Y > 255)
+                    if (picturePlayerC.Location.Y > 255)
                     {
-                        int y1Int = picturePlayerH.Location.Y;
+                        int y1Int = picturePlayerC.Location.Y;
 
                         int y2Int = y1Int - 256;
                         y1Int = 255;
