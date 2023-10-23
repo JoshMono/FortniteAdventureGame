@@ -117,16 +117,16 @@ namespace AdventureGame
                 {
                     if (Host)
                     {
-                        int playerXHost = Convert.ToInt16(buffer[0] + buffer[4]);
-                        int playerYHost = Convert.ToInt16(buffer[1] + buffer[3]);
-                        picturePlayerC.Location = new Point(playerXHost, playerYHost);
+                        int playerX = Convert.ToInt16(buffer[0] + buffer[4]);
+                        int playerY = Convert.ToInt16(buffer[1] + buffer[3]);
+                        picturePlayerC.Location = new Point(playerX, playerY);
 
                     }
                     else
                     {
-                        int playerX = Convert.ToInt16(buffer[0] + buffer[4]);
-                        int playerY = Convert.ToInt16(buffer[1] + buffer[3]);
-                        picturePlayerH.Location = new Point(playerX, playerY);
+                        int playerXHost = Convert.ToInt16(buffer[0] + buffer[4]);
+                        int playerYHost = Convert.ToInt16(buffer[1] + buffer[3]);
+                        picturePlayerH.Location = new Point(playerXHost, playerYHost);
                     }
                     Console.WriteLine("1");
               
@@ -235,7 +235,7 @@ namespace AdventureGame
                     if (playerX > 255)
                     {
 
-                        int x1Int = picturePlayerH.Location.X;
+                        int x1Int = picturePlayerC.Location.X;
                         int x2Int = x1Int - 256;
                         x1Int = 255;
 
