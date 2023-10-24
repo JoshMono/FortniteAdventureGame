@@ -24,7 +24,7 @@ namespace AdventureGame
 
         private void SaveWorldBTN_Click(object sender, EventArgs e)
         {
-            TestGame comingSoon = new TestGame(Host);
+            TestGame comingSoon = new TestGame(Host, ipAdress.Text);
             this.Hide();
             comingSoon.Show();
         }

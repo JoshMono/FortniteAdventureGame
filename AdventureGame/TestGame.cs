@@ -15,6 +15,7 @@ namespace AdventureGame
     public partial class TestGame : Form
     {
         bool Host;
+        string ipAdress;
         string direction;
 
         int playerXHost;
@@ -32,11 +33,11 @@ namespace AdventureGame
         private TcpListener server = null;
         private TcpClient client;
 
-        public TestGame(bool host)
+        public TestGame(bool host, string ip)
         {
             InitializeComponent();
 
-
+            ipAdress = ip;
             Host = host;
             CheckForIllegalCrossThreadCalls = false;
 
@@ -60,7 +61,7 @@ namespace AdventureGame
             {
                 try
                 {
-                    client = new TcpClient("127.0.0.1", 5732);
+                    client = new TcpClient(ip, 5732);
                     sock = client.Client;
                     MessageReceiver.RunWorkerAsync();
                     picturePlayerC = pictureBox2;
