@@ -178,6 +178,18 @@ namespace AdventureGame
 
         private void mainGameTimer(object sender, EventArgs e)
         {
+            
+            if (Host)
+            {
+                playerY = picturePlayerH.Location.Y;
+                playerX = picturePlayerH.Location.X;
+            }
+            else
+            {
+                playerY = picturePlayerC.Location.Y;
+                playerX = picturePlayerC.Location.X;
+            }
+
             //
             if (direction == "up")
             {
