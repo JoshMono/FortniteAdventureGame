@@ -216,7 +216,7 @@ namespace AdventureGame
                
 
                     Console.WriteLine("test123");
-                    if (Host && playerX < 500 && Host && playerY < 500)
+                    if (Host && playerX < 500 && Host && playerY < 500 || Host && playerXHost < 500 && Host && playerYHost < 500)
                     {
                         playerYHost = playerYHost - 2;
                         picturePlayerH.Location = new Point(playerXHost, playerYHost);
@@ -266,7 +266,7 @@ namespace AdventureGame
 
                     }
                     //
-                    else if (playerX < 500 && playerY < 500)
+                    else if (playerX < 500 && playerY < 500 || playerXHost < 500 && playerYHost < 500)
                     {
                         playerY = playerY - 2;
                         picturePlayerC.Location = new Point(playerX, playerY);
@@ -325,7 +325,7 @@ namespace AdventureGame
             {
 
                 Console.WriteLine("test123");
-                if (Host && playerX < 500 && Host && playerY < 500)
+                if (Host && playerX < 500 && Host && playerY < 500 || Host && playerXHost < 500 && Host && playerYHost < 500)
                 {
                     playerYHost = playerYHost + 2;
                     picturePlayerH.Location = new Point(playerXHost, playerYHost);
@@ -373,7 +373,7 @@ namespace AdventureGame
 
                     sock.Send(num);
                 }
-                else if (playerX < 500 && playerY < 500)
+                else if (playerX < 500 && playerY < 500 || playerXHost < 500 && playerYHost < 500)
                 {
                     playerY = playerY + 2;
                     picturePlayerC.Location = new Point(playerX, playerY);
@@ -429,7 +429,7 @@ namespace AdventureGame
                 if (direction == "left")
                 {
                     Console.WriteLine("\n Left run \n");
-                    if (Host && playerX < 500 && Host && playerY < 500)
+                    if (Host && playerX < 500 && Host && playerY < 500 || Host && playerXHost < 500 && Host && playerYHost < 500)
                     {
                         playerXHost = playerXHost - 2;
                         picturePlayerH.Location = new Point(playerXHost, playerYHost);
@@ -477,7 +477,7 @@ namespace AdventureGame
 
                         sock.Send(num);
                     }
-                    else if (playerX < 500 && playerY < 500)
+                    else if (playerX < 500 && playerY < 500 || playerXHost < 500 && playerYHost < 500)
                     {
                         playerX = playerX - 2;
                         picturePlayerC.Location = new Point(playerX, playerY);
@@ -533,7 +533,7 @@ namespace AdventureGame
             if (direction == "right")
             {
                 Console.WriteLine("\n Right \n");
-                if (Host && playerX < 500 && Host && playerY < 500)
+                if (Host && playerX < 500 && Host && playerY < 500 || Host && playerXHost < 500 && Host && playerYHost < 500)
                 {
                     playerXHost = playerXHost + 2;
                     picturePlayerH.Location = new Point(playerXHost, playerYHost);
@@ -581,7 +581,7 @@ namespace AdventureGame
 
                     sock.Send(num);
                 }
-                else if (playerX < 500 && playerY < 500)
+                else if (playerX < 500 && playerY < 500 || playerXHost < 500 && playerYHost < 500)
                 {
                     playerX = playerX + 2;
                     picturePlayerC.Location = new Point(playerX, playerY);
