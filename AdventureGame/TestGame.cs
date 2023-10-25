@@ -30,7 +30,7 @@ namespace AdventureGame
 
         private Socket sock;
         private BackgroundWorker MessageReceiver = new BackgroundWorker();
-        private TcpListener server = null;
+        private TcpListener server;
         private TcpClient client;
 
         public TestGame(bool host, string ip)
@@ -38,7 +38,7 @@ namespace AdventureGame
             InitializeComponent();
 
             ipAdress = ip;
-            Host = host;
+            Host = host; 
             CheckForIllegalCrossThreadCalls = false;
 
             if (Host)
@@ -181,8 +181,8 @@ namespace AdventureGame
             
             if (Host)
             {
-                playerY = picturePlayerH.Location.Y;
-                playerX = picturePlayerH.Location.X;
+                playerYHost = picturePlayerH.Location.Y;
+                playerXHost = picturePlayerH.Location.X;
             }
             else
             {
@@ -325,7 +325,7 @@ namespace AdventureGame
             {
 
                 Console.WriteLine("test123");
-                if (Host && playerX < 500 && Host && playerY < 500 || Host && playerXHost < 500 && Host && playerYHost < 500)
+                if (Host && playerXHost < 500 && Host && playerYHost < 500)
                 {
                     playerYHost = playerYHost + 2;
                     picturePlayerH.Location = new Point(playerXHost, playerYHost);
@@ -373,7 +373,7 @@ namespace AdventureGame
 
                     sock.Send(num);
                 }
-                else if (playerX < 500 && playerY < 500 || playerXHost < 500 && playerYHost < 500)
+                else if (playerX < 500 && playerY < 500)
                 {
                     playerY = playerY + 2;
                     picturePlayerC.Location = new Point(playerX, playerY);

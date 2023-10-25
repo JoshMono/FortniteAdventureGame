@@ -83,7 +83,7 @@ namespace AdventureGame
 
             Console.WriteLine("Test");
 
-            
+
             InventoryModel.InventorySlot gun1 = inventorySlots[1];
 
             InventoryModel.RefreshInventory(slotsList, inventorySlots);
@@ -332,8 +332,8 @@ namespace AdventureGame
 
                     player.Location = new Point(player.Location.X, playerY);
                 }
-                
-                
+
+
 
             }
 
@@ -370,7 +370,7 @@ namespace AdventureGame
                     {
 
                         hitWallL = true; break;
-                        
+
                     }
                 }
                 foreach (PictureBox c in aliveVertical)
@@ -383,32 +383,32 @@ namespace AdventureGame
                     }
                 }
 
-            if (hitWallL == false)
-            {
-                Console.WriteLine("asdsandjasn");
-                playerX = playerX - 2;
+                if (hitWallL == false)
+                {
+                    Console.WriteLine("asdsandjasn");
+                    playerX = playerX - 2;
 
-                xVisionD = xVisionD - 2;
-                xVisionU = xVisionU - 2;
-                xVisionL = xVisionL - 2;
-                xVisionR = xVisionR - 2;
+                    xVisionD = xVisionD - 2;
+                    xVisionU = xVisionU - 2;
+                    xVisionL = xVisionL - 2;
+                    xVisionR = xVisionR - 2;
 
-                visionBoxD.Location = new Point(xVisionD, visionBoxD.Location.Y);
-                visionBoxU.Location = new Point(xVisionU, visionBoxU.Location.Y);
-                visionBoxL.Location = new Point(xVisionL, visionBoxL.Location.Y);
-                visionBoxR.Location = new Point(xVisionR, visionBoxR.Location.Y);
+                    visionBoxD.Location = new Point(xVisionD, visionBoxD.Location.Y);
+                    visionBoxU.Location = new Point(xVisionU, visionBoxU.Location.Y);
+                    visionBoxL.Location = new Point(xVisionL, visionBoxL.Location.Y);
+                    visionBoxR.Location = new Point(xVisionR, visionBoxR.Location.Y);
 
-                player.Location = new Point(playerX, player.Location.Y);
+                    player.Location = new Point(playerX, player.Location.Y);
+                }
+
             }
 
-        }
-
-        //
-        // Back
-        //
-        if (back && playerY + player.Height - topGap.Height < gameBoxPicture.Height)
-        {
-            if (hitWallU)
+            //
+            // Back
+            //
+            if (back && playerY + player.Height - topGap.Height < gameBoxPicture.Height)
+            {
+                if (hitWallU)
                 {
                     playerX = playerX - 2;
 
@@ -427,61 +427,61 @@ namespace AdventureGame
 
                     Console.WriteLine("Back");
                 }
-            
 
-            foreach (PictureBox c in aliveVertical)
-            {
 
-                if (player.Bounds.IntersectsWith(c.Bounds))
-                {
-                     Console.WriteLine(c.Name);
-                     hitWallD = true; break;
-                }
-            }
-            foreach (PictureBox c in aliveHorizontal)
-            {
-
-                if (player.Bounds.IntersectsWith(c.Bounds))
+                foreach (PictureBox c in aliveVertical)
                 {
 
-                    hitWallD = true; break;
+                    if (player.Bounds.IntersectsWith(c.Bounds))
+                    {
+                        Console.WriteLine(c.Name);
+                        hitWallD = true; break;
+                    }
                 }
+                foreach (PictureBox c in aliveHorizontal)
+                {
+
+                    if (player.Bounds.IntersectsWith(c.Bounds))
+                    {
+
+                        hitWallD = true; break;
+                    }
+                }
+                if (hitWallD)
+                {
+                    Console.WriteLine("wall");
+                }
+                else
+                {
+
+                    playerY = playerY + 2;
+
+                    yVisionD = yVisionD + 2;
+                    yVisionU = yVisionU + 2;
+                    yVisionL = yVisionL + 2;
+                    yVisionR = yVisionR + 2;
+
+                    visionBoxD.Location = new Point(visionBoxD.Location.X, yVisionD);
+                    visionBoxU.Location = new Point(visionBoxU.Location.X, yVisionU);
+                    visionBoxL.Location = new Point(visionBoxL.Location.X, yVisionL);
+                    visionBoxR.Location = new Point(visionBoxR.Location.X, yVisionR);
+
+                    player.Location = new Point(player.Location.X, playerY);
+
+                }
+
+
+
+
             }
-            if (hitWallD)
+
+            //
+            // Right
+            //
+            if (right && playerX + player.Width - sideGap.Width < gameBoxPicture.Width)
             {
-                Console.WriteLine("wall");
-            }
-            else
-            {
 
-                playerY = playerY + 2;
-
-                yVisionD = yVisionD + 2;
-                yVisionU = yVisionU + 2;
-                yVisionL = yVisionL + 2;
-                yVisionR = yVisionR + 2;
-
-                visionBoxD.Location = new Point(visionBoxD.Location.X, yVisionD);
-                visionBoxU.Location = new Point(visionBoxU.Location.X, yVisionU);
-                visionBoxL.Location = new Point(visionBoxL.Location.X, yVisionL);
-                visionBoxR.Location = new Point(visionBoxR.Location.X, yVisionR);
-
-                player.Location = new Point(player.Location.X, playerY);
-
-            }
-
-
-
-
-        }
-
-        //
-        // Right
-        //
-        if (right && playerX + player.Width - sideGap.Width < gameBoxPicture.Width)
-        {
-            
-            if (hitWallL)
+                if (hitWallL)
                 {
                     playerX = playerX + 2;
 
@@ -501,40 +501,40 @@ namespace AdventureGame
                 }
 
 
-            foreach (PictureBox c in aliveHorizontal)
-            {
-
-                if (player.Left <= c.Right && c.Left <= player.Right && player.Top <= c.Bottom && c.Top <= player.Bottom)
+                foreach (PictureBox c in aliveHorizontal)
                 {
 
-                    hitWallR = true; break;
-                }
-            }
-            foreach (PictureBox c in aliveVertical)
-            {
+                    if (player.Left <= c.Right && c.Left <= player.Right && player.Top <= c.Bottom && c.Top <= player.Bottom)
+                    {
 
-                if (player.Left <= c.Right && c.Left <= player.Right && player.Top <= c.Bottom && c.Top <= player.Bottom)
+                        hitWallR = true; break;
+                    }
+                }
+                foreach (PictureBox c in aliveVertical)
                 {
 
-                    hitWallR = true; break;
+                    if (player.Left <= c.Right && c.Left <= player.Right && player.Top <= c.Bottom && c.Top <= player.Bottom)
+                    {
+
+                        hitWallR = true; break;
+                    }
                 }
-            }
-            if (hitWallR)
-            {
-                Console.WriteLine("wall");
-                /*playerX = playerX - 4;
+                if (hitWallR)
+                {
+                    Console.WriteLine("wall");
+                    /*playerX = playerX - 4;
 
-                xVisionD = xVisionD - 4;
-                xVisionU = xVisionU - 4;
-                xVisionL = xVisionL - 4;
-                xVisionR = xVisionR - 4;
+                    xVisionD = xVisionD - 4;
+                    xVisionU = xVisionU - 4;
+                    xVisionL = xVisionL - 4;
+                    xVisionR = xVisionR - 4;
 
-                visionBoxD.Location = new Point(xVisionD, visionBoxD.Location.Y);
-                visionBoxU.Location = new Point(xVisionU, visionBoxU.Location.Y);
-                visionBoxL.Location = new Point(xVisionL, visionBoxL.Location.Y);
-                visionBoxR.Location = new Point(xVisionR, visionBoxR.Location.Y);
+                    visionBoxD.Location = new Point(xVisionD, visionBoxD.Location.Y);
+                    visionBoxU.Location = new Point(xVisionU, visionBoxU.Location.Y);
+                    visionBoxL.Location = new Point(xVisionL, visionBoxL.Location.Y);
+                    visionBoxR.Location = new Point(xVisionR, visionBoxR.Location.Y);
 
-                player.Location = new Point(playerX, player.Location.Y);*/
+                    player.Location = new Point(playerX, player.Location.Y);*/
                 }
                 else
                 {
@@ -552,7 +552,7 @@ namespace AdventureGame
 
                     player.Location = new Point(playerX, player.Location.Y);
                 }
-                        
+
             }
 
             for (int k = 0; k < verticalWall.GetLength(0); k++)
