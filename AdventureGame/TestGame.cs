@@ -496,6 +496,7 @@ namespace AdventureGame
 
                     }
                 }
+                //
 
             if (direction == "right")
             {
