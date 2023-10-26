@@ -624,7 +624,7 @@ namespace AdventureGame
             {
                 sock.Send(x);
             }
-            else
+            else if (sendSocket) 
             {
                 sock.Send(num);
                 sendSocket = false;
