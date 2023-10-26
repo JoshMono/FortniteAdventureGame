@@ -611,7 +611,7 @@ namespace AdventureGame
 
             }
 
-            if (!up || !down || !right || !left)
+            if (!up && !down && !right && !left)
             {
                 sock.Send(x);
             }
