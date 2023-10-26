@@ -16,7 +16,11 @@ namespace AdventureGame
     {
         bool Host;
         string ipAdress;
-        string direction;
+
+        bool up = false;
+        bool right = false;
+        bool down = false;
+        bool left = false;
 
         int playerXHost;
         int playerYHost;
@@ -151,19 +155,19 @@ namespace AdventureGame
 
             if (e.KeyValue == (char)Keys.W)
             {
-                direction = "up";
+                up = true;
             }
             if (e.KeyValue == (char)Keys.S)
             {
-                direction = "down";
+                down = true;
             }
             if (e.KeyValue == (char)Keys.A)
             {
-                direction = "left";
+                left = true;
             }
             if (e.KeyValue == (char)Keys.D)
             {
-                direction = "right";
+                right = true;
             }
         }
 
@@ -202,7 +206,7 @@ namespace AdventureGame
             }
 
             //
-            if (direction == "up")
+            if (up)
             {
 
                 if (Host)
@@ -310,7 +314,7 @@ namespace AdventureGame
             }
 
             //
-            if (direction == "down")
+            if (down)
             {
                 if (Host)
                 {
@@ -412,7 +416,7 @@ namespace AdventureGame
             }
 
             //
-            if (direction == "left")
+            if (left)
             {
                 if (Host)
                 {
@@ -515,7 +519,7 @@ namespace AdventureGame
             }
             //
 
-            if (direction == "right")
+            if (right)
             {
                 if (Host)
                 {
@@ -618,7 +622,7 @@ namespace AdventureGame
 
             }
 
-            if (direction == null)
+            if (!up || !down || !right || !left)
             {
                 sock.Send(x);
             }
@@ -629,19 +633,19 @@ namespace AdventureGame
         {
             if (e.KeyValue == (char)Keys.W)
             {
-                direction = null;
+                up = false;
             }
             if (e.KeyValue == (char)Keys.S)
             {
-                direction = null;
+                down = false;
             }
             if (e.KeyValue == (char)Keys.D)
             {
-                direction = null;
+                right = false;
             }
             if (e.KeyValue == (char)Keys.A)
             {
-                direction = null;
+                left = false;
             }
         }
     }
