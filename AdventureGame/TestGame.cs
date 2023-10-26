@@ -32,6 +32,8 @@ namespace AdventureGame
 
         byte[] x = { 0 };
 
+        byte[] num;
+
         private Socket sock;
         private BackgroundWorker MessageReceiver = new BackgroundWorker();
         private TcpListener server;
@@ -362,7 +364,6 @@ namespace AdventureGame
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
 
-                    sock.Send(num);
                 }
                 else
                 {
@@ -410,7 +411,6 @@ namespace AdventureGame
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
 
-                    sock.Send(num);
 
                 }
             }
@@ -464,7 +464,6 @@ namespace AdventureGame
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
 
-                    sock.Send(num);
                 }
                 else
                 {
@@ -512,9 +511,7 @@ namespace AdventureGame
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
 
-                    sock.Send(num);
-
-
+ 
                 }
             }
             //
@@ -567,7 +564,6 @@ namespace AdventureGame
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
 
-                    sock.Send(num);
                 }
                 else
                 {
@@ -625,6 +621,10 @@ namespace AdventureGame
             if (!up || !down || !right || !left)
             {
                 sock.Send(x);
+            }
+            else
+            {
+                sock.Send(num);
             }
             ReceiveMove();
 
