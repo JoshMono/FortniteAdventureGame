@@ -190,25 +190,25 @@ namespace AdventureGame
                 playerX = picturePlayerC.Location.X;
             }
 
-           /* if (playerX < 500)
+            if (playerX < 500)
             {
-                playerX = playerX - 2;
+                playerX = playerX - 4;
             }
 
             if (playerY < 500)
             {
-                playerY = playerY - 2;
+                playerY = playerY - 4;
             }
 
             if (playerXHost < 500)
             {
-                playerXHost = playerXHost - 2;
+                playerXHost = playerXHost - 4;
             }
 
             if (playerYHost < 500)
             {
-                playerYHost = playerYHost - 2;
-            }*/
+                playerYHost = playerYHost - 4;
+            }
 
             //
             if (direction == "up")
