@@ -22,6 +22,8 @@ namespace AdventureGame
         bool down = false;
         bool left = false;
 
+        bool sendSocket = false;
+
         int playerXHost;
         int playerYHost;
         int playerX;
@@ -256,7 +258,7 @@ namespace AdventureGame
                         y2 = 0;
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
-
+                    sendSocket = true;
 
                 }
                 //
@@ -305,6 +307,7 @@ namespace AdventureGame
                         y2 = 0;
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
+                    sendSocket = true;
 
                 }
 
@@ -360,6 +363,7 @@ namespace AdventureGame
                         y2 = 0;
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
+                    sendSocket = true;
 
                 }
                 else
@@ -407,7 +411,7 @@ namespace AdventureGame
                         y2 = 0;
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
-
+                    sendSocket = true;
 
                 }
             }
@@ -460,6 +464,7 @@ namespace AdventureGame
                         y2 = 0;
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
+                    sendSocket = true;
 
                 }
                 else
@@ -507,8 +512,8 @@ namespace AdventureGame
                         y2 = 0;
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
+                    sendSocket = true;
 
- 
                 }
             }
             //
@@ -560,6 +565,7 @@ namespace AdventureGame
                         y2 = 0;
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
+                    sendSocket = true;
 
                 }
                 else
@@ -607,17 +613,21 @@ namespace AdventureGame
                         y2 = 0;
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
+
+                    sendSocket = true;
+
                 }
 
             }
 
-            if (!up && !down && !right && !left)
+            if (!sendSocket)
             {
                 sock.Send(x);
             }
             else
             {
                 sock.Send(num);
+                sendSocket = false;
             }
             ReceiveMove();
 
