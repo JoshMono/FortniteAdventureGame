@@ -257,7 +257,6 @@ namespace AdventureGame
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
 
-                    sock.Send(num);
 
                 }
                 //
@@ -306,8 +305,6 @@ namespace AdventureGame
                         y2 = 0;
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
-
-                    sock.Send(num);
 
                 }
 
@@ -610,10 +607,6 @@ namespace AdventureGame
                         y2 = 0;
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
-
-                    sock.Send(num);
-
-
                 }
 
             }
