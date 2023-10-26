@@ -38,7 +38,7 @@ namespace AdventureGame
             InitializeComponent();
 
             ipAdress = ip;
-            Host = host; 
+            Host = host;
             CheckForIllegalCrossThreadCalls = false;
 
             if (Host)
@@ -105,12 +105,12 @@ namespace AdventureGame
 
                 if (buffer[3] == Convert.ToByte(0) && buffer[4] == Convert.ToByte(0))
                 {
-                    if (Host) 
-                    { 
+                    if (Host)
+                    {
                         int playerX = Convert.ToInt16(buffer[0]);
                         int playerY = Convert.ToInt16(buffer[1]);
                         picturePlayerC.Location = new Point(playerX, playerY);
-                        
+
                     }
                     else
                     {
@@ -134,7 +134,7 @@ namespace AdventureGame
                         int playerYHost = Convert.ToInt16(buffer[1] + buffer[3]);
                         picturePlayerH.Location = new Point(playerXHost, playerYHost);
                     }
-              
+
                 }
 
                 label1.Text = buffer[2].ToString();
@@ -169,7 +169,7 @@ namespace AdventureGame
 
         private void mainGameTimer(object sender, EventArgs e)
         {
-            
+
             if (Host)
             {
                 playerYHost = picturePlayerH.Location.Y;
@@ -204,107 +204,107 @@ namespace AdventureGame
             //
             if (direction == "up")
             {
-              
-                    if (Host)
+
+                if (Host)
+                {
+                    playerYHost = playerYHost - 2;
+                    picturePlayerH.Location = new Point(playerXHost, playerYHost);
+
+                    byte x1;
+                    byte x2;
+
+                    byte y1;
+                    byte y2;
+
+                    if (playerXHost > 255)
                     {
-                        playerYHost = playerYHost - 2;
-                        picturePlayerH.Location = new Point(playerXHost, playerYHost);
 
-                        byte x1;
-                        byte x2;
+                        int x1Int = picturePlayerH.Location.X;
+                        int x2Int = x1Int - 256;
+                        x1Int = 255;
 
-                        byte y1;
-                        byte y2;
-
-                        if (playerXHost > 255)
-                        {
-
-                            int x1Int = picturePlayerH.Location.X;
-                            int x2Int = x1Int - 256;
-                            x1Int = 255;
-
-                            x1 = Convert.ToByte(x1Int);
-                            x2 = Convert.ToByte(x2Int);
+                        x1 = Convert.ToByte(x1Int);
+                        x2 = Convert.ToByte(x2Int);
 
 
-
-                        }
-                        else
-                        {
-                            x1 = Convert.ToByte(playerXHost);
-                            x2 = 0;
-                        }
-                        if (picturePlayerH.Location.Y > 255)
-                        {
-                            int y1Int = picturePlayerH.Location.Y;
-
-                            int y2Int = y1Int - 256;
-                            y1Int = 255;
-
-                            y1 = Convert.ToByte(y1Int);
-                            y2 = Convert.ToByte(y2Int);
-                        }
-                        else
-                        {
-                            y1 = Convert.ToByte(playerYHost);
-                            y2 = 0;
-                        }
-                        byte[] num = { x1, y1, 10, y2, x2 };
-
-                        sock.Send(num);
 
                     }
-                    //
                     else
                     {
-                        playerY = playerY - 2;
-                        picturePlayerC.Location = new Point(playerX, playerY);
+                        x1 = Convert.ToByte(playerXHost);
+                        x2 = 0;
+                    }
+                    if (picturePlayerH.Location.Y > 255)
+                    {
+                        int y1Int = picturePlayerH.Location.Y;
 
-                        byte x1;
-                        byte x2;
+                        int y2Int = y1Int - 256;
+                        y1Int = 255;
 
-                        byte y1;
-                        byte y2;
+                        y1 = Convert.ToByte(y1Int);
+                        y2 = Convert.ToByte(y2Int);
+                    }
+                    else
+                    {
+                        y1 = Convert.ToByte(playerYHost);
+                        y2 = 0;
+                    }
+                    byte[] num = { x1, y1, 10, y2, x2 };
 
-                        if (playerX > 255)
-                        {
+                    sock.Send(num);
 
-                            int x1Int = picturePlayerC.Location.X;
-                            int x2Int = x1Int - 256;
-                            x1Int = 255;
+                }
+                //
+                else
+                {
+                    playerY = playerY - 2;
+                    picturePlayerC.Location = new Point(playerX, playerY);
 
-                            x1 = Convert.ToByte(x1Int);
-                            x2 = Convert.ToByte(x2Int);
+                    byte x1;
+                    byte x2;
+
+                    byte y1;
+                    byte y2;
+
+                    if (playerX > 255)
+                    {
+
+                        int x1Int = picturePlayerC.Location.X;
+                        int x2Int = x1Int - 256;
+                        x1Int = 255;
+
+                        x1 = Convert.ToByte(x1Int);
+                        x2 = Convert.ToByte(x2Int);
 
 
-
-                        }
-                        else
-                        {
-                            x1 = Convert.ToByte(playerX);
-                            x2 = 0;
-                        }
-                        if (picturePlayerC.Location.Y > 255)
-                        {
-                            int y1Int = picturePlayerC.Location.Y;
-
-                            int y2Int = y1Int - 256;
-                            y1Int = 255;
-
-                            y1 = Convert.ToByte(y1Int);
-                            y2 = Convert.ToByte(y2Int);
-                        }
-                        else
-                        {
-                            y1 = Convert.ToByte(playerY);
-                            y2 = 0;
-                        }
-                        byte[] num = { x1, y1, 10, y2, x2 };
-
-                        sock.Send(num);
 
                     }
-                
+                    else
+                    {
+                        x1 = Convert.ToByte(playerX);
+                        x2 = 0;
+                    }
+                    if (picturePlayerC.Location.Y > 255)
+                    {
+                        int y1Int = picturePlayerC.Location.Y;
+
+                        int y2Int = y1Int - 256;
+                        y1Int = 255;
+
+                        y1 = Convert.ToByte(y1Int);
+                        y2 = Convert.ToByte(y2Int);
+                    }
+                    else
+                    {
+                        y1 = Convert.ToByte(playerY);
+                        y2 = 0;
+                    }
+                    byte[] num = { x1, y1, 10, y2, x2 };
+
+                    sock.Send(num);
+
+                }
+
 
 
             }
@@ -411,110 +411,109 @@ namespace AdventureGame
                 }
             }
 
-                //
-                Console.WriteLine(direction);
-                if (direction == "left")
+            //
+            if (direction == "left")
+            {
+                if (Host)
                 {
-                    if (Host)
+                    playerXHost = playerXHost - 2;
+                    picturePlayerH.Location = new Point(playerXHost, playerYHost);
+
+                    byte x1;
+                    byte x2;
+
+                    byte y1;
+                    byte y2;
+
+                    if (playerXHost > 255)
                     {
-                        playerXHost = playerXHost - 2;
-                        picturePlayerH.Location = new Point(playerXHost, playerYHost);
 
-                        byte x1;
-                        byte x2;
+                        int x1Int = picturePlayerH.Location.X;
+                        int x2Int = x1Int - 256;
+                        x1Int = 255;
 
-                        byte y1;
-                        byte y2;
-
-                        if (playerXHost > 255)
-                        {
-
-                            int x1Int = picturePlayerH.Location.X;
-                            int x2Int = x1Int - 256;
-                            x1Int = 255;
-
-                            x1 = Convert.ToByte(x1Int);
-                            x2 = Convert.ToByte(x2Int);
+                        x1 = Convert.ToByte(x1Int);
+                        x2 = Convert.ToByte(x2Int);
 
 
 
-                        }
-                        else
-                        {
-                            x1 = Convert.ToByte(playerXHost);
-                            x2 = 0;
-                        }
-                        if (picturePlayerH.Location.Y > 255)
-                        {
-                            int y1Int = picturePlayerH.Location.Y;
-
-                            int y2Int = y1Int - 256;
-                            y1Int = 255;
-
-                            y1 = Convert.ToByte(y1Int);
-                            y2 = Convert.ToByte(y2Int);
-                        }
-                        else
-                        {
-                            y1 = Convert.ToByte(playerYHost);
-                            y2 = 0;
-                        }
-                        byte[] num = { x1, y1, 10, y2, x2 };
-
-                        sock.Send(num);
                     }
                     else
                     {
-                        playerX = playerX - 2;
-                        picturePlayerC.Location = new Point(playerX, playerY);
+                        x1 = Convert.ToByte(playerXHost);
+                        x2 = 0;
+                    }
+                    if (picturePlayerH.Location.Y > 255)
+                    {
+                        int y1Int = picturePlayerH.Location.Y;
 
-                        byte x1;
-                        byte x2;
+                        int y2Int = y1Int - 256;
+                        y1Int = 255;
 
-                        byte y1;
-                        byte y2;
+                        y1 = Convert.ToByte(y1Int);
+                        y2 = Convert.ToByte(y2Int);
+                    }
+                    else
+                    {
+                        y1 = Convert.ToByte(playerYHost);
+                        y2 = 0;
+                    }
+                    byte[] num = { x1, y1, 10, y2, x2 };
 
-                        if (playerX > 255)
-                        {
+                    sock.Send(num);
+                }
+                else
+                {
+                    playerX = playerX - 2;
+                    picturePlayerC.Location = new Point(playerX, playerY);
 
-                            int x1Int = picturePlayerC.Location.X;
-                            int x2Int = x1Int - 256;
-                            x1Int = 255;
+                    byte x1;
+                    byte x2;
 
-                            x1 = Convert.ToByte(x1Int);
-                            x2 = Convert.ToByte(x2Int);
+                    byte y1;
+                    byte y2;
 
+                    if (playerX > 255)
+                    {
 
+                        int x1Int = picturePlayerC.Location.X;
+                        int x2Int = x1Int - 256;
+                        x1Int = 255;
 
-                        }
-                        else
-                        {
-                            x1 = Convert.ToByte(playerX);
-                            x2 = 0;
-                        }
-                        if (picturePlayerC.Location.Y > 255)
-                        {
-                            int y1Int = picturePlayerC.Location.Y;
+                        x1 = Convert.ToByte(x1Int);
+                        x2 = Convert.ToByte(x2Int);
 
-                            int y2Int = y1Int - 256;
-                            y1Int = 255;
-
-                            y1 = Convert.ToByte(y1Int);
-                            y2 = Convert.ToByte(y2Int);
-                        }
-                        else
-                        {
-                            y1 = Convert.ToByte(playerY);
-                            y2 = 0;
-                        }
-                        byte[] num = { x1, y1, 10, y2, x2 };
-
-                        sock.Send(num);
 
 
                     }
+                    else
+                    {
+                        x1 = Convert.ToByte(playerX);
+                        x2 = 0;
+                    }
+                    if (picturePlayerC.Location.Y > 255)
+                    {
+                        int y1Int = picturePlayerC.Location.Y;
+
+                        int y2Int = y1Int - 256;
+                        y1Int = 255;
+
+                        y1 = Convert.ToByte(y1Int);
+                        y2 = Convert.ToByte(y2Int);
+                    }
+                    else
+                    {
+                        y1 = Convert.ToByte(playerY);
+                        y2 = 0;
+                    }
+                    byte[] num = { x1, y1, 10, y2, x2 };
+
+                    sock.Send(num);
+
+
                 }
-                //
+            }
+            //
 
             if (direction == "right")
             {
@@ -619,12 +618,12 @@ namespace AdventureGame
 
             }
 
-                if (direction == null)
-                {
-                    sock.Send(x);
-                }
-                ReceiveMove();
-            
+            if (direction == null)
+            {
+                sock.Send(x);
+            }
+            ReceiveMove();
+
         }
         private void TestGame_KeyUp(object sender, KeyEventArgs e)
         {
