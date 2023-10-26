@@ -100,7 +100,6 @@ namespace AdventureGame
         {
             byte[] buffer = new byte[5];
             sock.Receive(buffer);
-            Console.WriteLine("21321421412");
             if (buffer[0] != Convert.ToByte(0))
             {
 
@@ -108,7 +107,6 @@ namespace AdventureGame
                 {
                     if (Host) 
                     { 
-                        Console.WriteLine("12389128390128309");
                         int playerX = Convert.ToInt16(buffer[0]);
                         int playerY = Convert.ToInt16(buffer[1]);
                         picturePlayerC.Location = new Point(playerX, playerY);
@@ -116,7 +114,6 @@ namespace AdventureGame
                     }
                     else
                     {
-                        Console.WriteLine("sadsajdkajsdkjsab");
                         int playerXHost = Convert.ToInt16(buffer[0]);
                         int playerYHost = Convert.ToInt16(buffer[1]);
                         picturePlayerH.Location = new Point(playerXHost, playerYHost);
@@ -137,15 +134,10 @@ namespace AdventureGame
                         int playerYHost = Convert.ToInt16(buffer[1] + buffer[3]);
                         picturePlayerH.Location = new Point(playerXHost, playerYHost);
                     }
-                    Console.WriteLine("1");
               
                 }
 
                 label1.Text = buffer[2].ToString();
-            }
-            else
-            {
-                Console.WriteLine("no Recive");
             }
 
         }
@@ -168,7 +160,6 @@ namespace AdventureGame
             if (e.KeyValue == (char)Keys.A)
             {
                 direction = "left";
-                Console.WriteLine("\n skadsahdksahdjkhas");
             }
             if (e.KeyValue == (char)Keys.D)
             {
@@ -213,9 +204,7 @@ namespace AdventureGame
             //
             if (direction == "up")
             {
-               
-
-                    Console.WriteLine("test123");
+              
                     if (Host)
                     {
                         playerYHost = playerYHost - 2;
@@ -323,8 +312,6 @@ namespace AdventureGame
             //
             if (direction == "down")
             {
-
-                Console.WriteLine("test123");
                 if (Host)
                 {
                     playerYHost = playerYHost + 2;
@@ -428,7 +415,6 @@ namespace AdventureGame
                 Console.WriteLine(direction);
                 if (direction == "left")
                 {
-                    Console.WriteLine("\n Left run \n");
                     if (Host)
                     {
                         playerXHost = playerXHost - 2;
@@ -532,7 +518,6 @@ namespace AdventureGame
 
             if (direction == "right")
             {
-                Console.WriteLine("\n Right \n");
                 if (Host)
                 {
                     playerXHost = playerXHost + 2;
