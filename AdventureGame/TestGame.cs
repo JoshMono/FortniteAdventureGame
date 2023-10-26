@@ -259,6 +259,7 @@ namespace AdventureGame
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
                     sendSocket = true;
+                    Console.WriteLine(num);
 
                 }
                 //
@@ -308,11 +309,9 @@ namespace AdventureGame
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
                     sendSocket = true;
+                    Console.WriteLine(num);
 
                 }
-
-
-
             }
 
             //
@@ -364,6 +363,7 @@ namespace AdventureGame
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
                     sendSocket = true;
+                    Console.WriteLine(num);
 
                 }
                 else
@@ -412,6 +412,7 @@ namespace AdventureGame
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
                     sendSocket = true;
+                    Console.WriteLine(num);
 
                 }
             }
@@ -465,6 +466,7 @@ namespace AdventureGame
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
                     sendSocket = true;
+                    Console.WriteLine(num);
 
                 }
                 else
@@ -513,6 +515,7 @@ namespace AdventureGame
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
                     sendSocket = true;
+                    Console.WriteLine(num);
 
                 }
             }
@@ -566,6 +569,7 @@ namespace AdventureGame
                     }
                     byte[] num = { x1, y1, 10, y2, x2 };
                     sendSocket = true;
+                    Console.WriteLine(num);
 
                 }
                 else
@@ -615,6 +619,7 @@ namespace AdventureGame
                     byte[] num = { x1, y1, 10, y2, x2 };
 
                     sendSocket = true;
+                    Console.WriteLine(num);
 
                 }
 
