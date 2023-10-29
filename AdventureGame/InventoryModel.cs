@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using System.Drawing;
 using System.Windows.Forms;
+using System.Numerics;
 
 namespace AdventureGame
 {
@@ -153,9 +154,15 @@ namespace AdventureGame
         public int bulletLeft { get; set; }
         public int bulletTop { get; set;}
         public int speed { get; set;}
+        public bool hitWall { get; set; }
         public PictureBox gameBoxPicture { get; set; }
+        public PictureBox player { get; set; }
         public PictureBox topGap { get; set; }
         public PictureBox sideGap { get; set; }
+
+        public Wall[,] horizontalWall { get; set; }
+
+        public Wall[,] verticalWall { get; set; }
 
 
         public PictureBox bullet = new PictureBox();
@@ -164,7 +171,7 @@ namespace AdventureGame
         public void MakeBullet(Form form)
         {
             bullet.BackColor = Color.Black;
-            bullet.Size = new Size(5, 5);
+            bullet.Size = new Size(3, 3);
             bullet.Tag = "bullet";
             bullet.Left = bulletLeft;
             bullet.Top = bulletTop;
@@ -175,6 +182,26 @@ namespace AdventureGame
             bulletTimer.Interval = speed;
             bulletTimer.Tick += new EventHandler(BulletTimerEvent);
             bulletTimer.Start();
+
+            
+        }
+
+        public void BulletStop(Form form)
+        {
+            bulletTimer.Stop();
+            bulletTimer.Dispose();
+            bullet.Dispose();
+            bulletTimer = null;
+            bullet = null;
+
+
+        }
+
+        public bool hitWallReturn ()
+        {
+
+            return true;
+
         }
 
         private void BulletTimerEvent(object sender, EventArgs e)
@@ -217,16 +244,36 @@ namespace AdventureGame
             }
 
 
-            if (bullet.Left < gameBoxPicture.Location.X || bullet.Left > sideGap.Width + gameBoxPicture.Width || bullet.Top < gameBoxPicture.Location.Y || bullet.Top > topGap.Height + gameBoxPicture.Height)
+            for (int k = 0; k < horizontalWall.GetLength(0); k++)
             {
+                for (int c = 0; c < horizontalWall.GetLength(1); c++)
+                {
+                    if (bullet.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= bullet.Right && horizontalWall[k, c].formWall.Top <= bullet.Bottom && bullet.Top <= horizontalWall[k, c].formWall.Bottom)
+                    {
+                        if (horizontalWall[k, c].Alive)
+                        {
+                            horizontalWall[k, c].formWall.Visible = false;
+                            horizontalWall[k, c].Alive = false;
+                        }
+                    }
+                
+                            
+                }
+            }
+
+            if (bullet.Left < gameBoxPicture.Location.X || bullet.Left > sideGap.Width + gameBoxPicture.Width || bullet.Top < gameBoxPicture.Location.Y || bullet.Top > topGap.Height + gameBoxPicture.Height || hitWall)
+            {
+                
                 bulletTimer.Stop();
                 bulletTimer.Dispose();
                 bullet.Dispose();
                 bulletTimer = null;
                 bullet = null;
+                
             }
-        }
+            
 
+        }
     }
 
 }
