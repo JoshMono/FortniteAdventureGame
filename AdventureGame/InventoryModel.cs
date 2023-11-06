@@ -254,6 +254,11 @@ namespace AdventureGame
                         {
                             horizontalWall[k, c].formWall.Visible = false;
                             horizontalWall[k, c].Alive = false;
+                            bulletTimer.Stop();
+                            bulletTimer.Dispose();
+                            bullet.Dispose();
+                            
+
                         }
                     }
                 

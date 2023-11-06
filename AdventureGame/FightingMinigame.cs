@@ -84,9 +84,6 @@ namespace AdventureGame
             slotsList.Add(slot5);
             slotsList.Add(slot6);
 
-            Console.WriteLine("Test");
-
-
             InventoryModel.InventorySlot gun1 = inventorySlots[1];
 
             InventoryModel.RefreshInventory(slotsList, inventorySlots);
@@ -264,8 +261,8 @@ namespace AdventureGame
             bullet.speed = Speed;
             bullet.bulletLeft = player.Left + player.Width / 2;
             bullet.bulletTop = player.Top + player.Height / 2;
-            bullet.sideGap = sideGap;
-            bullet.topGap = topGap;
+            /*bullet.sideGap = sideGap;
+            bullet.topGap = topGap;*/
             bullet.gameBoxPicture = gameBoxPicture;
             bullet.player = player;
             bullet.horizontalWall = horizontalWall;
@@ -273,11 +270,6 @@ namespace AdventureGame
             bullet.hitWall = bulletHitWall;
             bullet.MakeBullet(this);
             bullet.bullet.BringToFront();
-            void StopBullet()
-            {
-                bullet.BulletStop(this);
-            }
-            Console.WriteLine("test");
         }
 
         private void checkAliveWalls()
@@ -408,65 +400,30 @@ namespace AdventureGame
         public bool shotBullet = false;
         public bool bulletHitWall = false;
 
-        private void bulletDestroyWall()
-        {
-            foreach (Control control in Controls)
-            {
+        public bool noHitWall = true;
 
-                if (control.Tag == "bullet")
-                {
-                    for (int k = 0; k < horizontalWall.GetLength(0); k++)
-                    {
-                        for (int c = 0; c < horizontalWall.GetLength(1); c++)
-                        {
-
-                            if (control.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= control.Right && player.Top <= control.Bottom && control.Top <= player.Bottom)
-                            {
-                                // Test
-                                
-                            }
-                        }
-                    }
-                }
-                
-
-
-            }
-        }
-
-
+        public int Testtstst;
         private void movePlayer()
         {
             // Move Back
 
-            if (back && gameBoxPicture.Location.Y < playerY)
+            checkAliveWalls();
+
+            if (back && playerY <= gameBoxPicture.Location.Y + gameBoxPicture.Height - player.Height - 1)
             {
-                checkAliveWalls();
                 for (int k = 0; k < horizontalWall.GetLength(0); k++)
                 {
                     for (int c = 0; c < horizontalWall.GetLength(1); c++)
                     {
 
-                        if (player.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= player.Right && player.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= player.Bottom)
+                        if (horizontalWall[k, c].Alive)
                         {
 
-                            if (horizontalWall[k, c].Alive)
+                            if (player.Bottom + 1 == horizontalWall[k, c].formWall.Top && player.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= player.Right)
                             {
 
-                                Console.WriteLine(hitWallU);
-                                if (hitWallU)
-                                {
-                                    hitWallD = false;
-                                    hitWallU = false;
-                                    Console.WriteLine("hereeee");
-                                    break;
-                                }
-                                else
-                                {
-                                    hitWallD = true;
-                                    Console.WriteLine("boooo");
-                                    break;
-                                }
+                                hitWallD = true;
+
                             }
                         }
                     }
@@ -490,44 +447,38 @@ namespace AdventureGame
 
                     player.Location = new Point(player.Location.X, playerY);
                 }
-               /* else
+                else
                 {
                     hitWallD = false;
-                }*/
+                }
+
+
 
             }
 
             // Move Foward
 
-            if (foward && gameBoxPicture.Location.Y < playerY)
+            if (foward && playerY >= gameBoxPicture.Location.Y + 1)
             {
-                
-                checkAliveWalls();
+
                 for (int k = 0; k < horizontalWall.GetLength(0); k++)
                 {
                     for (int c = 0; c < horizontalWall.GetLength(1); c++)
                     {
-                        if (player.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= player.Right && player.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= player.Bottom)
+
+                        if (horizontalWall[k, c].Alive)
                         {
 
-                            if (horizontalWall[k, c].Alive)
+                            if (player.Top - 1 == horizontalWall[k, c].formWall.Bottom && player.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= player.Right)
                             {
-                                Console.WriteLine(hitWallD);
-                                
-                                if (hitWallD)
-                                {
-                                    hitWallD = false;
-                                    hitWallU = false;
-                                    break;
-                                }
-                                else
-                                {
-                                    hitWallU = true;
-                                    break;
-                                }
+
+                                hitWallU = true;
+
                             }
+
                         }
-                        
+
+
                     }
 
 
@@ -547,50 +498,43 @@ namespace AdventureGame
                     visionBoxL.Location = new Point(visionBoxL.Location.X, yVisionL);
                     visionBoxR.Location = new Point(visionBoxR.Location.X, yVisionR);
 
-                    Console.WriteLine(visionBoxD.Location.Y);
-
                     player.Location = new Point(player.Location.X, playerY);
                 }
-                /*else
+                else
                 {
                     hitWallU = false;
-                }*/
+                }
+
+
 
             }
 
 
-
             // Move Left
 
-            if (left && gameBoxPicture.Location.X < playerX)
+            if (left && playerX >= gameBoxPicture.Location.X + 1)
             {
 
-                checkAliveWalls();
-
-                foreach (PictureBox c in aliveVertical)
+                for (int k = 0; k < horizontalWall.GetLength(0); k++)
                 {
-
-                    if (player.Left <= c.Right && c.Left <= player.Right && player.Top <= c.Bottom && c.Top <= player.Bottom && !hitWallL)
+                    for (int c = 0; c < horizontalWall.GetLength(1); c++)
                     {
-                        /*Console.WriteLine("test");
-                        playerX = playerX + 2;
 
-                        xVisionD = xVisionD + 2;
-                        xVisionU = xVisionU + 2;
-                        xVisionL = xVisionL + 2;
-                        xVisionR = xVisionR + 2;
+                        if (horizontalWall[k, c].Alive)
+                        {
 
-                        visionBoxD.Location = new Point(visionBoxD.Location.X, yVisionD);
-                        visionBoxU.Location = new Point(visionBoxU.Location.X, yVisionU);
-                        visionBoxL.Location = new Point(visionBoxL.Location.X, yVisionL);
-                        visionBoxR.Location = new Point(visionBoxR.Location.X, yVisionR);
+                            if (player.Left - 1 == horizontalWall[k, c].formWall.Right && player.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= player.Bottom)
+                            {
+                                hitWallL = true;
 
-                        player.Location = new Point(playerX, player.Location.Y);*/
-                        hitWallL = true;
+                            }
+
+
+                        }
                     }
-
-
                 }
+
+
                 if (!hitWallL)
                 {
                     playerX = playerX - 1;
@@ -617,37 +561,28 @@ namespace AdventureGame
 
             // Move Right
 
-            if (right && gameBoxPicture.Location.Y < playerY)
+            if (right && playerX <= gameBoxPicture.Location.X + gameBoxPicture.Width - player.Width - 1)
             {
-                checkAliveWalls();
-                foreach (PictureBox c in aliveVertical)
+                for (int k = 0; k < horizontalWall.GetLength(0); k++)
                 {
-
-                    Console.WriteLine(player.Top);
-                    Console.WriteLine(c.Bottom);
-
-
-                    if (player.Left <= c.Right && c.Left <= player.Right && player.Top <= c.Bottom && c.Top <= player.Bottom && !hitWallR)
+                    for (int c = 0; c < horizontalWall.GetLength(1); c++)
                     {
-                        /*Console.WriteLine("test");
-                        playerX = playerX + 2;
 
-                        xVisionD = xVisionD + 2;
-                        xVisionU = xVisionU + 2;
-                        xVisionL = xVisionL + 2;
-                        xVisionR = xVisionR + 2;
+                        if (horizontalWall[k, c].Alive)
+                        {
 
-                        visionBoxD.Location = new Point(visionBoxD.Location.X, yVisionD);
-                        visionBoxU.Location = new Point(visionBoxU.Location.X, yVisionU);
-                        visionBoxL.Location = new Point(visionBoxL.Location.X, yVisionL);
-                        visionBoxR.Location = new Point(visionBoxR.Location.X, yVisionR);
+                            if (player.Right + 1 == horizontalWall[k, c].formWall.Left && player.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= player.Bottom)
+                            {
+                                hitWallR = true;
 
-                        player.Location = new Point(playerX, player.Location.Y);*/
-                        hitWallR = true;
+                            }
+
+
+                        }
                     }
-
-
                 }
+
+
                 if (!hitWallR)
                 {
                     playerX = playerX + 1;
@@ -657,88 +592,32 @@ namespace AdventureGame
                     xVisionL = xVisionL + 1;
                     xVisionR = xVisionR + 1;
 
+
                     visionBoxD.Location = new Point(xVisionD, visionBoxD.Location.Y);
                     visionBoxU.Location = new Point(xVisionU, visionBoxU.Location.Y);
                     visionBoxL.Location = new Point(xVisionL, visionBoxL.Location.Y);
                     visionBoxR.Location = new Point(xVisionR, visionBoxR.Location.Y);
 
-                    Console.WriteLine(visionBoxD.Location.Y);
-
                     player.Location = new Point(playerX, player.Location.Y);
                 }
                 else
                 {
                     hitWallR = false;
                 }
+
 
             }
-
-            // Move Right
-
-            /*if (right && gameBoxPicture.Location.X < playerX)
-            {
-
-                foreach (PictureBox c in aliveVertical)
-                {
-
-                    Console.WriteLine(player.Top);
-                    Console.WriteLine(c.Bottom);
-
-
-                    if (player.Left == c.Right)
-                    {
-                        Console.WriteLine("test");
-                        playerX = playerX - 2;
-
-                        xVisionD = xVisionD - 2;
-                        xVisionU = xVisionU - 2;
-                        xVisionL = xVisionL - 2;
-                        xVisionR = xVisionR - 2;
-
-                        visionBoxD.Location = new Point(visionBoxD.Location.X, yVisionD);
-                        visionBoxU.Location = new Point(visionBoxU.Location.X, yVisionU);
-                        visionBoxL.Location = new Point(visionBoxL.Location.X, yVisionL);
-                        visionBoxR.Location = new Point(visionBoxR.Location.X, yVisionR);
-
-                        player.Location = new Point(playerX, player.Location.Y);
-                        hitWallR = true;
-                    }
-
-
-                }
-                if (!hitWallR)
-                {
-                    playerX = playerX + 2;
-
-                    xVisionD = xVisionD + 2;
-                    xVisionU = xVisionU + 2;
-                    xVisionL = xVisionL + 2;
-                    xVisionR = xVisionR + 2;
-
-                    visionBoxD.Location = new Point(xVisionD, visionBoxD.Location.Y);
-                    visionBoxU.Location = new Point(xVisionU, visionBoxD.Location.Y);
-                    visionBoxL.Location = new Point(xVisionL, visionBoxD.Location.Y);
-                    visionBoxR.Location = new Point(xVisionR, visionBoxD.Location.Y);
-
-                    player.Location = new Point(playerX, player.Location.Y);
-                }
-                else
-                {
-                    hitWallR = false;
-                }
-
-            }*/
+            Testtstst++;
+            Console.WriteLine(Testtstst.ToString());
 
         }
+
+
 
         private void mainGameTimerEvent(object sender, EventArgs e)
         {
 
             movePlayer();
-            if (shotBullet)
-            {
-                bulletDestroyWall();
-            }
 
         }
 
@@ -948,13 +827,13 @@ namespace AdventureGame
 
         private void FightingMinigame_MouseDown(object sender, MouseEventArgs e)
         {
-            
+
         }
 
-       
 
 
 
-        
+
+
     }
 }
