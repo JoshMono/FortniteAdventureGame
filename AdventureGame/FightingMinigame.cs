@@ -254,17 +254,16 @@ namespace AdventureGame
 
         }
 
-        private void ShootBullet(string direction, int Speed)
+        private void ShootBullet(string direction, int Speed, int damage)
         {
             Bullet bullet = new Bullet();
             bullet.facingDirection = direction;
             bullet.speed = Speed;
             bullet.bulletLeft = player.Left + player.Width / 2;
             bullet.bulletTop = player.Top + player.Height / 2;
-            /*bullet.sideGap = sideGap;
-            bullet.topGap = topGap;*/
             bullet.gameBoxPicture = gameBoxPicture;
             bullet.player = player;
+            bullet.damage = damage;
             bullet.horizontalWall = horizontalWall;
             bullet.verticalWall = verticalWall;
             bullet.hitWall = bulletHitWall;
@@ -274,123 +273,159 @@ namespace AdventureGame
 
         private void checkAliveWalls()
         {
-            for (int k = 0; k < verticalWall.GetLength(0); k++)
+            if (buildingOn)
             {
-                for (int c = 0; c < verticalWall.GetLength(1); c++)
-                {
 
-                    if (verticalWall[k, c].Alive == false)
+
+                for (int k = 0; k < verticalWall.GetLength(0); k++)
+                {
+                    for (int c = 0; c < verticalWall.GetLength(1); c++)
                     {
 
-                        // Left
-                        if (direction == "left" && visionBoxL.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "WA" && visionBoxL.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "SA" && visionBoxL.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxL.Bottom)
+                        if (verticalWall[k, c].Alive == false)
                         {
 
-                            if (player.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= player.Right && player.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= player.Bottom)
+                            // Left
+                            if (direction == "left" && visionBoxL.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "WA" && visionBoxL.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "SA" && visionBoxL.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxL.Bottom)
                             {
 
-                                verticalWall[k, c].formWall.Visible = false;
+                                if (player.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= player.Right && player.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= player.Bottom)
+                                {
 
+                                    verticalWall[k, c].formWall.Visible = false;
+
+                                }
+                                else
+                                {
+
+                                    verticalWall[k, c].formWall.Visible = true;
+                                    verticalWall[k, c].formWall.BackColor = Color.Blue;
+                                    verticalWall[k, c].formWall.BringToFront();
+                                }
+                            }
+
+
+                            // Right
+                            else if (direction == "right" && visionBoxR.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "WD" && visionBoxR.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "SD" && visionBoxR.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxR.Bottom)
+                            {
+
+                                if (player.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= player.Right && player.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= player.Bottom)
+                                {
+
+                                    verticalWall[k, c].formWall.Visible = false;
+                                }
+                                else
+                                {
+
+                                    verticalWall[k, c].formWall.Visible = true;
+                                    verticalWall[k, c].formWall.BackColor = Color.Blue;
+                                }
                             }
                             else
                             {
-
-                                verticalWall[k, c].formWall.Visible = true;
-                                verticalWall[k, c].formWall.BackColor = Color.Blue;
-                                verticalWall[k, c].formWall.BringToFront();
+                                verticalWall[k, c].formWall.Visible = false;
                             }
+
                         }
+                    }
+                }
 
+                for (int k = 0; k < horizontalWall.GetLength(0); k++)
+                {
+                    for (int c = 0; c < horizontalWall.GetLength(1); c++)
+                    {
 
-                        // Right
-                        else if (direction == "right" && visionBoxR.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "WD" && visionBoxR.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "SD" && visionBoxR.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxR.Bottom)
+                        if (horizontalWall[k, c].Alive == false)
                         {
 
-                            if (player.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= player.Right && player.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= player.Bottom)
+                            /*if (direction == "right" && visionBoxR.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "WD" && visionBoxR.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "SD" && visionBoxR.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxR.Bottom)
+                            {
+                                horizontalWall[k, c].formWall.BackColor = Color.Blue;
+                                horizontalWall[k, c].formWall.Visible = true;
+                            }
+                            else if (direction == "left" && visionBoxL.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "WA" && visionBoxL.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "SA" && visionBoxL.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxL.Bottom)
+                            {
+                                horizontalWall[k, c].formWall.BackColor = Color.Blue;
+                                horizontalWall[k, c].formWall.Visible = true;
+                            }*/
+
+                            // Up
+                            if (direction == "up" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom || direction == "WA" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom || direction == "WD" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom)
                             {
 
-                                verticalWall[k, c].formWall.Visible = false;
+                                if (player.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= player.Right && player.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= player.Bottom)
+                                {
+
+                                    horizontalWall[k, c].formWall.Visible = false;
+
+                                }
+                                else
+                                {
+
+                                    horizontalWall[k, c].formWall.Visible = true;
+                                    horizontalWall[k, c].formWall.BackColor = Color.Blue;
+                                    horizontalWall[k, c].formWall.BringToFront();
+                                }
+                            }
+
+
+                            // Down
+                            else if (direction == "down" && visionBoxD.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxD.Bottom || direction == "SA" && visionBoxD.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxD.Bottom || direction == "SD" && visionBoxD.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxD.Bottom)
+                            {
+
+                                if (player.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= player.Right && player.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= player.Bottom)
+                                {
+
+                                    horizontalWall[k, c].formWall.Visible = false;
+                                }
+                                else
+                                {
+
+                                    horizontalWall[k, c].formWall.Visible = true;
+                                    horizontalWall[k, c].formWall.BackColor = Color.Blue;
+                                }
                             }
                             else
                             {
-
-                                verticalWall[k, c].formWall.Visible = true;
-                                verticalWall[k, c].formWall.BackColor = Color.Blue;
+                                horizontalWall[k, c].formWall.Visible = false;
                             }
-                        }
-                        else
-                        {
-                            verticalWall[k, c].formWall.Visible = false;
-                        }
 
+                        }
+                        else if (horizontalWall[k, c].Alive)
+                        {
+                            aliveHorizontal.Add(horizontalWall[k, c].formWall);
+                        }
                     }
                 }
             }
-
-            for (int k = 0; k < horizontalWall.GetLength(0); k++)
+            else
             {
-                for (int c = 0; c < horizontalWall.GetLength(1); c++)
+                for (int k = 0; k < verticalWall.GetLength(0); k++)
                 {
-
-                    if (horizontalWall[k, c].Alive == false)
+                    for (int c = 0; c < verticalWall.GetLength(1); c++)
                     {
 
-                        /*if (direction == "right" && visionBoxR.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "WD" && visionBoxR.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "SD" && visionBoxR.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxR.Bottom)
+                        if (verticalWall[k, c].Alive == false)
                         {
-                            horizontalWall[k, c].formWall.BackColor = Color.Blue;
-                            horizontalWall[k, c].formWall.Visible = true;
+
+
+                            verticalWall[k, c].formWall.Visible = false;
+
                         }
-                        else if (direction == "left" && visionBoxL.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "WA" && visionBoxL.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "SA" && visionBoxL.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxL.Bottom)
-                        {
-                            horizontalWall[k, c].formWall.BackColor = Color.Blue;
-                            horizontalWall[k, c].formWall.Visible = true;
-                        }*/
-
-                        // Up
-                        if (direction == "up" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom || direction == "WA" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom || direction == "WD" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom)
-                        {
-
-                            if (player.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= player.Right && player.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= player.Bottom)
-                            {
-
-                                horizontalWall[k, c].formWall.Visible = false;
-
-                            }
-                            else
-                            {
-
-                                horizontalWall[k, c].formWall.Visible = true;
-                                horizontalWall[k, c].formWall.BackColor = Color.Blue;
-                                horizontalWall[k, c].formWall.BringToFront();
-                            }
-                        }
-
-
-                        // Down
-                        else if (direction == "down" && visionBoxD.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxD.Bottom || direction == "SA" && visionBoxD.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxD.Bottom || direction == "SD" && visionBoxD.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxD.Bottom)
-                        {
-
-                            if (player.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= player.Right && player.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= player.Bottom)
-                            {
-
-                                horizontalWall[k, c].formWall.Visible = false;
-                            }
-                            else
-                            {
-
-                                horizontalWall[k, c].formWall.Visible = true;
-                                horizontalWall[k, c].formWall.BackColor = Color.Blue;
-                            }
-                        }
-                        else
-                        {
-                            horizontalWall[k, c].formWall.Visible = false;
-                        }
-
                     }
-                    else if (horizontalWall[k, c].Alive)
+                }
+                for (int k = 0; k < horizontalWall.GetLength(0); k++)
+                {
+                    for (int c = 0; c < horizontalWall.GetLength(1); c++)
                     {
-                        aliveHorizontal.Add(horizontalWall[k, c].formWall);
+
+                        if (horizontalWall[k, c].Alive == false)
+                        {
+
+
+                            horizontalWall[k, c].formWall.Visible = false;
+
+                        }
                     }
                 }
             }
@@ -427,9 +462,26 @@ namespace AdventureGame
                             }
                         }
                     }
-
-
                 }
+
+                for (int k = 0; k < verticalWall.GetLength(0); k++)
+                {
+                    for (int c = 0; c < verticalWall.GetLength(1); c++)
+                    {
+
+                        if (verticalWall[k, c].Alive)
+                        {
+
+                            if (player.Bottom + 1 == verticalWall[k, c].formWall.Top && player.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= player.Right)
+                            {
+
+                                hitWallD = true;
+
+                            }
+                        }
+                    }
+                }
+
                 if (!hitWallD)
                 {
 
@@ -477,12 +529,27 @@ namespace AdventureGame
                             }
 
                         }
-
-
                     }
-
-
                 }
+                for (int k = 0; k < verticalWall.GetLength(0); k++)
+                {
+                    for (int c = 0; c < verticalWall.GetLength(1); c++)
+                    {
+
+                        if (verticalWall[k, c].Alive)
+                        {
+
+                            if (player.Top - 1 == verticalWall[k, c].formWall.Bottom && player.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= player.Right)
+                            {
+
+                                hitWallU = true;
+
+                            }
+
+                        }
+                    }
+                }
+
                 if (!hitWallU)
                 {
 
@@ -524,6 +591,24 @@ namespace AdventureGame
                         {
 
                             if (player.Left - 1 == horizontalWall[k, c].formWall.Right && player.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= player.Bottom)
+                            {
+                                hitWallL = true;
+
+                            }
+
+
+                        }
+                    }
+                }
+                for (int k = 0; k < verticalWall.GetLength(0); k++)
+                {
+                    for (int c = 0; c < verticalWall.GetLength(1); c++)
+                    {
+
+                        if (verticalWall[k, c].Alive)
+                        {
+
+                            if (player.Left - 1 == verticalWall[k, c].formWall.Right && player.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= player.Bottom)
                             {
                                 hitWallL = true;
 
@@ -582,6 +667,25 @@ namespace AdventureGame
                     }
                 }
 
+                for (int k = 0; k < verticalWall.GetLength(0); k++)
+                {
+                    for (int c = 0; c < verticalWall.GetLength(1); c++)
+                    {
+
+                        if (verticalWall[k, c].Alive)
+                        {
+
+                            if (player.Right + 1 == verticalWall[k, c].formWall.Left && player.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= player.Bottom)
+                            {
+                                hitWallR = true;
+
+                            }
+
+
+                        }
+                    }
+                }
+
 
                 if (!hitWallR)
                 {
@@ -607,8 +711,6 @@ namespace AdventureGame
 
 
             }
-            Testtstst++;
-            Console.WriteLine(Testtstst.ToString());
 
         }
 
@@ -618,7 +720,6 @@ namespace AdventureGame
         {
 
             movePlayer();
-
         }
 
         private void FightingMinigame_KeyPress(object sender, KeyPressEventArgs e)
@@ -626,6 +727,8 @@ namespace AdventureGame
 
 
         }
+
+        public bool buildingOn = false;
 
         private void FightingMinigame_KeyDown(object sender, KeyEventArgs e)
         {
@@ -670,114 +773,133 @@ namespace AdventureGame
             if (e.KeyValue == (char)Keys.Q)
             {
 
-
-                for (int k = 0; k < verticalWall.GetLength(0); k++)
+                /*if (buildingOn)
                 {
-                    /*for (int c = 0; c < verticalWall.GetLength(1); c++)
-                    {
-                        if (verticalWall[k, c].Alive == false)
-                        {
-
-                            if (direction == "right" && visionBoxR.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "WD" && visionBoxR.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "SD" && visionBoxR.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxR.Bottom)
-                            {
-                                verticalWall[k, c].formWall.BackColor = Color.Olive;
-                                verticalWall[k, c].formWall.Visible = true;
-                                verticalWall[k, c].Alive = true;
-                            }
-                            else if (direction == "left" && visionBoxL.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "WA" && visionBoxL.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "SA" && visionBoxL.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxL.Bottom)
-                            {
-                                verticalWall[k, c].formWall.BackColor = Color.Olive;
-                                verticalWall[k, c].formWall.Visible = true;
-                                verticalWall[k, c].Alive = true;
-                            }
-                            *//*else if (direction == "up" && player.Top !=  && visionBoxU.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxU.Bottom || direction == "WA" && visionBoxU.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxU.Bottom || direction == "WD" && visionBoxU.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxU.Bottom)
-                            {
-                                verticalWall[k, c].formWall.BackColor = Color.Olive;
-                                verticalWall[k, c].formWall.Visible = true;
-                                verticalWall[k, c].Alive = true;
-                            }
-                            else if (direction == "down" && visionBoxD.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxD.Bottom || direction == "SA" && visionBoxD.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxD.Bottom || direction == "SD" && visionBoxD.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxD.Bottom)
-                            {
-                                verticalWall[k, c].formWall.BackColor = Color.Olive;
-                                verticalWall[k, c].formWall.Visible = true;
-                                verticalWall[k, c].Alive = true;
-                            }*//*
-                        }
-                    }*/
-
-
+                    buildingOn = false;
+                    buildingIcon.Visible = false;
+                    buildingIconBlank.Visible = true;
                 }
-                for (int k = 0; k < horizontalWall.GetLength(0); k++)
+                else
                 {
-                    for (int c = 0; c < horizontalWall.GetLength(1); c++)
-                    {
+                    buildingOn = true;
+                    buildingIcon.Visible = true;
+                    buildingIconBlank.Visible = false;
+                }*/
 
-                        if (horizontalWall[k, c].Alive == false)
-                        {
-
-                            /*if (direction == "right" && visionBoxR.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "WD" && visionBoxR.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "SD" && visionBoxR.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxR.Bottom)
-                            {
-                                horizontalWall[k, c].formWall.BackColor = Color.Olive;
-                                horizontalWall[k, c].formWall.Visible = true;
-                                horizontalWall[k, c].Alive = true;
-                            }
-                            else if (direction == "left" && visionBoxL.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "WA" && visionBoxL.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "SA" && visionBoxL.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxL.Bottom)
-                            {
-                                horizontalWall[k, c].formWall.BackColor = Color.Olive;
-                                horizontalWall[k, c].formWall.Visible = true;
-                                horizontalWall[k, c].Alive = true;
-                            }*/
-                            if (direction == "up" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom || direction == "WA" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom || direction == "WD" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom)
-                            {
-                                if (player.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= player.Right && player.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= player.Bottom)
-                                {
-
-
-
-                                }
-                                else
-                                {
-
-                                    horizontalWall[k, c].formWall.BackColor = Color.Olive;
-                                    horizontalWall[k, c].formWall.Visible = true;
-                                    horizontalWall[k, c].Alive = true;
-                                }
-                            }
-                            else if (direction == "down" && visionBoxD.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxD.Bottom || direction == "SA" && visionBoxD.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxD.Bottom || direction == "SD" && visionBoxD.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxD.Bottom)
-                            {
-                                if (player.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= player.Right && player.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= player.Bottom)
-                                {
-
-
-
-                                }
-                                else
-                                {
-                                    horizontalWall[k, c].formWall.BackColor = Color.Olive;
-                                    horizontalWall[k, c].formWall.Visible = true;
-                                    horizontalWall[k, c].Alive = true;
-
-                                }
-                            }
-                            else
-                            {
-                                horizontalWall[k, c].formWall.Visible = false;
-                            }
-                        }
-                    }
-                }
 
             }
 
 
             if (e.KeyValue == (char)Keys.Space)
             {
-                ShootBullet(direction, InventorySlotsList[0].gun.Speed);
-                shotBullet = true;
+                if (!buildingOn)
+                {
+                    ShootBullet(direction, InventorySlotsList[0].gun.Speed, InventorySlotsList[0].gun.Damage);
+                }
+                else
+                {
+                    for (int k = 0; k < verticalWall.GetLength(0); k++)
+                    {
+                        for (int c = 0; c < verticalWall.GetLength(1); c++)
+                        {
+
+                            if (verticalWall[k, c].Alive == false)
+                            {
+
+                                if (direction == "right" && visionBoxR.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "WA" && visionBoxR.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "WD" && visionBoxR.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxR.Bottom)
+                                {
+                                    if (player.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= player.Right && player.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= player.Bottom)
+                                    {
+
+
+
+                                    }
+                                    else
+                                    {
+
+                                        verticalWall[k, c].formWall.BackColor = Color.Olive;
+                                        verticalWall[k, c].formWall.Visible = true;
+                                        verticalWall[k, c].Alive = true;
+                                        verticalWall[k, c].Health = 100;
+                                    }
+                                }
+                                else if (direction == "left" && visionBoxL.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "SA" && visionBoxL.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "SD" && visionBoxL.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxL.Bottom)
+                                {
+                                    if (player.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= player.Right && player.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= player.Bottom)
+                                    {
+
+
+
+                                    }
+                                    else
+                                    {
+                                        verticalWall[k, c].formWall.BackColor = Color.Olive;
+                                        verticalWall[k, c].formWall.Visible = true;
+                                        verticalWall[k, c].Alive = true;
+                                        verticalWall[k, c].Health = 100;
+                                    }
+                                }
+                                else
+                                {
+                                    verticalWall[k, c].formWall.Visible = false;
+                                }
+                            }
+
+                        }
+
+
+                    }
+                    for (int k = 0; k < horizontalWall.GetLength(0); k++)
+                    {
+                        for (int c = 0; c < horizontalWall.GetLength(1); c++)
+                        {
+
+                            if (horizontalWall[k, c].Alive == false)
+                            {
+
+                                if (direction == "up" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom || direction == "WA" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom || direction == "WD" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom)
+                                {
+                                    if (player.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= player.Right && player.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= player.Bottom)
+                                    {
+
+
+
+                                    }
+                                    else
+                                    {
+
+                                        horizontalWall[k, c].formWall.BackColor = Color.Olive;
+                                        horizontalWall[k, c].formWall.Visible = true;
+                                        horizontalWall[k, c].Alive = true;
+                                        horizontalWall[k, c].Health = 100;
+                                    }
+                                }
+                                else if (direction == "down" && visionBoxD.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxD.Bottom || direction == "SA" && visionBoxD.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxD.Bottom || direction == "SD" && visionBoxD.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxD.Bottom)
+                                {
+                                    if (player.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= player.Right && player.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= player.Bottom)
+                                    {
+
+
+
+                                    }
+                                    else
+                                    {
+                                        horizontalWall[k, c].formWall.BackColor = Color.Olive;
+                                        horizontalWall[k, c].formWall.Visible = true;
+                                        horizontalWall[k, c].Alive = true;
+                                        horizontalWall[k, c].Health = 100;
+
+                                    }
+                                }
+                                else
+                                {
+                                    horizontalWall[k, c].formWall.Visible = false;
+                                }
+                            }
+                        }
+                    }
+                }
             }
-
-
-
         }
 
         private void FightingMinigame_KeyUp(object sender, KeyEventArgs e)
@@ -800,6 +922,24 @@ namespace AdventureGame
             if (e.KeyValue == (char)Keys.D)
             {
                 right = false;
+                
+
+            }
+            if (e.KeyValue == (char)Keys.Q)
+            {
+                
+                if (buildingOn)
+                {
+                    buildingOn = false;
+                    buildingIcon.Visible = false;
+                    buildingIconBlank.Visible = true;
+                }
+                else
+                {
+                    buildingOn = true;
+                    buildingIcon.Visible = true;
+                    buildingIconBlank.Visible = false;
+                }
 
             }
             if (e.KeyValue == (char)Keys.Space)

@@ -93,6 +93,16 @@ namespace AdventureGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap buidlingBlueprintIcon {
+            get {
+                object obj = ResourceManager.GetObject("buidlingBlueprintIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap darkKnight {
             get {
                 object obj = ResourceManager.GetObject("darkKnight", resourceCulture);

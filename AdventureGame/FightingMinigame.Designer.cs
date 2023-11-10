@@ -111,6 +111,9 @@
             visionBoxL = new PictureBox();
             visionBoxU = new PictureBox();
             visionBoxD = new PictureBox();
+            buildingIcon = new PictureBox();
+            label3 = new Label();
+            buildingIconBlank = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)player).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gameBoxPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)slot6).BeginInit();
@@ -190,6 +193,8 @@
             ((System.ComponentModel.ISupportInitialize)visionBoxL).BeginInit();
             ((System.ComponentModel.ISupportInitialize)visionBoxU).BeginInit();
             ((System.ComponentModel.ISupportInitialize)visionBoxD).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)buildingIcon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)buildingIconBlank).BeginInit();
             SuspendLayout();
             // 
             // player
@@ -1152,6 +1157,36 @@
             visionBoxD.TabStop = false;
             visionBoxD.Visible = false;
             // 
+            // buildingIcon
+            // 
+            buildingIcon.BackgroundImage = Properties.Resources.buidlingBlueprintIcon;
+            buildingIcon.BackgroundImageLayout = ImageLayout.Stretch;
+            buildingIcon.Location = new Point(8, 372);
+            buildingIcon.Name = "buildingIcon";
+            buildingIcon.Size = new Size(75, 71);
+            buildingIcon.TabIndex = 107;
+            buildingIcon.TabStop = false;
+            // 
+            // label3
+            // 
+            label3.BackColor = Color.FromArgb(224, 224, 224);
+            label3.FlatStyle = FlatStyle.Flat;
+            label3.Font = new Font("Franklin Gothic Heavy", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Location = new Point(8, 339);
+            label3.Name = "label3";
+            label3.Size = new Size(106, 30);
+            label3.TabIndex = 108;
+            label3.Text = "Building";
+            // 
+            // buildingIconBlank
+            // 
+            buildingIconBlank.BackgroundImageLayout = ImageLayout.Stretch;
+            buildingIconBlank.Location = new Point(8, 372);
+            buildingIconBlank.Name = "buildingIconBlank";
+            buildingIconBlank.Size = new Size(75, 71);
+            buildingIconBlank.TabIndex = 109;
+            buildingIconBlank.TabStop = false;
+            // 
             // FightingMinigame
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -1160,6 +1195,9 @@
             BackgroundImage = Properties.Resources.download__2_;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 451);
+            Controls.Add(buildingIconBlank);
+            Controls.Add(label3);
+            Controls.Add(buildingIcon);
             Controls.Add(visionBoxD);
             Controls.Add(visionBoxU);
             Controls.Add(visionBoxL);
@@ -1326,6 +1364,8 @@
             ((System.ComponentModel.ISupportInitialize)visionBoxL).EndInit();
             ((System.ComponentModel.ISupportInitialize)visionBoxU).EndInit();
             ((System.ComponentModel.ISupportInitialize)visionBoxD).EndInit();
+            ((System.ComponentModel.ISupportInitialize)buildingIcon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)buildingIconBlank).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1416,5 +1456,8 @@
         private PictureBox visionBoxL;
         private PictureBox visionBoxU;
         private PictureBox visionBoxD;
+        private PictureBox buildingIcon;
+        private Label label3;
+        private PictureBox buildingIconBlank;
     }
 }

@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Numerics;
+using System.Drawing.Configuration;
+using System.Runtime.CompilerServices;
 
 namespace AdventureGame
 {
     public class InventoryModel
     {
-
         public int Health { get; set; }
         public int ZBucks { get; set; }
         public Image Skin { get; set; }
@@ -154,6 +155,7 @@ namespace AdventureGame
         public int bulletLeft { get; set; }
         public int bulletTop { get; set;}
         public int speed { get; set;}
+        public int damage { get; set; }
         public bool hitWall { get; set; }
         public PictureBox gameBoxPicture { get; set; }
         public PictureBox player { get; set; }
@@ -164,6 +166,11 @@ namespace AdventureGame
 
         public Wall[,] verticalWall { get; set; }
 
+        public Color colour = Color.FromArgb(138, 95, 43);
+        public int colourG;
+        public int colourB;
+
+        
 
         public PictureBox bullet = new PictureBox();
         private System.Windows.Forms.Timer bulletTimer = new System.Windows.Forms.Timer();
@@ -182,6 +189,8 @@ namespace AdventureGame
             bulletTimer.Interval = speed;
             bulletTimer.Tick += new EventHandler(BulletTimerEvent);
             bulletTimer.Start();
+            colourG = colour.G;
+            colourB = colour.B;
 
             
         }
@@ -203,6 +212,8 @@ namespace AdventureGame
             return true;
 
         }
+
+        
 
         private void BulletTimerEvent(object sender, EventArgs e)
         {
@@ -252,8 +263,45 @@ namespace AdventureGame
                     {
                         if (horizontalWall[k, c].Alive)
                         {
-                            horizontalWall[k, c].formWall.Visible = false;
-                            horizontalWall[k, c].Alive = false;
+                            horizontalWall[k, c].Health = horizontalWall[k, c].Health - damage;
+                            ;
+                            if (horizontalWall[k, c].Health <= 0)
+                            {
+                                horizontalWall[k, c].formWall.Visible = false;
+                                horizontalWall[k, c].Alive = false;
+                            }
+                            else
+                            {
+                                if (horizontalWall[k, c].Health >= 80)
+                                {
+
+                                    horizontalWall[k, c].formWall.BackColor = Color.Gold;
+                                }
+                                else if (horizontalWall[k, c].Health >= 60)
+                                {
+
+
+                                    horizontalWall[k, c].formWall.BackColor = Color.Khaki;
+
+                                }
+                                else if (horizontalWall[k, c].Health >= 40)
+                                {
+
+
+                                    horizontalWall[k, c].formWall.BackColor = Color.PaleGoldenrod;
+
+                                }
+                                else if (horizontalWall[k, c].Health >= 20)
+                                {
+
+
+                                    horizontalWall[k, c].formWall.BackColor = Color.LemonChiffon;
+
+                                }
+
+                            }
+                            Console.WriteLine(horizontalWall[k, c].Health);
+                                
                             bulletTimer.Stop();
                             bulletTimer.Dispose();
                             bullet.Dispose();
@@ -265,8 +313,63 @@ namespace AdventureGame
                             
                 }
             }
+            for (int k = 0; k < verticalWall.GetLength(0); k++)
+            {
+                for (int c = 0; c < verticalWall.GetLength(1); c++)
+                {
+                    if (bullet.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= bullet.Right && verticalWall[k, c].formWall.Top <= bullet.Bottom && bullet.Top <= verticalWall[k, c].formWall.Bottom)
+                    {
+                        if (verticalWall[k, c].Alive)
+                        {
+                            verticalWall[k, c].Health = verticalWall[k, c].Health - damage;
+                            if (verticalWall[k, c].Health <= 0)
+                            {
+                                verticalWall[k, c].formWall.Visible = false;
+                                verticalWall[k, c].Alive = false;
+                            }
+                            else
+                            {
+                                if (verticalWall[k, c].Health >= 80)
+                                {
 
-            if (bullet.Left < gameBoxPicture.Location.X || bullet.Left > sideGap.Width + gameBoxPicture.Width || bullet.Top < gameBoxPicture.Location.Y || bullet.Top > topGap.Height + gameBoxPicture.Height || hitWall)
+                                    verticalWall[k, c].formWall.BackColor = Color.Gold;
+                                }
+                                else if (verticalWall[k, c].Health >= 60)
+                                {
+
+
+                                    verticalWall[k, c].formWall.BackColor = Color.Khaki;
+
+                                }
+                                else if (verticalWall[k, c].Health >= 40)
+                                {
+
+
+                                    verticalWall[k, c].formWall.BackColor = Color.PaleGoldenrod;
+
+                                }
+                                else if (verticalWall[k, c].Health >= 20)
+                                {
+
+
+                                    verticalWall[k, c].formWall.BackColor = Color.LemonChiffon;
+
+                                }
+
+                            }
+                            bulletTimer.Stop();
+                            bulletTimer.Dispose();
+                            bullet.Dispose();
+
+
+                        }
+                    }
+
+
+                }
+            }
+
+            if (bullet.Location.Y >= gameBoxPicture.Location.Y + gameBoxPicture.Height - bullet.Height - 1 || bullet.Location.Y <= gameBoxPicture.Location.Y + 1 || bullet.Location.X <= gameBoxPicture.Location.X + 1 || bullet.Location.X >= gameBoxPicture.Location.X + gameBoxPicture.Width - bullet.Width - 1)
             {
                 
                 bulletTimer.Stop();
