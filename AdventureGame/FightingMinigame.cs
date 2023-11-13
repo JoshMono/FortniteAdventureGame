@@ -107,7 +107,7 @@ namespace AdventureGame
             slotsList.Add(slot5);
             slotsList.Add(slot6);
 
-            MakeEnemy(12);
+            MakeEnemy(20);
             
 
 
@@ -841,8 +841,8 @@ namespace AdventureGame
             {
                 PictureBox enemy = new PictureBox();
                 enemy.Tag = "enemy";
-                enemy.Left = random.Next(gameBoxPicture.Location.X, gameBoxPicture.Width);
-                enemy.Top = random.Next(gameBoxPicture.Location.Y, gameBoxPicture.Height);
+                enemy.Left = random.Next(gameBoxPicture.Location.X, gameBoxPicture.Location.X + gameBoxPicture.Width - player.Width);
+                enemy.Top = random.Next(gameBoxPicture.Location.Y, gameBoxPicture.Location.Y + gameBoxPicture.Height - player.Height);
                 enemy.Size = new Size(10, 10);
                 enemy.Image = Properties.Resources.ammoIcon;
                 this.Controls.Add(enemy);
