@@ -127,14 +127,11 @@
   <data name="_4619355_200" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\4619355-200.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pistol" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="pistolIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pistol.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="blueBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blueBG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="scar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\scar.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="download__2_" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\download (2).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -144,9 +141,6 @@
   </data>
   <data name="lobbyBG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lobbyBG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="bolt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bolt.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="download" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\download.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,9 +154,6 @@
   <data name="renegadetorSkin" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\renegadetorSkin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pump" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pump.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="skullTrooper" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\skullTrooper.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -171,5 +162,23 @@
   </data>
   <data name="buidlingBlueprintIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\buidlingBlueprintIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ammoIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ammoIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="boltIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\boltIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="miniIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\miniIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pumpIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pumpIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="scarIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\scarIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="woodIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\woodIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

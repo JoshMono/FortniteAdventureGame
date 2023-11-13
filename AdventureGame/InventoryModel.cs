@@ -16,16 +16,22 @@ namespace AdventureGame
     public class InventoryModel
     {
         public int Health { get; set; }
+        public int Shield { get; set; }
+        public int Materials { get; set; }
         public int ZBucks { get; set; }
         public Image Skin { get; set; }
+        public int Ammo { get; set; }
 
 
 
-        public InventoryModel(int Health, int ZBucks, Image Skin)
+        public InventoryModel(int Health, int Shield, int ZBucks, Image Skin, int Materials, int Ammo)
         {
             this.Health = Health;
+            this.Shield = Shield;
             this.ZBucks = ZBucks;
             this.Skin = Skin;
+            this.Materials = Materials;
+            this.Ammo = Ammo;
         }
 
         public class Gun
@@ -46,15 +52,36 @@ namespace AdventureGame
             }
         }
 
+        public class Item
+        {
+            public string Name { get; set; }
+            public int Heal { get; set; }
+            public int Shield { get; set; }
+            public int Speed { get; set; }
+            public Image? Icon { get; set; }
+
+            public Item(string Name, int Heal, int Shield, int Speed, Image Icon)
+            {
+                this.Name = Name;
+                this.Heal = Heal;
+                this.Shield = Shield;
+                this.Speed = Speed;
+                this.Icon = Icon;
+            }
+        }
+
         public class InventorySlot
         {
             public int slot { get; set; }
             public Gun? gun { get; set; }
 
-            public InventorySlot(int slot, Gun? gun)
+            public Item? item { get; set; }
+
+            public InventorySlot(int slot, Gun? gun, Item? item)
             {
                 this.slot = slot;
                 this.gun = gun;
+                this.item = item;
             }
 
             public bool hasGun()
@@ -62,15 +89,29 @@ namespace AdventureGame
                 if (gun == null) return false; return true;
             }
 
+            public bool hasItem()
+            {
+                if (item == null) return false; return true;
+            }
+
+        }   
+
+        public Item GetItem()
+        {
+            Dictionary<int, Item> itemDict = new Dictionary<int, Item>();
+            itemDict.Add(1, new Item("Mini", 0, 25, 3, (Image)Properties.Resources.miniIcon));
+            Random rand = new Random();
+            int itemId = rand.Next(1, 2);
+            return itemDict[itemId];
         }
 
         public Gun GetGun()
         {
             Dictionary<int, Gun> gunsDict = new Dictionary<int, Gun>();
-            gunsDict.Add(1, new Gun("Scar", "Gold", 40, 5, (Image)Properties.Resources.scar));
-            gunsDict.Add(2, new Gun("Bolt", "Blue", 50, 10, (Image)Properties.Resources.bolt));
-            gunsDict.Add(3, new Gun("Pistol", "Gray", 10, 5, (Image)Properties.Resources.pistol));
-            gunsDict.Add(4, new Gun("Pump", "Blue", 80, 3,(Image)Properties.Resources.pump));
+            gunsDict.Add(1, new Gun("Scar", "Gold", 40, 5, (Image)Properties.Resources.scarIcon));
+            gunsDict.Add(2, new Gun("Bolt", "Blue", 50, 10, (Image)Properties.Resources.boltIcon));
+            gunsDict.Add(3, new Gun("Pistol", "Gray", 10, 5, (Image)Properties.Resources.pistolIcon));
+            gunsDict.Add(4, new Gun("Pump", "Blue", 80, 3,(Image)Properties.Resources.pumpIcon));
 
             Random rand = new Random();
             int gunId = rand.Next(1, 5);
@@ -87,6 +128,10 @@ namespace AdventureGame
 
                     slotslist[i].BackgroundImage = inventorySlots[i].gun.Icon;
                 }
+                else if (inventorySlots[i].item != null)
+                {
+                    slotslist[i].BackgroundImage = inventorySlots[i].item.Icon;
+                }
                 else
                 {
                     slotslist[i].BackColor = Color.White;
@@ -94,6 +139,23 @@ namespace AdventureGame
             }
         }
 
+    }
+
+    public class Enemy
+    {
+       
+        public int Health { get; set; }
+        public int Ammo { get; set; }
+        public PictureBox Target { get; set; }
+        public PictureBox enemy { get; set;}
+
+        public Enemy(int health, int ammo, PictureBox Target ,PictureBox enemy)
+        {
+            Health = health;
+            Ammo = ammo;
+            this.enemy = enemy;
+            this.Target = Target;
+        }
     }
 
     public class Wall
@@ -156,6 +218,7 @@ namespace AdventureGame
         public int bulletTop { get; set;}
         public int speed { get; set;}
         public int damage { get; set; }
+        public int ammo { get; set; }
         public bool hitWall { get; set; }
         public PictureBox gameBoxPicture { get; set; }
         public PictureBox player { get; set; }
@@ -191,6 +254,7 @@ namespace AdventureGame
             bulletTimer.Start();
             colourG = colour.G;
             colourB = colour.B;
+            ammo = 0;
 
             
         }

@@ -73,6 +73,16 @@ namespace AdventureGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ammoIcon {
+            get {
+                object obj = ResourceManager.GetObject("ammoIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blueBG {
             get {
                 object obj = ResourceManager.GetObject("blueBG", resourceCulture);
@@ -83,9 +93,9 @@ namespace AdventureGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap bolt {
+        internal static System.Drawing.Bitmap boltIcon {
             get {
-                object obj = ResourceManager.GetObject("bolt", resourceCulture);
+                object obj = ResourceManager.GetObject("boltIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -192,9 +202,9 @@ namespace AdventureGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pistol {
+        internal static System.Drawing.Bitmap miniIcon {
             get {
-                object obj = ResourceManager.GetObject("pistol", resourceCulture);
+                object obj = ResourceManager.GetObject("miniIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -202,9 +212,19 @@ namespace AdventureGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap pump {
+        internal static System.Drawing.Bitmap pistolIcon {
             get {
-                object obj = ResourceManager.GetObject("pump", resourceCulture);
+                object obj = ResourceManager.GetObject("pistolIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pumpIcon {
+            get {
+                object obj = ResourceManager.GetObject("pumpIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -222,9 +242,9 @@ namespace AdventureGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap scar {
+        internal static System.Drawing.Bitmap scarIcon {
             get {
-                object obj = ResourceManager.GetObject("scar", resourceCulture);
+                object obj = ResourceManager.GetObject("scarIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -235,6 +255,16 @@ namespace AdventureGame.Properties {
         internal static System.Drawing.Bitmap skullTrooper {
             get {
                 object obj = ResourceManager.GetObject("skullTrooper", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap woodIcon {
+            get {
+                object obj = ResourceManager.GetObject("woodIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
