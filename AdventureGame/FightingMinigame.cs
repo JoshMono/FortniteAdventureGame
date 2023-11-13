@@ -922,12 +922,12 @@ namespace AdventureGame
             if (e.KeyValue == (char)Keys.D)
             {
                 right = false;
-                
+
 
             }
             if (e.KeyValue == (char)Keys.Q)
             {
-                
+
                 if (buildingOn)
                 {
                     buildingOn = false;

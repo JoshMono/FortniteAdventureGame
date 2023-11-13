@@ -199,9 +199,9 @@
             // 
             // player
             // 
-            player.BackColor = SystemColors.Control;
+            player.BackColor = Color.PaleGreen;
             player.BackgroundImageLayout = ImageLayout.Stretch;
-            player.Location = new Point(247, 365);
+            player.Location = new Point(252, 360);
             player.Name = "player";
             player.Size = new Size(23, 40);
             player.TabIndex = 0;
@@ -216,7 +216,7 @@
             // 
             // gameBoxPicture
             // 
-            gameBoxPicture.BackColor = SystemColors.Control;
+            gameBoxPicture.BackColor = Color.PaleGreen;
             gameBoxPicture.Location = new Point(231, 28);
             gameBoxPicture.Name = "gameBoxPicture";
             gameBoxPicture.Size = new Size(544, 395);
