@@ -96,7 +96,7 @@ namespace AdventureGame
         {
             InitializeComponent();
             Player = player;
-            healthBar.Value = Player.Health;
+            healthBar.Value = Player.Player.Health;
 
             settings = new Settings() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             settings.FormBorderStyle = FormBorderStyle.None;
@@ -146,8 +146,8 @@ namespace AdventureGame
                 InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
                 InventoryModel.Item item = Player.GetItem();
                 available2.item = item;
-                Player.Materials = Player.Materials + random.Next(30,100);
-                Player.Ammo = Player.Ammo + random.Next(10, 50);
+                Player.Player.Materials = Player.Player.Materials + random.Next(30,100);
+                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
                 FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
                 this.Hide();
@@ -166,8 +166,8 @@ namespace AdventureGame
                 }
                 else
                 {
-                    Player.Health = Player.Health - 50;
-                    healthBar.Value = Player.Health;
+                    Player.Player.Health = Player.Player.Health - 50;
+                    healthBar.Value = Player.Player.Health;
                 }
             }
         }
@@ -183,9 +183,9 @@ namespace AdventureGame
                 InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
                 InventoryModel.Item item = Player.GetItem();
                 available2.item = item;
-                
-                Player.Materials = Player.Materials + random.Next(30, 100);
-                Player.Ammo = Player.Ammo + random.Next(10, 50);
+
+                Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
+                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
                 FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
                 this.Hide();
@@ -203,8 +203,8 @@ namespace AdventureGame
                 }
                 else
                 {
-                    Player.Health = Player.Health - 50;
-                    healthBar.Value = Player.Health;
+                    Player.Player.Health = Player.Player.Health - 50;
+                    healthBar.Value = Player.Player.Health;
                 }
 
             }
@@ -220,8 +220,8 @@ namespace AdventureGame
                 InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
                 InventoryModel.Item item = Player.GetItem();
                 available2.item = item;
-                Player.Materials = Player.Materials + random.Next(30, 100);
-                Player.Ammo = Player.Ammo + random.Next(10, 50);
+                Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
+                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
                 FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
                 this.Hide();
@@ -239,8 +239,8 @@ namespace AdventureGame
                 }
                 else
                 {
-                    Player.Health = Player.Health - 50;
-                    healthBar.Value = Player.Health;
+                    Player.Player.Health = Player.Player.Health - 50;
+                    healthBar.Value = Player.Player.Health;
                 }
 
             }
@@ -256,8 +256,8 @@ namespace AdventureGame
                 InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
                 InventoryModel.Item item = Player.GetItem();
                 available2.item = item;
-                Player.Materials = Player.Materials + random.Next(30, 100);
-                Player.Ammo = Player.Ammo + random.Next(10, 50);
+                Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
+                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
                 FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
                 this.Hide();
@@ -275,8 +275,8 @@ namespace AdventureGame
                 }
                 else
                 {
-                    Player.Health = Player.Health - 50;
-                    healthBar.Value = Player.Health;
+                    Player.Player.Health = Player.Player.Health - 50;
+                    healthBar.Value = Player.Player.Health;
                 }
 
             }
@@ -293,8 +293,8 @@ namespace AdventureGame
                 InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
                 InventoryModel.Item item = Player.GetItem();
                 available2.item = item;
-                Player.Materials = Player.Materials + random.Next(30, 100);
-                Player.Ammo = Player.Ammo + random.Next(10, 50);
+                Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
+                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
                 FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
                 this.Hide();
@@ -312,8 +312,8 @@ namespace AdventureGame
                 }
                 else
                 {
-                    Player.Health = Player.Health - 50;
-                    healthBar.Value = Player.Health;
+                    Player.Player.Health = Player.Player.Health - 50;
+                    healthBar.Value = Player.Player.Health;
                 }
 
             }
@@ -329,8 +329,8 @@ namespace AdventureGame
                 InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
                 InventoryModel.Item item = Player.GetItem();
                 available2.item = item;
-                Player.Materials = Player.Materials + random.Next(30, 100);
-                Player.Ammo = Player.Ammo + random.Next(10, 50);
+                Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
+                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
                 FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
                 this.Hide();
@@ -348,8 +348,8 @@ namespace AdventureGame
                 }
                 else
                 {
-                    Player.Health = Player.Health - 50;
-                    healthBar.Value = Player.Health;
+                    Player.Player.Health = Player.Player.Health - 50;
+                    healthBar.Value = Player.Player.Health;
                 }
 
             }
@@ -365,8 +365,8 @@ namespace AdventureGame
                 InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
                 InventoryModel.Item item = Player.GetItem();
                 available2.item = item;
-                Player.Materials = Player.Materials + random.Next(30, 100);
-                Player.Ammo = Player.Ammo + random.Next(10, 50);
+                Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
+                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
                 FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
                 this.Hide();
@@ -384,8 +384,8 @@ namespace AdventureGame
                 }
                 else
                 {
-                    Player.Health = Player.Health - 50;
-                    healthBar.Value = Player.Health;
+                    Player.Player.Health = Player.Player.Health - 50;
+                    healthBar.Value = Player.Player.Health;
                 }
 
             }
@@ -401,8 +401,8 @@ namespace AdventureGame
                 InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
                 InventoryModel.Item item = Player.GetItem();
                 available2.item = item;
-                Player.Materials = Player.Materials + random.Next(30, 100);
-                Player.Ammo = Player.Ammo + random.Next(10, 50);
+                Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
+                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
                 FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
                 this.Hide();
@@ -420,8 +420,8 @@ namespace AdventureGame
                 }
                 else
                 {
-                    Player.Health = Player.Health - 50;
-                    healthBar.Value = Player.Health;
+                    Player.Player.Health = Player.Player.Health - 50;
+                    healthBar.Value = Player.Player.Health;
                 }
 
             }
@@ -437,8 +437,8 @@ namespace AdventureGame
                 InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
                 InventoryModel.Item item = Player.GetItem();
                 available2.item = item;
-                Player.Materials = Player.Materials + random.Next(30, 100);
-                Player.Ammo = Player.Ammo + random.Next(10, 50);
+                Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
+                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
                 FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
                 this.Hide();
@@ -457,8 +457,8 @@ namespace AdventureGame
                 }
                 else
                 {
-                    Player.Health = Player.Health - 50;
-                    healthBar.Value = Player.Health;
+                    Player.Player.Health = Player.Player.Health - 50;
+                    healthBar.Value = Player.Player.Health;
                 }
 
             }

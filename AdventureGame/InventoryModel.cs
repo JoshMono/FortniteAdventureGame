@@ -16,24 +16,16 @@ namespace AdventureGame
 {
     public class InventoryModel
     {
-        public int Health { get; set; }
-        public int Shield { get; set; }
-        public int Materials { get; set; }
         public int ZBucks { get; set; }
         public Image Skin { get; set; }
-        public int Ammo { get; set; }
         public Player Player { get; set; }
 
 
 
-        public InventoryModel(int Health, int Shield, int ZBucks, Image Skin, int Materials, int Ammo, Player player)
+        public InventoryModel(int zBucks ,Image skin, Player player)
         {
-            this.Health = Health;
-            this.Shield = Shield;
-            this.ZBucks = ZBucks;
-            this.Skin = Skin;
-            this.Materials = Materials;
-            this.Ammo = Ammo;
+            ZBucks = zBucks;
+            Skin = skin;
             Player = player;
         }
 
@@ -150,15 +142,19 @@ namespace AdventureGame
         public int Health { get; set; }
         public int Shield { get; set; }
         public int Ammo { get; set; }
-        public PictureBox Target { get; set; }
-        public PictureBox enemy { get; set;}
+        public int Materials { get; set; }
+        public Player Target { get; set; }
+        public PictureBox PlayerBox { get; set; }
+        public bool Alive { get; set;}
 
-        public Enemy(int health, int ammo, PictureBox Target ,PictureBox enemy)
+        public Player(int health, int ammo, Player Target , bool Alive, PictureBox playerBox, int materials)
         {
             Health = health;
             Ammo = ammo;
-            this.enemy = enemy;
+            this.Alive = Alive;
             this.Target = Target;
+            PlayerBox = playerBox;
+            Materials = materials;
         }
     }
 
@@ -224,7 +220,8 @@ namespace AdventureGame
         public int damage { get; set; }
         public int ammo { get; set; }
         public bool hitWall { get; set; }
-        public List<PictureBox> enemyList { get; set; }
+        public Player playerShooter { get; set; }
+        public List<Player> enemyList { get; set; }
         public PictureBox gameBoxPicture { get; set; }
         public PictureBox player { get; set; }
         public PictureBox topGap { get; set; }
@@ -272,25 +269,6 @@ namespace AdventureGame
             bulletTimer = null;
             bullet = null;
         }        
-
-        public List<PictureBox> ReturnList(List<PictureBox> EnemyList)
-        {
-
-            foreach (PictureBox x in EnemyList)
-            {
-                if (bullet.Bounds.IntersectsWith(x.Bounds))
-                {
-                    x.Visible = false;
-                    EnemyList.Remove(x);
-                    bulletTimer.Stop();
-                    bulletTimer.Dispose();
-                    bullet.Dispose();
-                    break;
-
-                }
-            }
-            return EnemyList;
-        }
 
         private void BulletTimerEvent(object sender, EventArgs e)
         {
@@ -446,9 +424,16 @@ namespace AdventureGame
                 }
             }
 
-            ReturnList(enemyList);
+            foreach (Player player in enemyList)
+            {
 
+                if (player.PlayerBox.Bounds.IntersectsWith(bullet.Bounds) && player.PlayerBox != playerShooter.PlayerBox)
+                {
+                    player.Alive = false;
+                    player.PlayerBox.Visible = false;
+                }
 
+            }
 
 
             if (bullet.Location.Y >= gameBoxPicture.Location.Y + gameBoxPicture.Height - bullet.Height - 1 || bullet.Location.Y <= gameBoxPicture.Location.Y + 1 || bullet.Location.X <= gameBoxPicture.Location.X + 1 || bullet.Location.X >= gameBoxPicture.Location.X + gameBoxPicture.Width - bullet.Width - 1)
