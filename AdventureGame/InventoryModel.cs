@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Numerics;
 using System.Drawing.Configuration;
 using System.Runtime.CompilerServices;
+using System.Diagnostics.Tracing;
 
 namespace AdventureGame
 {
@@ -21,10 +22,11 @@ namespace AdventureGame
         public int ZBucks { get; set; }
         public Image Skin { get; set; }
         public int Ammo { get; set; }
+        public Player Player { get; set; }
 
 
 
-        public InventoryModel(int Health, int Shield, int ZBucks, Image Skin, int Materials, int Ammo)
+        public InventoryModel(int Health, int Shield, int ZBucks, Image Skin, int Materials, int Ammo, Player player)
         {
             this.Health = Health;
             this.Shield = Shield;
@@ -32,6 +34,7 @@ namespace AdventureGame
             this.Skin = Skin;
             this.Materials = Materials;
             this.Ammo = Ammo;
+            Player = player;
         }
 
         public class Gun
@@ -141,10 +144,11 @@ namespace AdventureGame
 
     }
 
-    public class Enemy
+    public class Player
     {
        
         public int Health { get; set; }
+        public int Shield { get; set; }
         public int Ammo { get; set; }
         public PictureBox Target { get; set; }
         public PictureBox enemy { get; set;}
@@ -220,6 +224,7 @@ namespace AdventureGame
         public int damage { get; set; }
         public int ammo { get; set; }
         public bool hitWall { get; set; }
+        public List<PictureBox> enemyList { get; set; }
         public PictureBox gameBoxPicture { get; set; }
         public PictureBox player { get; set; }
         public PictureBox topGap { get; set; }
@@ -266,18 +271,26 @@ namespace AdventureGame
             bullet.Dispose();
             bulletTimer = null;
             bullet = null;
+        }        
 
-
-        }
-
-        public bool hitWallReturn ()
+        public List<PictureBox> ReturnList(List<PictureBox> EnemyList)
         {
 
-            return true;
+            foreach (PictureBox x in EnemyList)
+            {
+                if (bullet.Bounds.IntersectsWith(x.Bounds))
+                {
+                    x.Visible = false;
+                    EnemyList.Remove(x);
+                    bulletTimer.Stop();
+                    bulletTimer.Dispose();
+                    bullet.Dispose();
+                    break;
 
+                }
+            }
+            return EnemyList;
         }
-
-        
 
         private void BulletTimerEvent(object sender, EventArgs e)
         {
@@ -432,6 +445,11 @@ namespace AdventureGame
 
                 }
             }
+
+            ReturnList(enemyList);
+
+
+
 
             if (bullet.Location.Y >= gameBoxPicture.Location.Y + gameBoxPicture.Height - bullet.Height - 1 || bullet.Location.Y <= gameBoxPicture.Location.Y + 1 || bullet.Location.X <= gameBoxPicture.Location.X + 1 || bullet.Location.X >= gameBoxPicture.Location.X + gameBoxPicture.Width - bullet.Width - 1)
             {

@@ -107,7 +107,7 @@ namespace AdventureGame
             slotsList.Add(slot5);
             slotsList.Add(slot6);
 
-            MakeEnemy(20);
+            MakeEnemy(5);
             
 
 
@@ -361,6 +361,7 @@ namespace AdventureGame
             bullet.horizontalWall = horizontalWall;
             bullet.verticalWall = verticalWall;
             bullet.hitWall = bulletHitWall;
+            
             bullet.MakeBullet(this);
             bullet.bullet.BringToFront();
         }
@@ -378,6 +379,8 @@ namespace AdventureGame
             bullet.horizontalWall = horizontalWall;
             bullet.verticalWall = verticalWall;
             bullet.hitWall = bulletHitWall;
+            bullet.enemyList = allTargets;
+            bullet.ReturnList(allTargets);
             bullet.MakeBullet(this);
             bullet.bullet.BringToFront();
         }
@@ -832,11 +835,13 @@ namespace AdventureGame
         }
 
         Random random = new Random();
-        List<Enemy> enemyList = new List<Enemy>();
+        List<InventoryModel> playerList = new List<InventoryModel>();
+
+        public List<PictureBox> allTargets = new List<PictureBox>();
 
         private void MakeEnemy(int number)
         {
-            List<PictureBox> allTargets = new List<PictureBox>();
+            allTargets.Add();
             for (int i = 0; i < number; i++)
             {
                 PictureBox enemy = new PictureBox();
@@ -850,23 +855,17 @@ namespace AdventureGame
                 player.BringToFront();
                 Enemy enemyPlayer = new Enemy(100, 30, null, enemy);
 
-                foreach (Control y in this.Controls)
-                {
-                    if (y.Tag == "enemy")
-                    {
+                
 
-                        allTargets.Add(player);
-                        foreach (Enemy enemy2 in enemyList)
-                        { 
+                
+                foreach (Enemy enemy2 in enemyList)
+                { 
 
-                            allTargets.Add(enemy2.enemy);
-
-
-                        }
-                    }
+                    allTargets.Add(enemy2.enemy);
 
 
                 }
+                    
                 int count = allTargets.Count();
                 enemyPlayer.Target = allTargets[random.Next(0, count)];
                 enemyList.Add(enemyPlayer);
@@ -1224,6 +1223,8 @@ namespace AdventureGame
         private void enemyTimer_Tick(object sender, EventArgs e)
         {
             
+            
+
             foreach (Enemy x in enemyList)
             {
 
@@ -1616,6 +1617,7 @@ namespace AdventureGame
                             if (x.enemy.Left > x.Target.Left || EhitWallL)
                             {
                                 ShootEnemyBullet("left", 5, 20, x.enemy);
+                                
                                 x.Ammo--;
                             }
                             else if (x.enemy.Left < player.Left || EhitWallR)
