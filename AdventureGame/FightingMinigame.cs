@@ -852,6 +852,7 @@ namespace AdventureGame
                     GivePlayersTargets();
                     break;
                 }
+                Console.WriteLine(player.Target.Alive);
                 if (player.Alive == false)
                 {
                     allTargets.Remove(player);
@@ -864,8 +865,7 @@ namespace AdventureGame
                     allEnemys.Remove(player.Target);
                     player.Target.PlayerBox.Visible = false;
                     player.Target = allTargets[random.Next(0, allTargets.Count)];
-                    Console.WriteLine(player.Target.PlayerBox.Name);
-                    Console.WriteLine("penis");
+                    
                     break;
                 }
             }
@@ -900,7 +900,7 @@ namespace AdventureGame
                 this.Controls.Add(player);
                 player.BringToFront();
                 player.BringToFront();
-                Player enemyPlayer = new Player(100, 30, null, true, player, 30);
+                Player enemyPlayer = new Player(100, 10, null, true, player, 30);
 
                 allEnemys.Add(enemyPlayer);
                 allTargets.Add(enemyPlayer);
@@ -1256,7 +1256,7 @@ namespace AdventureGame
             CheckIfTargetDead();
             foreach (Player x in allEnemys)
             {
-                if (x.Alive)
+                if (x.Alive && x.Target.Alive)
                 {
 
                     if (x.PlayerBox.Left > x.Target.PlayerBox.Left)
@@ -1479,7 +1479,7 @@ namespace AdventureGame
         {
             foreach (Player x in allEnemys)
             {
-                if (x.Alive)
+                if (x.Alive && x.Target.Alive)
                 {
 
 
@@ -1648,7 +1648,7 @@ namespace AdventureGame
                                 
                                 x.Ammo--;
                             }
-                            else if (x.PlayerBox.Left < player.Left || EhitWallR)
+                            else if (x.PlayerBox.Left < x.Target.PlayerBox.Left || EhitWallR)
                             {
                                 ShootEnemyBullet("right", 5, 20, x.PlayerBox, x);
                                 x.Ammo--;
@@ -1675,7 +1675,7 @@ namespace AdventureGame
                     else if (x.Ammo == 0)
                     {
                         enemyReload.Interval = 5000;
-                        x.Ammo = 30;
+                        x.Ammo = 10;
 
                     }
                 }
