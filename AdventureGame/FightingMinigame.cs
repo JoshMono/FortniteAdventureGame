@@ -846,13 +846,10 @@ namespace AdventureGame
         {
             foreach (Player player in allEnemys)
             {
-                Console.WriteLine(player.Alive);
                 if (player.Target == null)
                 {
                     GivePlayersTargets();
-                    break;
                 }
-                Console.WriteLine(player.Target.Alive);
                 if (player.Alive == false)
                 {
                     allTargets.Remove(player);
@@ -865,17 +862,18 @@ namespace AdventureGame
                     allEnemys.Remove(player.Target);
                     player.Target.PlayerBox.Visible = false;
                     player.Target = allTargets[random.Next(0, allTargets.Count)];
-                    
+                    allTargets.Add(player.Target);
+                    allEnemys.Add(player.Target);
+
                     break;
                 }
             }
         }
 
-
         private void GivePlayersTargets()
         {
             
-            foreach (Player player in allEnemys)
+            foreach (Player player in allTargets)
             {
                 allTargets.Remove(player);
                 if (player.Alive)
@@ -1256,7 +1254,7 @@ namespace AdventureGame
             CheckIfTargetDead();
             foreach (Player x in allEnemys)
             {
-                if (x.Alive && x.Target.Alive)
+                if (x.Alive)
                 {
 
                     if (x.PlayerBox.Left > x.Target.PlayerBox.Left)
@@ -1479,7 +1477,7 @@ namespace AdventureGame
         {
             foreach (Player x in allEnemys)
             {
-                if (x.Alive && x.Target.Alive)
+                if (x.Alive)
                 {
 
 
