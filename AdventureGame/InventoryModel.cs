@@ -35,14 +35,16 @@ namespace AdventureGame
             public string Rarity { get; set; }
             public int Damage { get; set; }
             public int Speed { get; set; }
+            public int Magazine { get; set; }
             public Image? Icon { get; set; }
 
-            public Gun(string name, string rarity, int damage, int speed, Image? icon)
+            public Gun(string name, string rarity, int damage, int speed, int magazine, Image? icon)
             {
                 Name = name;
                 Rarity = rarity;
                 Damage = damage;
                 Speed = speed;
+                Magazine = magazine;
                 Icon = icon;
             }
         }
@@ -103,10 +105,10 @@ namespace AdventureGame
         public Gun GetGun()
         {
             Dictionary<int, Gun> gunsDict = new Dictionary<int, Gun>();
-            gunsDict.Add(1, new Gun("Scar", "Gold", 40, 5, (Image)Properties.Resources.scarIcon));
-            gunsDict.Add(2, new Gun("Bolt", "Blue", 50, 10, (Image)Properties.Resources.boltIcon));
-            gunsDict.Add(3, new Gun("Pistol", "Gray", 10, 5, (Image)Properties.Resources.pistolIcon));
-            gunsDict.Add(4, new Gun("Pump", "Blue", 80, 3,(Image)Properties.Resources.pumpIcon));
+            gunsDict.Add(1, new Gun("Scar", "Gold", 100, 5, 20, (Image)Properties.Resources.scarIcon));
+            gunsDict.Add(2, new Gun("Bolt", "Blue", 100, 10, 1, (Image)Properties.Resources.boltIcon));
+            gunsDict.Add(3, new Gun("Pistol", "Gray", 100, 5, 15, (Image)Properties.Resources.pistolIcon));
+            gunsDict.Add(4, new Gun("Pump", "Blue", 100, 3, 3, (Image)Properties.Resources.pumpIcon));
 
             Random rand = new Random();
             int gunId = rand.Next(1, 5);
@@ -146,15 +148,24 @@ namespace AdventureGame
         public Player Target { get; set; }
         public PictureBox PlayerBox { get; set; }
         public bool Alive { get; set;}
+        public bool CanWin { get; set; }
+        public bool isClient { get; set; } 
+        public ProgressBar healthBar { get; set; }
+        public ProgressBar shieldBar { get; set; }
 
-        public Player(int health, int ammo, Player Target , bool Alive, PictureBox playerBox, int materials)
+        public Player(int health, int shield,  int ammo, Player Target , bool Alive, PictureBox playerBox, int materials, bool isClient, bool canWin, ProgressBar healthBar, ProgressBar shieldBar)
         {
             Health = health;
+            Shield = shield;
             Ammo = ammo;
             this.Alive = Alive;
             this.Target = Target;
             PlayerBox = playerBox;
             Materials = materials;
+            this.isClient = isClient;
+            this.CanWin = canWin;
+            this.healthBar = healthBar;
+            this.shieldBar = shieldBar;
         }
     }
 
@@ -224,8 +235,6 @@ namespace AdventureGame
         public List<Player> enemyList { get; set; }
         public PictureBox gameBoxPicture { get; set; }
         public PictureBox player { get; set; }
-        public PictureBox topGap { get; set; }
-        public PictureBox sideGap { get; set; }
 
         public Wall[,] horizontalWall { get; set; }
 
@@ -427,10 +436,79 @@ namespace AdventureGame
             foreach (Player player in enemyList)
             {
 
-                if (player.PlayerBox.Bounds.IntersectsWith(bullet.Bounds) && player.PlayerBox != playerShooter.PlayerBox)
+                if (player.PlayerBox.Bounds.IntersectsWith(bullet.Bounds) && player.PlayerBox != playerShooter.PlayerBox && playerShooter.isClient == false)
                 {
-                    player.Alive = false;
-                    player.PlayerBox.Visible = false;
+                    
+
+                    if (player.Shield >= 10)
+                    {
+                        player.Shield = player.Shield - 10;
+                        player.shieldBar.Value = player.Shield;
+                    }
+                    else if (player.Shield < 10 && player.Shield != 0)
+                    {
+                        player.Health = player.Health + player.Shield;
+                        player.Health = player.Health - 10;
+                        player.shieldBar.Value = 0;
+                        player.Shield = 0;
+
+                        player.healthBar.Value = player.Health;
+                    }
+                    else if (player.Health > 10)
+                    { 
+                        player.Health = player.Health - 10;
+                        player.healthBar.Value = player.Health;
+                    }
+                    if (player.Health <= 10)
+                    {
+                        player.Alive = false;
+                        player.PlayerBox.Visible = false;
+                        player.shieldBar.Visible = false;
+                        player.healthBar.Visible = false;
+
+                        player.shieldBar.Value = 0;
+                        player.Shield = 0;
+
+                        player.healthBar.Value = 0;
+                        player.Health = 0;
+
+                    }
+                }
+                else if (player.PlayerBox.Bounds.IntersectsWith(bullet.Bounds) && player.PlayerBox != playerShooter.PlayerBox && playerShooter.isClient)
+                {
+                    if (player.Shield >= damage)
+                    {
+                        player.Shield = player.Shield - damage;
+                        player.shieldBar.Value = player.Shield;
+                    }
+                    else if (player.Shield < damage && player.Shield != 0)
+                    {
+                        player.Health = player.Health + player.Shield;
+                        player.Health = player.Health - damage;
+                        player.shieldBar.Value = 0;
+                        player.Shield = 0;
+
+                        player.healthBar.Value = player.Health;
+                    }
+                    else if (player.Health > damage)
+                    {
+                        player.Health = player.Health - damage;
+                        player.healthBar.Value = player.Health;
+                    }
+                    if (player.Health <= damage)
+                    {
+                        player.Alive = false;
+                        player.PlayerBox.Visible = false;
+                        player.shieldBar.Visible = false;
+                        player.healthBar.Visible = false;
+
+                        player.shieldBar.Value = 0;
+                        player.Shield = 0;
+
+                        player.healthBar.Value = 0;
+                        player.Health = 0;
+
+                    }
                 }
 
             }

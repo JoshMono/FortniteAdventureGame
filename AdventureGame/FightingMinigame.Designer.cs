@@ -154,7 +154,8 @@
             lblhealt = new Label();
             shieldBar = new ProgressBar();
             healthBar = new ProgressBar();
-            enemyReload = new System.Windows.Forms.Timer(components);
+            enemyShoot = new System.Windows.Forms.Timer(components);
+            enemyPickaxe = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)player).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gameBoxPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)slot6).BeginInit();
@@ -281,7 +282,7 @@
             // timer1
             // 
             timer1.Enabled = true;
-            timer1.Interval = 10;
+            timer1.Interval = 20;
             timer1.Tick += mainGameTimerEvent;
             // 
             // gameBoxPicture
@@ -1190,7 +1191,7 @@
             pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox1.Location = new Point(129, 281);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(37, 32);
+            pictureBox1.Size = new Size(47, 32);
             pictureBox1.TabIndex = 110;
             pictureBox1.TabStop = false;
             // 
@@ -1562,8 +1563,7 @@
             // 
             // enemyTimer
             // 
-            enemyTimer.Enabled = true;
-            enemyTimer.Interval = 30;
+            enemyTimer.Interval = 40;
             enemyTimer.Tick += enemyTimer_Tick;
             // 
             // ammoLabel
@@ -1571,7 +1571,7 @@
             ammoLabel.Font = new Font("Franklin Gothic Heavy", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             ammoLabel.Location = new Point(129, 315);
             ammoLabel.Name = "ammoLabel";
-            ammoLabel.Size = new Size(37, 17);
+            ammoLabel.Size = new Size(47, 17);
             ammoLabel.TabIndex = 146;
             ammoLabel.Text = "label5";
             // 
@@ -1602,11 +1602,17 @@
             healthBar.Size = new Size(112, 16);
             healthBar.TabIndex = 149;
             // 
-            // enemyReload
+            // enemyShoot
             // 
-            enemyReload.Enabled = true;
-            enemyReload.Interval = 300;
-            enemyReload.Tick += enemyReload_Tick;
+            enemyShoot.Enabled = true;
+            enemyShoot.Interval = 500;
+            enemyShoot.Tick += enemyReload_Tick;
+            // 
+            // enemyPickaxe
+            // 
+            enemyPickaxe.Enabled = true;
+            enemyPickaxe.Interval = 1300;
+            enemyPickaxe.Tick += enemyPickaxe_Tick;
             // 
             // FightingMinigame
             // 
@@ -1745,7 +1751,6 @@
             KeyDown += FightingMinigame_KeyDown;
             KeyPress += FightingMinigame_KeyPress;
             KeyUp += FightingMinigame_KeyUp;
-            MouseDown += FightingMinigame_MouseDown;
             ((System.ComponentModel.ISupportInitialize)player).EndInit();
             ((System.ComponentModel.ISupportInitialize)gameBoxPicture).EndInit();
             ((System.ComponentModel.ISupportInitialize)slot6).EndInit();
@@ -1988,6 +1993,7 @@
         private Label lblhealt;
         private ProgressBar shieldBar;
         private ProgressBar healthBar;
-        private System.Windows.Forms.Timer enemyReload;
+        private System.Windows.Forms.Timer enemyShoot;
+        private System.Windows.Forms.Timer enemyPickaxe;
     }
 }

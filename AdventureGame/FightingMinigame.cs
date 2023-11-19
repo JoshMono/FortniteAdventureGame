@@ -63,6 +63,7 @@ namespace AdventureGame
         public int Shield;
         public int Materials;
         public int Ammo;
+        public int Magazine;
 
         public Player currentPlayer;
 
@@ -74,6 +75,11 @@ namespace AdventureGame
             currentPlayer = Player.Player;
             currentPlayer.Alive = true;
             currentPlayer.PlayerBox = player;
+            currentPlayer.isClient = true;
+            currentPlayer.healthBar = healthBar;
+            currentPlayer.shieldBar = shieldBar;
+
+            Materials = currentPlayer.Materials;
 
             materialLabel.Text = Materials.ToString();
             ammoLabel.Text = Ammo.ToString();
@@ -81,8 +87,8 @@ namespace AdventureGame
             shieldBar.ForeColor = Color.Blue;
             healthBar.ForeColor = Color.Blue;
 
-            shieldBar.Value = Shield;
-            healthBar.Value = Health;
+            shieldBar.Value = currentPlayer.Shield;
+            healthBar.Value = currentPlayer.Health;
 
             playerX = player.Location.X;
             playerY = player.Location.Y;
@@ -107,9 +113,25 @@ namespace AdventureGame
             slotsList.Add(slot5);
             slotsList.Add(slot6);
 
+            Ammo = players.Player.Ammo;
 
-            MakeEnemy(5);
+            if (InventorySlotsList[activeSlot].gun.Magazine > Ammo)
+            {
+                int x = InventorySlotsList[activeSlot].gun.Magazine - Ammo;
+                Magazine = Ammo;
+                Ammo = 0;
+            }
+            else
+            {
+                Ammo = Ammo - InventorySlotsList[activeSlot].gun.Magazine;
+                Magazine = inventorySlots[activeSlot].gun.Magazine;
+            }
 
+
+
+            ammoLabel.Text = $"{Magazine}/{Ammo}";
+
+            MakeEnemy(3);
 
             allTargets.Add(currentPlayer);
 
@@ -332,22 +354,22 @@ namespace AdventureGame
 
         }
 
-       /* private PictureBox randomOponent(Enemy enemy)
-        {
-            enemyList.Remove(enemy);
-            int enemys = enemyList.Count;
-            int target = random.Next(0, enemys+1);
-            if (target == enemys + 1)
-            {
-                enemy = player;
-            }
-            else
-            {
-                enemy = enemyList[target].enemy;
-            }
-            return enemy;
+        /* private PictureBox randomOponent(Enemy enemy)
+         {
+             enemyList.Remove(enemy);
+             int enemys = enemyList.Count;
+             int target = random.Next(0, enemys+1);
+             if (target == enemys + 1)
+             {
+                 enemy = player;
+             }
+             else
+             {
+                 enemy = enemyList[target].enemy;
+             }
+             return enemy;
 
-        }*/
+         }*/
 
         private void ShootBullet(string direction, int Speed, int damage)
         {
@@ -355,7 +377,7 @@ namespace AdventureGame
             bullet.facingDirection = direction;
             bullet.speed = Speed;
             bullet.bulletLeft = player.Left + player.Width / 2;
-            bullet.bulletTop = player.Top + player.Height / 2;
+            bullet.bulletTop = player.Top + player.Height / 2 - 10;
             bullet.gameBoxPicture = gameBoxPicture;
             bullet.player = player;
             bullet.damage = damage;
@@ -837,77 +859,10 @@ namespace AdventureGame
 
         }
 
-        Random random = new Random();
-
-        public List<Player> allTargets = new List<Player>();
-        public List<Player> allEnemys = new List<Player>();
-
-        private void CheckIfTargetDead()
-        {
-            foreach (Player player in allEnemys)
-            {
-                if (player.Target == null)
-                {
-                    GivePlayersTargets();
-                }
-                if (player.Alive == false)
-                {
-                    allTargets.Remove(player);
-                    allEnemys.Remove(player);
-                    break;
-                }
-                if (player.Target.Alive == false && player.Alive)
-                {
-                    allTargets.Remove(player.Target);
-                    allEnemys.Remove(player.Target);
-                    player.Target.PlayerBox.Visible = false;
-                    player.Target = allTargets[random.Next(0, allTargets.Count)];
-                    allTargets.Add(player.Target);
-                    allEnemys.Add(player.Target);
-
-                    break;
-                }
-            }
-        }
-
-        private void GivePlayersTargets()
-        {
-            
-            foreach (Player player in allTargets)
-            {
-                allTargets.Remove(player);
-                if (player.Alive)
-                {
-                    player.Target = allTargets[random.Next(0, allTargets.Count)];
-                    allTargets.Add(player);
-                }
-            }
-        }
-
-
-        private void MakeEnemy(int number)
-        {
-            for (int i = 0; i < number; i++)
-            {
-                PictureBox player = new PictureBox();
-                player.Tag = "enemy";
-                player.Left = random.Next(gameBoxPicture.Location.X, gameBoxPicture.Location.X + gameBoxPicture.Width - player.Width);
-                player.Top = random.Next(gameBoxPicture.Location.Y, gameBoxPicture.Location.Y + gameBoxPicture.Height - player.Height);
-                player.Size = new Size(10, 10);
-                player.Image = Properties.Resources.ammoIcon;
-                this.Controls.Add(player);
-                player.BringToFront();
-                player.BringToFront();
-                Player enemyPlayer = new Player(100, 10, null, true, player, 30);
-
-                allEnemys.Add(enemyPlayer);
-                allTargets.Add(enemyPlayer);
-            }
-        }
 
         private void FightingMinigame_KeyPress(object sender, KeyPressEventArgs e)
         {
-
+            
 
         }
 
@@ -917,6 +872,22 @@ namespace AdventureGame
 
         private void FightingMinigame_KeyDown(object sender, KeyEventArgs e)
         {
+
+            
+
+            if (InventorySlotsList[activeSlot].gun.Magazine == 0)
+            {
+                if (InventorySlotsList[activeSlot].gun.Magazine > Ammo)
+                {
+                    int x = InventorySlotsList[activeSlot].gun.Magazine - Ammo;
+                    Ammo = Ammo - x;
+                }
+                else
+                {
+                    Ammo = Ammo - InventorySlotsList[activeSlot].gun.Magazine;
+                }
+            }
+
             if (e.KeyValue == (char)Keys.W)
             {
                 foward = true;
@@ -1046,6 +1017,46 @@ namespace AdventureGame
             {
 
             }
+            if (e.KeyValue == (char)Keys.Up)
+            {
+                direction = "up";
+
+            }
+            if (e.KeyValue == (char)Keys.Down)
+            {
+                direction = "down";
+
+            }
+            if (e.KeyValue == (char)Keys.Left)
+            {
+                direction = "left";
+
+            }
+            if (e.KeyValue == (char)Keys.Right)
+            {
+                direction = "right";
+
+            }
+            if (e.KeyValue == (char)Keys.Up && e.KeyValue == (char)Keys.Right)
+            {
+                direction = "WD";
+
+            }
+            if (e.KeyValue == (char)Keys.Up && e.KeyValue == (char)Keys.Left)
+            {
+                direction = "WA";
+
+            }
+            if (e.KeyValue == (char)Keys.Down && e.KeyValue == (char)Keys.Right)
+            {
+                direction = "SD";
+
+            }
+            if (e.KeyValue == (char)Keys.Down && e.KeyValue == (char)Keys.Left)
+            {
+                direction = "SA";
+
+            }
         }
 
         private void FightingMinigame_KeyUp(object sender, KeyEventArgs e)
@@ -1070,8 +1081,6 @@ namespace AdventureGame
             if (e.KeyValue == (char)Keys.D)
             {
                 right = false;
-
-
             }
             if (e.KeyValue == (char)Keys.Q)
             {
@@ -1090,6 +1099,55 @@ namespace AdventureGame
                 }
 
             }
+            if (e.KeyValue == (char)Keys.Up)
+            {
+                if (!buildingOn && currentPlayer.Ammo > 0)
+                {
+                    if (InventorySlotsList[activeSlot].gun != null)
+                    {
+                        ShootBullet(direction, InventorySlotsList[activeSlot].gun.Speed, InventorySlotsList[activeSlot].gun.Damage);
+                        currentPlayer.Ammo--;
+                    }
+                }
+
+            }
+            else if (e.KeyValue == (char)Keys.Right)
+            {
+                if (!buildingOn && currentPlayer.Ammo > 0)
+                {
+                    if (InventorySlotsList[activeSlot].gun != null)
+                    {
+                        ShootBullet(direction, InventorySlotsList[activeSlot].gun.Speed, InventorySlotsList[activeSlot].gun.Damage);
+                        currentPlayer.Ammo--;
+                    }
+                }
+
+            }
+            else if (e.KeyValue == (char)Keys.Left)
+            {
+                if (!buildingOn && currentPlayer.Ammo > 0)
+                {
+                    if (InventorySlotsList[activeSlot].gun != null)
+                    {
+                        ShootBullet(direction, InventorySlotsList[activeSlot].gun.Speed, InventorySlotsList[activeSlot].gun.Damage);
+                        currentPlayer.Ammo--;
+                    }
+                }
+
+            }
+            else if (e.KeyValue == (char)Keys.Down)
+            {
+                if (!buildingOn && currentPlayer.Ammo > 0)
+                {
+                    if (InventorySlotsList[activeSlot].gun != null)
+                    {
+                        ShootBullet(direction, InventorySlotsList[activeSlot].gun.Speed, InventorySlotsList[activeSlot].gun.Damage);
+                        currentPlayer.Ammo--;
+                    }
+                }
+
+            }
+
             if (e.KeyValue == (char)Keys.Space)
             {
                 if (!buildingOn)
@@ -1215,48 +1273,160 @@ namespace AdventureGame
                         }
                     }
                 }
-                if (foward)
-                {
-                    direction = "up";
-                }
-                if (left)
-                {
-                    direction = "left";
-                }
-                if (back)
-                {
-                    direction = "down";
-                }
-                if (right)
-                {
-                    direction = "right";
-                }
+                
 
 
             }
         }
 
-        public bool running = false;
 
-        private void FightingMinigame_MouseDown(object sender, MouseEventArgs e)
-        {
-
-        }
 
         public bool EhitWallL;
         public bool EhitWallR;
         public bool EhitWallU;
         public bool EhitWallD;
 
+        Random random = new Random();
+
+        public List<Player> allTargets = new List<Player>();
+        public List<Player> winningList = new List<Player>();
+
+        ///
+        // Gives all players a target
+        ///
+
+        private void GivePlayersTargets()
+        {
+
+            foreach (Player player in allTargets)
+            {
+                List<Player> targetList = new List<Player>(allTargets);
+                targetList.Remove(player);
+                player.Target = targetList[random.Next(0, targetList.Count)];
+
+            }
+        }
+
+
+        ///
+        // Gives new a new target
+        ///
+
+        private void GiveNewTarget(Player player)
+        {
+            List<Player> targetList = new List<Player>(allTargets);
+            targetList.Remove(player);
+            player.Target = targetList[random.Next(0, targetList.Count)];
+        }
+
+        ////
+        ///
+        // Make Enemy
+        ///
+        ////
+
+        private void MakeEnemy(int number)
+        {
+            for (int i = 0; i < number; i++)
+            {
+                PictureBox player = new PictureBox();
+                player.Tag = "enemy";
+                player.Left = random.Next(gameBoxPicture.Location.X, gameBoxPicture.Location.X + gameBoxPicture.Width - player.Width);
+                player.Top = random.Next(gameBoxPicture.Location.Y, gameBoxPicture.Location.Y + gameBoxPicture.Height - player.Height);
+                player.Size = new Size(10, 10);
+                player.Image = Properties.Resources.ammoIcon;
+                this.Controls.Add(player);
+
+                ProgressBar health = new ProgressBar();
+                health.Value = 100;
+                health.Visible = true;
+                health.Maximum = 100;
+                health.Top = player.Top - player.Height - 5;
+                health.Left = player.Left;
+                health.Size = new Size(20, 5);
+
+                this.Controls.Add(health);
+
+                int chance = random.Next(0, 4);
+                int shieldChance;
+                if (chance == 0)
+                {
+                    shieldChance = 0;
+
+                }
+                else if (chance == 1)
+                {
+                    shieldChance = 25;
+                }
+                else if (chance == 2)
+                {
+                    shieldChance = 50;
+                }
+                else if (chance == 3)
+                {
+                    shieldChance = 75;
+                }
+                else
+                {
+                    shieldChance = 100;
+                }
+
+                ProgressBar shield = new ProgressBar();
+                shield.Value = shieldChance;
+                shield.Visible = true;
+                shield.Maximum = 100;
+                shield.Top = health.Top - health.Height - 1;
+                shield.Left = health.Left;
+                shield.Size = new Size(20, 5);
+
+                this.Controls.Add(shield);
+
+                health.BringToFront();
+                shield.BringToFront();
+
+                player.BringToFront();
+
+
+                Player enemyPlayer = new Player(100, shieldChance, 10, null, true, player, 30, false, true, health, shield);
+
+                winningList.Add(enemyPlayer);
+                allTargets.Add(enemyPlayer);
+            }
+            enemyTimer.Enabled = true;
+
+        }
+
+        ////
+        ///
+        // Enemy Movement Timer
+        ///
+        ////
+
         private void enemyTimer_Tick(object sender, EventArgs e)
         {
 
-            CheckIfTargetDead();
-            foreach (Player x in allEnemys)
+            foreach (Player x in allTargets)
             {
-                if (x.Alive)
+                if (x.Target == null)
+                {
+                    GivePlayersTargets();
+                    break;
+                }
+                if (!x.Target.Alive)
+                {
+                    GiveNewTarget(x);
+
+                }
+                if (x.Alive && x.Target.Alive && !x.isClient)
                 {
 
+
+
+
+
+                    ///
+                    // Check if target is left
+                    ///
                     if (x.PlayerBox.Left > x.Target.PlayerBox.Left)
                     {
                         // Left Enemy Move
@@ -1300,6 +1470,8 @@ namespace AdventureGame
                         if (!EhitWallL)
                         {
                             x.PlayerBox.Left -= 1;
+                            x.healthBar.Left -= 1;
+                            x.shieldBar.Left -= 1;
 
                         }
                         else
@@ -1310,6 +1482,10 @@ namespace AdventureGame
 
 
                     }
+
+                    ///
+                    // Check if target is Right
+                    ///
                     if (x.PlayerBox.Left < x.Target.PlayerBox.Left)
                     {
                         // Right Enemy Move
@@ -1356,6 +1532,8 @@ namespace AdventureGame
                         {
 
                             x.PlayerBox.Left += 1;
+                            x.healthBar.Left += 1;
+                            x.shieldBar.Left += 1;
                         }
                         else
                         {
@@ -1364,6 +1542,10 @@ namespace AdventureGame
 
 
                     }
+
+                    ///
+                    // Check if target is Down
+                    ///
                     if (x.PlayerBox.Top > x.Target.PlayerBox.Top)
                     {
                         // Up Enemy Move
@@ -1407,6 +1589,8 @@ namespace AdventureGame
                         if (!EhitWallU)
                         {
                             x.PlayerBox.Top -= 1;
+                            x.healthBar.Top -= 1;
+                            x.shieldBar.Top -= 1;
                         }
                         else
                         {
@@ -1414,6 +1598,10 @@ namespace AdventureGame
                         }
 
                     }
+
+                    ///
+                    // Check if target is Up
+                    ///
                     if (x.PlayerBox.Top < x.Target.PlayerBox.Top)
                     {
                         // Down Enemy Move
@@ -1457,7 +1645,8 @@ namespace AdventureGame
                         if (!EhitWallD)
                         {
                             x.PlayerBox.Top += 1;
-
+                            x.healthBar.Top += 1;
+                            x.shieldBar.Top += 1;
                         }
                         else
                         {
@@ -1475,209 +1664,108 @@ namespace AdventureGame
 
         private void enemyReload_Tick(object sender, EventArgs e)
         {
-            foreach (Player x in allEnemys)
+            ///
+            // Check if has ammo
+            ///
+
+            foreach (Player x in allTargets)
             {
-                if (x.Alive)
+
+                if (x.PlayerBox.Bounds.IntersectsWith(x.Target.PlayerBox.Bounds) && x.Alive)
                 {
 
+                }
 
-                    // Down
-                    for (int k = 0; k < horizontalWall.GetLength(0); k++)
+                else if (x.Ammo > 0 && x.Alive && !x.isClient)
+                {
+                    if (x.PlayerBox.Location.X <= x.Target.PlayerBox.Location.X && x.PlayerBox.Location.Y == x.Target.PlayerBox.Location.Y || x.PlayerBox.Location.X >= x.Target.PlayerBox.Location.X && x.PlayerBox.Location.Y == x.Target.PlayerBox.Location.Y || EhitWallR || EhitWallL)
                     {
-                        for (int c = 0; c < horizontalWall.GetLength(1); c++)
+
+                        if (x.PlayerBox.Left > x.Target.PlayerBox.Left || EhitWallL)
                         {
+                            ShootEnemyBullet("left", 5, 20, x.PlayerBox, x);
 
-                            if (horizontalWall[k, c].Alive)
-                            {
-
-                                if (x.PlayerBox.Bottom + 1 == horizontalWall[k, c].formWall.Top && x.PlayerBox.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= x.PlayerBox.Right)
-                                {
-
-                                    EhitWallD = true;
-
-                                }
-                            }
+                            x.Ammo--;
+                        }
+                        else if (x.PlayerBox.Left < x.Target.PlayerBox.Left || EhitWallR)
+                        {
+                            ShootEnemyBullet("right", 5, 20, x.PlayerBox, x);
+                            x.Ammo--;
                         }
                     }
 
-                    for (int k = 0; k < verticalWall.GetLength(0); k++)
+                    if (x.PlayerBox.Location.Y <= x.Target.PlayerBox.Location.Y && x.PlayerBox.Location.X == x.Target.PlayerBox.Location.X || x.PlayerBox.Location.Y >= x.Target.PlayerBox.Location.Y && x.PlayerBox.Location.X == x.Target.PlayerBox.Location.X || EhitWallU || EhitWallD)
                     {
-                        for (int c = 0; c < verticalWall.GetLength(1); c++)
+                        Console.WriteLine("asdahsdhabdhj");
+                        if (x.PlayerBox.Top > x.Target.PlayerBox.Top || EhitWallU)
                         {
-
-                            if (verticalWall[k, c].Alive)
-                            {
-
-                                if (x.PlayerBox.Bottom + 1 == verticalWall[k, c].formWall.Top && x.PlayerBox.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= x.PlayerBox.Right)
-                                {
-
-                                    EhitWallD = true;
-
-                                }
-                            }
+                            ShootEnemyBullet("up", 5, 30, x.PlayerBox, x);
+                            x.Ammo--;
+                        }
+                        else if (x.PlayerBox.Top < x.Target.PlayerBox.Top || EhitWallD)
+                        {
+                            ShootEnemyBullet("down", 5, 30, x.PlayerBox, x);
+                            x.Ammo--;
                         }
                     }
 
-                    // Up
-                    for (int k = 0; k < horizontalWall.GetLength(0); k++)
+                }
+            }
+        }
+
+        private void enemyPickaxe_Tick(object sender, EventArgs e)
+        {
+            foreach (Player x in allTargets)
+            {
+
+                List<Player> list = new List<Player>();
+                foreach (Player xw in allTargets)
+                {
+                    if (xw.Alive)
                     {
-                        for (int c = 0; c < horizontalWall.GetLength(1); c++)
-                        {
 
-                            if (horizontalWall[k, c].Alive)
-                            {
-
-                                if (x.PlayerBox.Top - 1 == horizontalWall[k, c].formWall.Bottom && x.PlayerBox.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= x.PlayerBox.Right)
-                                {
-
-                                    EhitWallU = true;
-
-                                }
-
-                            }
-                        }
+                        list.Add(xw);
                     }
-                    for (int k = 0; k < verticalWall.GetLength(0); k++)
+                }
+                Console.WriteLine(list.Count);
+                if (x.PlayerBox.Bounds.IntersectsWith(x.Target.PlayerBox.Bounds) && x.Alive)
+                {
+                    if (x.Target.Shield >= 50)
                     {
-                        for (int c = 0; c < verticalWall.GetLength(1); c++)
-                        {
-
-                            if (verticalWall[k, c].Alive)
-                            {
-
-                                if (x.PlayerBox.Top - 1 == verticalWall[k, c].formWall.Bottom && x.PlayerBox.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= x.PlayerBox.Right)
-                                {
-
-                                    EhitWallU = true;
-
-                                }
-
-                            }
-                        }
+                        x.Target.Shield = x.Target.Shield - 50;
+                        x.Target.shieldBar.Value = x.Target.Shield;
                     }
-
-                    // Right
-                    for (int k = 0; k < horizontalWall.GetLength(0); k++)
+                    else if (x.Target.Shield < 50 && x.Target.Shield != 0)
                     {
-                        for (int c = 0; c < horizontalWall.GetLength(1); c++)
-                        {
+                        x.Target.Health = x.Target.Health + x.Target.Shield;
+                        x.Target.Health = x.Target.Health - 50;
+                        x.Target.shieldBar.Value = 0;
+                        x.Target.Shield = 0;
 
-                            if (horizontalWall[k, c].Alive)
-                            {
-
-                                if (x.PlayerBox.Right + 1 == horizontalWall[k, c].formWall.Left && x.PlayerBox.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= x.PlayerBox.Bottom)
-                                {
-                                    EhitWallR = true;
-
-                                }
-
-
-                            }
-                        }
+                        x.Target.healthBar.Value = x.Target.Health;
                     }
-
-                    for (int k = 0; k < verticalWall.GetLength(0); k++)
+                    else if (x.Target.Health > 50)
                     {
-                        for (int c = 0; c < verticalWall.GetLength(1); c++)
-                        {
-
-                            if (verticalWall[k, c].Alive)
-                            {
-
-                                if (x.PlayerBox.Right + 1 == verticalWall[k, c].formWall.Left && x.PlayerBox.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= x.PlayerBox.Bottom)
-                                {
-                                    EhitWallR = true;
-
-                                }
-
-
-                            }
-                        }
+                        x.Target.Health = x.Target.Health - 50;
+                        x.Target.healthBar.Value = x.Target.Health;
                     }
-
-                    // Left
-                    for (int k = 0; k < horizontalWall.GetLength(0); k++)
+                    else if (x.Target.Health <= 50)
                     {
-                        for (int c = 0; c < horizontalWall.GetLength(1); c++)
-                        {
+                        x.Target.Alive = false;
+                        x.Target.PlayerBox.Visible = false;
+                        x.Target.shieldBar.Visible = false;
+                        x.Target.healthBar.Visible = false;
 
-                            if (horizontalWall[k, c].Alive)
-                            {
+                        x.Target.shieldBar.Value = 0;
+                        x.Target.Shield = 0;
 
-                                if (x.PlayerBox.Left - 1 == horizontalWall[k, c].formWall.Right && x.PlayerBox.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= x.PlayerBox.Bottom)
-                                {
-                                    EhitWallL = true;
-
-                                }
-
-
-                            }
-                        }
-                    }
-                    for (int k = 0; k < verticalWall.GetLength(0); k++)
-                    {
-                        for (int c = 0; c < verticalWall.GetLength(1); c++)
-                        {
-
-                            if (verticalWall[k, c].Alive)
-                            {
-
-                                if (x.PlayerBox.Left - 1 == verticalWall[k, c].formWall.Right && x.PlayerBox.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= x.PlayerBox.Bottom)
-                                {
-                                    EhitWallL = true;
-
-                                }
-
-
-                            }
-                        }
-                    }
-
-                    
-                    if (x.Ammo > 0)
-                    {
-                        enemyReload.Interval = 300;
-                        if (x.PlayerBox.Location.X <= x.Target.PlayerBox.Location.X && x.PlayerBox.Location.Y == x.Target.PlayerBox.Location.Y || x.PlayerBox.Location.X >= x.Target.PlayerBox.Location.X && x.PlayerBox.Location.Y == x.Target.PlayerBox.Location.Y || EhitWallR || EhitWallL)
-                        {
-
-                            if (x.PlayerBox.Left > x.Target.PlayerBox.Left || EhitWallL)
-                            {
-                                ShootEnemyBullet("left", 5, 20, x.PlayerBox, x);
-                                
-                                x.Ammo--;
-                            }
-                            else if (x.PlayerBox.Left < x.Target.PlayerBox.Left || EhitWallR)
-                            {
-                                ShootEnemyBullet("right", 5, 20, x.PlayerBox, x);
-                                x.Ammo--;
-                            }
-                        }
-
-                        if (x.PlayerBox.Location.Y <= x.Target.PlayerBox.Location.Y && x.PlayerBox.Location.X == x.Target.PlayerBox.Location.X || x.PlayerBox.Location.Y >= x.Target.PlayerBox.Location.Y && x.PlayerBox.Location.X == x.Target.PlayerBox.Location.X || EhitWallU || EhitWallD)
-                        {
-                            Console.WriteLine("asdahsdhabdhj");
-                            if (x.PlayerBox.Top > x.Target.PlayerBox.Top || EhitWallU)
-                            {
-                                ShootEnemyBullet("up", 5, 30, x.PlayerBox, x);
-                                x.Ammo--;
-                            }
-                            else if (x.PlayerBox.Top < x.Target.PlayerBox.Top || EhitWallD)
-                            {
-                                ShootEnemyBullet("down", 5, 30, x.PlayerBox, x);
-                                x.Ammo--;
-                            }
-                        }
-
-
-                    }
-                    else if (x.Ammo == 0)
-                    {
-                        enemyReload.Interval = 5000;
-                        x.Ammo = 10;
+                        x.Target.healthBar.Value = 0;
+                        x.Target.Health = 0;
 
                     }
                 }
             }
+
         }
     }
 }
