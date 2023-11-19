@@ -11,14 +11,26 @@ using System.Numerics;
 using System.Drawing.Configuration;
 using System.Runtime.CompilerServices;
 using System.Diagnostics.Tracing;
+using System.Runtime.InteropServices;
 
 namespace AdventureGame
 {
+    public static class ModifyProgressBarColor
+    {
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
+        static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr w, IntPtr l);
+        public static void SetState(this ProgressBar pBar, int state)
+        {
+            SendMessage(pBar.Handle, 1040, (IntPtr)state, IntPtr.Zero);
+        }
+    }
+
     public class InventoryModel
     {
         public int ZBucks { get; set; }
         public Image Skin { get; set; }
         public Player Player { get; set; }
+
 
 
 
@@ -215,7 +227,7 @@ namespace AdventureGame
         public int PlayersLandingChance()
         {
             Random rand = new Random();
-            playersLanding = rand.Next(0, 11);
+            playersLanding = rand.Next(1, 11);
             return playersLanding;
         }
 

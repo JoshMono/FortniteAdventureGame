@@ -67,7 +67,7 @@ namespace AdventureGame
 
         public Player currentPlayer;
 
-        public FightingMinigame(List<InventoryModel.InventorySlot> inventorySlots, InventoryModel players)
+        public FightingMinigame(List<InventoryModel.InventorySlot> inventorySlots, InventoryModel players, int PlayersLanding)
         {
             InitializeComponent();
             Player = players;
@@ -86,6 +86,8 @@ namespace AdventureGame
 
             shieldBar.ForeColor = Color.Blue;
             healthBar.ForeColor = Color.Blue;
+
+            shieldBar.SetState(3);
 
             shieldBar.Value = currentPlayer.Shield;
             healthBar.Value = currentPlayer.Health;
@@ -131,7 +133,7 @@ namespace AdventureGame
 
             ammoLabel.Text = $"{Magazine}/{Ammo}";
 
-            MakeEnemy(3);
+            MakeEnemy(PlayersLanding);
 
             allTargets.Add(currentPlayer);
 
@@ -1378,6 +1380,7 @@ namespace AdventureGame
                 shield.Top = health.Top - health.Height - 1;
                 shield.Left = health.Left;
                 shield.Size = new Size(20, 5);
+                shield.SetState(3);
 
                 this.Controls.Add(shield);
 
@@ -1762,6 +1765,11 @@ namespace AdventureGame
                         x.Target.healthBar.Value = 0;
                         x.Target.Health = 0;
 
+                    }
+                    else if (x.Target.Shield == 0)
+                    {
+                        x.Target.shieldBar.Value = 0;
+                        x.Target.Shield = 0;
                     }
                 }
             }

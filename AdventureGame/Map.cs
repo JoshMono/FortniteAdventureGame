@@ -149,7 +149,7 @@ namespace AdventureGame
                 Player.Player.Materials = Player.Player.Materials + random.Next(30,100);
                 Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[0, 0].playersLanding);
                 this.Hide();
                 miniGame.Show();
             }
@@ -187,7 +187,7 @@ namespace AdventureGame
                 Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
                 Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[1, 0].playersLanding);
                 this.Hide();
                 miniGame.Show();
             }
@@ -223,7 +223,7 @@ namespace AdventureGame
                 Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
                 Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[2, 0].playersLanding);
                 this.Hide();
                 miniGame.Show();
             }
@@ -259,7 +259,7 @@ namespace AdventureGame
                 Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
                 Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[0, 1].playersLanding);
                 this.Hide();
                 miniGame.Show();
             }
@@ -296,7 +296,7 @@ namespace AdventureGame
                 Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
                 Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[1, 1].playersLanding);
                 this.Hide();
                 miniGame.Show();
             }
@@ -332,7 +332,7 @@ namespace AdventureGame
                 Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
                 Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[2, 1].playersLanding);
                 this.Hide();
                 miniGame.Show();
             }
@@ -368,7 +368,7 @@ namespace AdventureGame
                 Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
                 Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[0, 2].playersLanding);
                 this.Hide();
                 miniGame.Show();
             }
@@ -404,7 +404,7 @@ namespace AdventureGame
                 Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
                 Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[1,2].playersLanding);
                 this.Hide();
                 miniGame.Show();
             }
@@ -440,7 +440,7 @@ namespace AdventureGame
                 Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
                 Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                 InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player);
+                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[2, 2].playersLanding);
                 this.Hide();
                 miniGame.Show();
             }
