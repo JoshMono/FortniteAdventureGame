@@ -15,15 +15,7 @@ using System.Runtime.InteropServices;
 
 namespace AdventureGame
 {
-    public static class ModifyProgressBarColor
-    {
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
-        static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr w, IntPtr l);
-        public static void SetState(this ProgressBar pBar, int state)
-        {
-            SendMessage(pBar.Handle, 1040, (IntPtr)state, IntPtr.Zero);
-        }
-    }
+    
 
     public class InventoryModel
     {
@@ -48,15 +40,17 @@ namespace AdventureGame
             public int Damage { get; set; }
             public int Speed { get; set; }
             public int Magazine { get; set; }
+            public int Ammo { get; set; }
             public Image? Icon { get; set; }
 
-            public Gun(string name, string rarity, int damage, int speed, int magazine, Image? icon)
+            public Gun(string name, string rarity, int damage, int speed, int magazine, int ammo, Image? icon)
             {
                 Name = name;
                 Rarity = rarity;
                 Damage = damage;
                 Speed = speed;
                 Magazine = magazine;
+                Ammo = ammo;
                 Icon = icon;
             }
         }
@@ -117,10 +111,10 @@ namespace AdventureGame
         public Gun GetGun()
         {
             Dictionary<int, Gun> gunsDict = new Dictionary<int, Gun>();
-            gunsDict.Add(1, new Gun("Scar", "Gold", 100, 5, 20, (Image)Properties.Resources.scarIcon));
-            gunsDict.Add(2, new Gun("Bolt", "Blue", 100, 10, 1, (Image)Properties.Resources.boltIcon));
-            gunsDict.Add(3, new Gun("Pistol", "Gray", 100, 5, 15, (Image)Properties.Resources.pistolIcon));
-            gunsDict.Add(4, new Gun("Pump", "Blue", 100, 3, 3, (Image)Properties.Resources.pumpIcon));
+            gunsDict.Add(1, new Gun("Scar", "Gold", 30, 5, 20, 20, (Image)Properties.Resources.scarIcon));
+            gunsDict.Add(2, new Gun("Bolt", "Blue", 100, 10, 1, 1, (Image)Properties.Resources.boltIcon));
+            gunsDict.Add(3, new Gun("Pistol", "Gray", 15, 5, 15, 15, (Image)Properties.Resources.pistolIcon));
+            gunsDict.Add(4, new Gun("Pump", "Blue", 120, 3, 3, 3, (Image)Properties.Resources.pumpIcon));
 
             Random rand = new Random();
             int gunId = rand.Next(1, 5);
@@ -164,8 +158,9 @@ namespace AdventureGame
         public bool isClient { get; set; } 
         public ProgressBar healthBar { get; set; }
         public ProgressBar shieldBar { get; set; }
+        public bool Reloading { get; set; }
 
-        public Player(int health, int shield,  int ammo, Player Target , bool Alive, PictureBox playerBox, int materials, bool isClient, bool canWin, ProgressBar healthBar, ProgressBar shieldBar)
+        public Player(int health, int shield,  int ammo, Player Target , bool Alive, PictureBox playerBox, int materials, bool isClient, bool canWin, ProgressBar healthBar, ProgressBar shieldBar, bool Reloading)
         {
             Health = health;
             Shield = shield;
@@ -178,6 +173,7 @@ namespace AdventureGame
             this.CanWin = canWin;
             this.healthBar = healthBar;
             this.shieldBar = shieldBar;
+            this.Reloading = Reloading;
         }
     }
 
@@ -280,16 +276,7 @@ namespace AdventureGame
             ammo = 0;
 
             
-        }
-
-        public void BulletStop(Form form)
-        {
-            bulletTimer.Stop();
-            bulletTimer.Dispose();
-            bullet.Dispose();
-            bulletTimer = null;
-            bullet = null;
-        }        
+        }      
 
         private void BulletTimerEvent(object sender, EventArgs e)
         {
@@ -376,7 +363,7 @@ namespace AdventureGame
                                 }
 
                             }
-                            Console.WriteLine(horizontalWall[k, c].Health);
+                            
                                 
                             bulletTimer.Stop();
                             bulletTimer.Dispose();
@@ -448,10 +435,12 @@ namespace AdventureGame
             foreach (Player player in enemyList)
             {
 
-                if (player.PlayerBox.Bounds.IntersectsWith(bullet.Bounds) && player.PlayerBox != playerShooter.PlayerBox && playerShooter.isClient == false)
+                if (player.Alive && player.PlayerBox.Bounds.IntersectsWith(bullet.Bounds) && player.PlayerBox != playerShooter.PlayerBox && playerShooter.isClient == false)
                 {
-                    
 
+                    bulletTimer.Stop();
+                    bulletTimer.Dispose();
+                    bullet.Dispose();
                     if (player.Shield >= 10)
                     {
                         player.Shield = player.Shield - 10;
@@ -471,10 +460,9 @@ namespace AdventureGame
                         player.Health = player.Health - 10;
                         player.healthBar.Value = player.Health;
                     }
-                    if (player.Health <= 10)
+                    else if (player.Health + player.Shield <= 10)
                     {
                         player.Alive = false;
-                        player.PlayerBox.Visible = false;
                         player.shieldBar.Visible = false;
                         player.healthBar.Visible = false;
 
@@ -484,10 +472,72 @@ namespace AdventureGame
                         player.healthBar.Value = 0;
                         player.Health = 0;
 
+                        int cat = 0;
+
+                        System.Windows.Forms.Timer explosion = new System.Windows.Forms.Timer();
+                        explosion.Interval = 50;
+                        explosion.Tick += new EventHandler(ShootExplosionTimerEvent);
+                        explosion.Start();
+
+
+                        void ShootExplosionTimerEvent(object sender, EventArgs e)
+                        {
+                            if (cat == 0)
+                            {
+                                player.PlayerBox.Size = new Size(11, 11);
+                            }
+                            if (cat == 1)
+                            {
+                                player.PlayerBox.Size = new Size(12, 12);
+                            }
+                            if (cat == 2)
+                            {
+                                player.PlayerBox.Size = new Size(13, 13);
+                            }
+
+                            if (cat == 3)
+                            {
+                                player.PlayerBox.Size = new Size(14, 14);
+                            }
+                            if (cat == 4)
+                            {
+                                player.PlayerBox.Size = new Size(15, 15);
+                            }
+                            if (cat == 5)
+                            {
+                                player.PlayerBox.Size = new Size(15, 15);
+                            }
+                            if (cat == 6)
+                            {
+                                player.PlayerBox.Size = new Size(16, 16);
+                            }
+                            if (cat == 7)
+                            {
+                                player.PlayerBox.Size = new Size(17, 17);
+                            }
+                            if (cat == 8)
+                            {
+                                player.PlayerBox.Size = new Size(18, 18);
+                            }
+                            if (cat == 9)
+                            {
+                                player.PlayerBox.Visible = false;
+                                
+                            }
+                            cat++;
+                        }
                     }
                 }
-                else if (player.PlayerBox.Bounds.IntersectsWith(bullet.Bounds) && player.PlayerBox != playerShooter.PlayerBox && playerShooter.isClient)
+                else if (player.Alive && player.PlayerBox.Bounds.IntersectsWith(bullet.Bounds) && player.PlayerBox != playerShooter.PlayerBox && playerShooter.isClient)
                 {
+                    bulletTimer.Stop();
+                    bulletTimer.Dispose();
+                    bullet.Dispose();
+
+                    player.healthBar.Value = player.Health;
+                    player.shieldBar.Value = player.Shield;
+
+                    Console.WriteLine(damage);
                     if (player.Shield >= damage)
                     {
                         player.Shield = player.Shield - damage;
@@ -497,28 +547,84 @@ namespace AdventureGame
                     {
                         player.Health = player.Health + player.Shield;
                         player.Health = player.Health - damage;
-                        player.shieldBar.Value = 0;
                         player.Shield = 0;
 
+                        player.shieldBar.Value = player.Shield;
                         player.healthBar.Value = player.Health;
+                        Console.WriteLine(player.shieldBar.Value);
+                        Console.WriteLine(player.Health);
                     }
-                    else if (player.Health > damage)
+                    else if (player.Health > damage && player.Shield == 0)
                     {
                         player.Health = player.Health - damage;
                         player.healthBar.Value = player.Health;
                     }
-                    if (player.Health <= damage)
+                    else if (player.Health + player.Shield <= damage)
                     {
-                        player.Alive = false;
-                        player.PlayerBox.Visible = false;
-                        player.shieldBar.Visible = false;
+
+                        player.Alive = false;                        
                         player.healthBar.Visible = false;
+                        player.shieldBar.Visible = false;
 
                         player.shieldBar.Value = 0;
                         player.Shield = 0;
 
                         player.healthBar.Value = 0;
                         player.Health = 0;
+                        int cat = 0;
+
+                        System.Windows.Forms.Timer explosion = new System.Windows.Forms.Timer();
+                        explosion.Interval = 50;
+                        explosion.Tick += new EventHandler(ReloadingTimerEvent);
+                        explosion.Start();
+
+
+                        void ReloadingTimerEvent(object sender, EventArgs e)
+                        { 
+                            if (cat == 0)
+                            {
+                                player.PlayerBox.Size = new Size(11, 11);
+                            }
+                            if (cat == 1)
+                            {
+                                player.PlayerBox.Size = new Size(12, 12);
+                            }
+                            if (cat == 2)
+                            {
+                                player.PlayerBox.Size = new Size(13, 13);
+                            }
+
+                            if (cat == 3)
+                            {
+                                player.PlayerBox.Size = new Size(14, 14);
+                            }
+                            if (cat == 4)
+                            {
+                                player.PlayerBox.Size = new Size(15, 15);
+                            }
+                            if (cat == 5)
+                            {
+                                player.PlayerBox.Size = new Size(15, 15);
+                            }
+                            if (cat == 6)
+                            {
+                                player.PlayerBox.Size = new Size(16, 16);
+                            }
+                            if (cat == 7)
+                            {
+                                player.PlayerBox.Size = new Size(17, 17);
+                            }
+                            if (cat == 8)
+                            {
+                                player.PlayerBox.Size = new Size(18, 18);
+                            }
+                            if (cat == 9)
+                            {
+                                player.PlayerBox.Visible = false;
+
+                            }
+                            cat++;
+                        }
 
                     }
                 }
@@ -532,12 +638,19 @@ namespace AdventureGame
                 bulletTimer.Stop();
                 bulletTimer.Dispose();
                 bullet.Dispose();
-                bulletTimer = null;
-                bullet = null;
                 
             }
             
 
+        }
+    }
+    public static class ModifyProgressBarColor
+    {
+        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
+        static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr w, IntPtr l);
+        public static void SetState(this ProgressBar pBar, int state)
+        {
+            SendMessage(pBar.Handle, 1040, (IntPtr)state, IntPtr.Zero);
         }
     }
 

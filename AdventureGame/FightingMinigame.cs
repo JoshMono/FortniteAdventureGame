@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.Devices;
+﻿using Accessibility;
+using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Numerics;
 using System.Reflection;
+using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -117,16 +119,23 @@ namespace AdventureGame
 
             Ammo = players.Player.Ammo;
 
-            if (InventorySlotsList[activeSlot].gun.Magazine > Ammo)
+            Ammo = 500;
+
+            if (InventorySlotsList[activeSlot].gun != null)
             {
-                int x = InventorySlotsList[activeSlot].gun.Magazine - Ammo;
-                Magazine = Ammo;
-                Ammo = 0;
-            }
-            else
-            {
-                Ammo = Ammo - InventorySlotsList[activeSlot].gun.Magazine;
-                Magazine = inventorySlots[activeSlot].gun.Magazine;
+                if (InventorySlotsList[activeSlot].gun.Magazine > Ammo)
+                {
+                    int x = InventorySlotsList[activeSlot].gun.Magazine - Ammo;
+                    Magazine = Ammo;
+                    InventorySlotsList[activeSlot].gun.Ammo = Magazine;
+                    Ammo = 0;
+                }
+                else
+                {
+                    Ammo = Ammo - InventorySlotsList[activeSlot].gun.Magazine;
+                    Magazine = InventorySlotsList[activeSlot].gun.Magazine;
+                    InventorySlotsList[activeSlot].gun.Ammo = Magazine;
+                }
             }
 
 
@@ -864,7 +873,7 @@ namespace AdventureGame
 
         private void FightingMinigame_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
 
         }
 
@@ -874,22 +883,6 @@ namespace AdventureGame
 
         private void FightingMinigame_KeyDown(object sender, KeyEventArgs e)
         {
-
-            
-
-            if (InventorySlotsList[activeSlot].gun.Magazine == 0)
-            {
-                if (InventorySlotsList[activeSlot].gun.Magazine > Ammo)
-                {
-                    int x = InventorySlotsList[activeSlot].gun.Magazine - Ammo;
-                    Ammo = Ammo - x;
-                }
-                else
-                {
-                    Ammo = Ammo - InventorySlotsList[activeSlot].gun.Magazine;
-                }
-            }
-
             if (e.KeyValue == (char)Keys.W)
             {
                 foward = true;
@@ -934,36 +927,92 @@ namespace AdventureGame
             {
                 activeSlot = 0;
                 slot1.BackColor = Color.SkyBlue;
+                if (InventorySlotsList[activeSlot].gun != null)
+                {
+                    Magazine = InventorySlotsList[activeSlot].gun.Ammo;
+                    ammoLabel.Text = $"{Magazine}/{Ammo}";
+                }
+                if (currentPlayer.Reloading)
+                {
+                    ammoLabel.Text = "Reloading";
+                }
+                
+
             }
 
             if (e.KeyValue == (char)Keys.D2)
             {
                 activeSlot = 1;
                 slot2.BackColor = Color.SkyBlue;
+                if (InventorySlotsList[activeSlot].gun != null)
+                {
+                    Magazine = InventorySlotsList[activeSlot].gun.Ammo;
+                    ammoLabel.Text = $"{Magazine}/{Ammo}";
+                }
+                if (currentPlayer.Reloading)
+                {
+                    ammoLabel.Text = "Reloading";
+                }
             }
 
             if (e.KeyValue == (char)Keys.D3)
             {
                 activeSlot = 2;
                 slot3.BackColor = Color.SkyBlue;
+                if (InventorySlotsList[activeSlot].gun != null)
+                {
+                    Magazine = InventorySlotsList[activeSlot].gun.Ammo;
+                    ammoLabel.Text = $"{Magazine}/{Ammo}";
+                }
+                if (currentPlayer.Reloading)
+                {
+                    ammoLabel.Text = "Reloading";
+                }
             }
 
             if (e.KeyValue == (char)Keys.D4)
             {
                 activeSlot = 3;
                 slot4.BackColor = Color.SkyBlue;
+                if (InventorySlotsList[activeSlot].gun != null)
+                {
+                    Magazine = InventorySlotsList[activeSlot].gun.Ammo;
+                    ammoLabel.Text = $"{Magazine}/{Ammo}";
+                }
+                if (currentPlayer.Reloading)
+                {
+                    ammoLabel.Text = "Reloading";
+                }
             }
 
             if (e.KeyValue == (char)Keys.D5)
             {
                 activeSlot = 4;
                 slot5.BackColor = Color.SkyBlue;
+                if (InventorySlotsList[activeSlot].gun != null)
+                {
+                    Magazine = InventorySlotsList[activeSlot].gun.Ammo;
+                    ammoLabel.Text = $"{Magazine}/{Ammo}";
+                }
+                if (currentPlayer.Reloading)
+                {
+                    ammoLabel.Text = "Reloading";
+                }
             }
 
             if (e.KeyValue == (char)Keys.D6)
             {
                 activeSlot = 5;
                 slot6.BackColor = Color.SkyBlue;
+                if (InventorySlotsList[activeSlot].gun != null)
+                {
+                    Magazine = InventorySlotsList[activeSlot].gun.Ammo;
+                    ammoLabel.Text = $"{Magazine}/{Ammo}";
+                }
+                if (currentPlayer.Reloading)
+                {
+                    ammoLabel.Text = "Reloading";
+                }
             }
 
             if (activeSlot != 0)
@@ -994,71 +1043,6 @@ namespace AdventureGame
             {
                 slot6.BackColor = Color.White;
             }
-
-            if (e.KeyValue == (char)Keys.Q)
-            {
-
-                /*if (buildingOn)
-                {
-                    buildingOn = false;
-                    buildingIcon.Visible = false;
-                    buildingIconBlank.Visible = true;
-                }
-                else
-                {
-                    buildingOn = true;
-                    buildingIcon.Visible = true;
-                    buildingIconBlank.Visible = false;
-                }*/
-
-
-            }
-
-
-            if (e.KeyValue == (char)Keys.Space)
-            {
-
-            }
-            if (e.KeyValue == (char)Keys.Up)
-            {
-                direction = "up";
-
-            }
-            if (e.KeyValue == (char)Keys.Down)
-            {
-                direction = "down";
-
-            }
-            if (e.KeyValue == (char)Keys.Left)
-            {
-                direction = "left";
-
-            }
-            if (e.KeyValue == (char)Keys.Right)
-            {
-                direction = "right";
-
-            }
-            if (e.KeyValue == (char)Keys.Up && e.KeyValue == (char)Keys.Right)
-            {
-                direction = "WD";
-
-            }
-            if (e.KeyValue == (char)Keys.Up && e.KeyValue == (char)Keys.Left)
-            {
-                direction = "WA";
-
-            }
-            if (e.KeyValue == (char)Keys.Down && e.KeyValue == (char)Keys.Right)
-            {
-                direction = "SD";
-
-            }
-            if (e.KeyValue == (char)Keys.Down && e.KeyValue == (char)Keys.Left)
-            {
-                direction = "SA";
-
-            }
         }
 
         private void FightingMinigame_KeyUp(object sender, KeyEventArgs e)
@@ -1084,6 +1068,41 @@ namespace AdventureGame
             {
                 right = false;
             }
+
+            if (foward == true && left == true)
+            {
+                direction = "WA";
+            }
+            else if (foward == true && right == true)
+            {
+                direction = "WD";
+            }
+            else if (back == true && left == true)
+            {
+                direction = "SA";
+            }
+            else if (back == true && right == true)
+            {
+                direction = "SD";
+            }
+            else if (foward)
+            {
+                direction = "up";
+            }
+            else if (right)
+            {
+                direction = "right";
+            }
+            else if (back)
+            {
+                direction = "down";
+            }
+            else if (left)
+            {
+                direction = "left";
+            }
+            
+
             if (e.KeyValue == (char)Keys.Q)
             {
 
@@ -1101,67 +1120,93 @@ namespace AdventureGame
                 }
 
             }
-            if (e.KeyValue == (char)Keys.Up)
+
+            if (e.KeyValue == (char)Keys.R)
             {
-                if (!buildingOn && currentPlayer.Ammo > 0)
+                if (currentPlayer.Reloading == false && Ammo != 0 && InventorySlotsList[activeSlot].gun != null && InventorySlotsList[activeSlot].gun.Magazine != Magazine)
                 {
-                    if (InventorySlotsList[activeSlot].gun != null)
+                    currentPlayer.Reloading = true;
+                    System.Windows.Forms.Timer reloadingTimer = new System.Windows.Forms.Timer();
+                    reloadingTimer.Interval = 3000;
+                    reloadingTimer.Tick += new EventHandler(ReloadPlayerTimer);
+                    reloadingTimer.Start();
+
+                    ammoLabel.Text = "Reloading";
+
+                    void ReloadPlayerTimer(object sender, EventArgs e)
                     {
-                        ShootBullet(direction, InventorySlotsList[activeSlot].gun.Speed, InventorySlotsList[activeSlot].gun.Damage);
-                        currentPlayer.Ammo--;
+
+                        if (Magazine == 0)
+                        {
+                            if (InventorySlotsList[activeSlot].gun.Magazine >= Ammo)
+                            {
+                                Magazine = Ammo;
+                                InventorySlotsList[activeSlot].gun.Ammo = Magazine;
+                                Ammo = 0;
+                                ammoLabel.Text = $"{Magazine}/{Ammo}";
+                                Console.WriteLine(Ammo);
+                                reloadingTimer.Enabled = false;
+                                reloadingTimer.Dispose();
+                                reloadingTimer.Stop();
+                                currentPlayer.Reloading = false;
+                            }
+                            else
+                            {
+                                Ammo = Ammo - InventorySlotsList[activeSlot].gun.Magazine;
+                                Magazine = InventorySlotsList[activeSlot].gun.Magazine;
+                                InventorySlotsList[activeSlot].gun.Ammo = Magazine;
+                                ammoLabel.Text = $"{Magazine}/{Ammo}";
+                                reloadingTimer.Enabled = false;
+                                reloadingTimer.Dispose();
+                                reloadingTimer.Stop();
+                                currentPlayer.Reloading = false;
+                            }
+                        }
+                        else
+                        {
+                            if (InventorySlotsList[activeSlot].gun.Magazine >= Ammo)
+                            {
+                                Magazine = Ammo;
+                                Ammo = 0;
+                                InventorySlotsList[activeSlot].gun.Ammo = Magazine;
+                                ammoLabel.Text = $"{Magazine}/{Ammo}";
+                                reloadingTimer.Enabled = false;
+                                reloadingTimer.Dispose();
+                                reloadingTimer.Stop();
+                                currentPlayer.Reloading = false;
+                            }
+                            else
+                            {
+                                int x = InventorySlotsList[activeSlot].gun.Magazine - Magazine;
+                                InventorySlotsList[activeSlot].gun.Ammo = Magazine;
+                                Ammo = Ammo - x;
+                                Magazine = Magazine + x;
+                                ammoLabel.Text = $"{Magazine}/{Ammo}";
+                                reloadingTimer.Enabled = false;
+                                reloadingTimer.Dispose();
+                                reloadingTimer.Stop();
+                                currentPlayer.Reloading = false;
+                            }
+
+                        }
                     }
                 }
-
-            }
-            else if (e.KeyValue == (char)Keys.Right)
-            {
-                if (!buildingOn && currentPlayer.Ammo > 0)
-                {
-                    if (InventorySlotsList[activeSlot].gun != null)
-                    {
-                        ShootBullet(direction, InventorySlotsList[activeSlot].gun.Speed, InventorySlotsList[activeSlot].gun.Damage);
-                        currentPlayer.Ammo--;
-                    }
-                }
-
-            }
-            else if (e.KeyValue == (char)Keys.Left)
-            {
-                if (!buildingOn && currentPlayer.Ammo > 0)
-                {
-                    if (InventorySlotsList[activeSlot].gun != null)
-                    {
-                        ShootBullet(direction, InventorySlotsList[activeSlot].gun.Speed, InventorySlotsList[activeSlot].gun.Damage);
-                        currentPlayer.Ammo--;
-                    }
-                }
-
-            }
-            else if (e.KeyValue == (char)Keys.Down)
-            {
-                if (!buildingOn && currentPlayer.Ammo > 0)
-                {
-                    if (InventorySlotsList[activeSlot].gun != null)
-                    {
-                        ShootBullet(direction, InventorySlotsList[activeSlot].gun.Speed, InventorySlotsList[activeSlot].gun.Damage);
-                        currentPlayer.Ammo--;
-                    }
-                }
-
             }
 
             if (e.KeyValue == (char)Keys.Space)
             {
                 if (!buildingOn)
                 {
-                    if (InventorySlotsList[activeSlot].gun != null)
+                    if (InventorySlotsList[activeSlot].gun != null && Magazine != 0)
                     {
                         ShootBullet(direction, InventorySlotsList[activeSlot].gun.Speed, InventorySlotsList[activeSlot].gun.Damage);
-                    }
-                    else
-                    {
+                        Magazine--;
+                        InventorySlotsList[activeSlot].gun.Ammo = Magazine;
+                        ammoLabel.Text = $"{Magazine}/{Ammo}";
 
                     }
+
+                    
                 }
                 else if (buildingOn && Materials >= 10)
                 {
@@ -1275,7 +1320,7 @@ namespace AdventureGame
                         }
                     }
                 }
-                
+
 
 
             }
@@ -1336,20 +1381,48 @@ namespace AdventureGame
                 player.Left = random.Next(gameBoxPicture.Location.X, gameBoxPicture.Location.X + gameBoxPicture.Width - player.Width);
                 player.Top = random.Next(gameBoxPicture.Location.Y, gameBoxPicture.Location.Y + gameBoxPicture.Height - player.Height);
                 player.Size = new Size(10, 10);
-                player.Image = Properties.Resources.ammoIcon;
+
+                int colourChoice = random.Next(1, 6);
+                Color colour;
+                if (colourChoice == 1)
+                {
+                    colour = Color.Green;
+                }
+                else if (colourChoice == 2)
+                {
+                    colour = Color.Blue;
+                }
+                else if (colourChoice == 3)
+                {
+                    colour = Color.Red;
+                }
+                else if (colourChoice == 4)
+                {
+                    colour = Color.Yellow;
+                }
+                else if (colourChoice == 5)
+                {
+                    colour = Color.Purple;
+                }
+                else
+                {
+                    colour = Color.Black;
+                }
+
+                player.BackColor = colour;
                 this.Controls.Add(player);
 
                 ProgressBar health = new ProgressBar();
                 health.Value = 100;
                 health.Visible = true;
                 health.Maximum = 100;
-                health.Top = player.Top - player.Height - 5;
+                health.Top = player.Top - player.Height - 2;
                 health.Left = player.Left;
                 health.Size = new Size(20, 5);
 
                 this.Controls.Add(health);
 
-                int chance = random.Next(0, 4);
+                int chance = random.Next(0, 5);
                 int shieldChance;
                 if (chance == 0)
                 {
@@ -1380,7 +1453,6 @@ namespace AdventureGame
                 shield.Top = health.Top - health.Height - 1;
                 shield.Left = health.Left;
                 shield.Size = new Size(20, 5);
-                shield.SetState(3);
 
                 this.Controls.Add(shield);
 
@@ -1390,7 +1462,7 @@ namespace AdventureGame
                 player.BringToFront();
 
 
-                Player enemyPlayer = new Player(100, shieldChance, 10, null, true, player, 30, false, true, health, shield);
+                Player enemyPlayer = new Player(100, shieldChance, 10, null, true, player, 30, false, true, health, shield, false);
 
                 winningList.Add(enemyPlayer);
                 allTargets.Add(enemyPlayer);
@@ -1679,8 +1751,9 @@ namespace AdventureGame
 
                 }
 
-                else if (x.Ammo > 0 && x.Alive && !x.isClient)
+                else if (x.Ammo != 8 && x.Alive && !x.isClient)
                 {
+                    
                     if (x.PlayerBox.Location.X <= x.Target.PlayerBox.Location.X && x.PlayerBox.Location.Y == x.Target.PlayerBox.Location.Y || x.PlayerBox.Location.X >= x.Target.PlayerBox.Location.X && x.PlayerBox.Location.Y == x.Target.PlayerBox.Location.Y || EhitWallR || EhitWallL)
                     {
 
@@ -1689,6 +1762,7 @@ namespace AdventureGame
                             ShootEnemyBullet("left", 5, 20, x.PlayerBox, x);
 
                             x.Ammo--;
+
                         }
                         else if (x.PlayerBox.Left < x.Target.PlayerBox.Left || EhitWallR)
                         {
@@ -1699,7 +1773,7 @@ namespace AdventureGame
 
                     if (x.PlayerBox.Location.Y <= x.Target.PlayerBox.Location.Y && x.PlayerBox.Location.X == x.Target.PlayerBox.Location.X || x.PlayerBox.Location.Y >= x.Target.PlayerBox.Location.Y && x.PlayerBox.Location.X == x.Target.PlayerBox.Location.X || EhitWallU || EhitWallD)
                     {
-                        Console.WriteLine("asdahsdhabdhj");
+                        
                         if (x.PlayerBox.Top > x.Target.PlayerBox.Top || EhitWallU)
                         {
                             ShootEnemyBullet("up", 5, 30, x.PlayerBox, x);
@@ -1713,25 +1787,39 @@ namespace AdventureGame
                     }
 
                 }
+                if (x.Ammo == 8 && x.Alive && x.Reloading == false && !x.isClient)
+                {
+                    x.Reloading = true;
+                    System.Windows.Forms.Timer reloadingTimer = new System.Windows.Forms.Timer();
+                    reloadingTimer.Interval = 5000;
+                    reloadingTimer.Tick += new EventHandler(ReloadingTimerEvent);
+                    reloadingTimer.Start();
+                    void ReloadingTimerEvent(object sender, EventArgs e)
+                    {
+                        x.Ammo = 10;
+                        x.Reloading = false;
+                        reloadingTimer.Enabled = false;
+                        reloadingTimer.Dispose();
+                        reloadingTimer.Stop();
+                    }
+                }
+                
             }
         }
+
+        
+
+        private void Reload_Tick(object sender, EventArgs e)
+        {
+            
+        }
+
 
         private void enemyPickaxe_Tick(object sender, EventArgs e)
         {
             foreach (Player x in allTargets)
-            {
-
-                List<Player> list = new List<Player>();
-                foreach (Player xw in allTargets)
-                {
-                    if (xw.Alive)
-                    {
-
-                        list.Add(xw);
-                    }
-                }
-                Console.WriteLine(list.Count);
-                if (x.PlayerBox.Bounds.IntersectsWith(x.Target.PlayerBox.Bounds) && x.Alive)
+            {       
+                if (x.PlayerBox.Bounds.IntersectsWith(x.Target.PlayerBox.Bounds) && x.Alive && x.Target.Alive)
                 {
                     if (x.Target.Shield >= 50)
                     {
@@ -1754,26 +1842,130 @@ namespace AdventureGame
                     }
                     else if (x.Target.Health <= 50)
                     {
-                        x.Target.Alive = false;
-                        x.Target.PlayerBox.Visible = false;
-                        x.Target.shieldBar.Visible = false;
-                        x.Target.healthBar.Visible = false;
+                       
 
                         x.Target.shieldBar.Value = 0;
                         x.Target.Shield = 0;
 
                         x.Target.healthBar.Value = 0;
                         x.Target.Health = 0;
+                        int cat = 0;
+
+                        System.Windows.Forms.Timer explosion = new System.Windows.Forms.Timer();
+                        explosion.Interval = 50;
+                        explosion.Tick += new EventHandler(ExplosionTimerEvent);
+                        explosion.Start();
+
+
+                        void ExplosionTimerEvent(object sender, EventArgs e)
+                        {
+                            Console.WriteLine(cat);
+                            if (cat == 0)
+                            {
+                                x.Target.PlayerBox.Size = new Size(11, 11);
+                            }
+                            else if (cat == 1)
+                            {
+                                x.Target.PlayerBox.Size = new Size(12, 12);
+                            }
+                            else if(cat == 2)
+                            {
+                                x.Target.PlayerBox.Size = new Size(13, 13);
+                            }
+
+                            else if(cat == 3)
+                            {
+                                x.Target.PlayerBox.Size = new Size(14, 14);
+                            }
+                            else if(cat == 4)
+                            {
+                                x.Target.PlayerBox.Size = new Size(15, 15);
+                            }
+                            else if(cat == 5)
+                            {
+                                x.Target.PlayerBox.Size = new Size(15, 15);
+                            }
+                            else if(cat == 6)
+                            {
+                                x.Target.PlayerBox.Size = new Size(16, 16);
+                            }
+                            else if(cat == 7)
+                            {
+                                x.Target.PlayerBox.Size = new Size(17, 17);
+                            }
+                            else if(cat == 8)
+                            {
+                                x.Target.PlayerBox.Size = new Size(18, 18);
+                            }
+                            else if(cat == 9)
+                            {
+                            }
+                            else if(cat == 10)
+                            {
+                                x.Target.PlayerBox.Visible = false;
+                                Console.WriteLine(x.Target.PlayerBox.Visible);
+                                x.Target.Alive = false;
+                                x.Target.shieldBar.Visible = false;
+                                x.Target.healthBar.Visible = false;
+                                explosion.Enabled = false;
+                                explosion.Dispose();
+                                explosion.Stop();
+
+                                if (x.isClient)
+                                {
+                                    InventorySlot avaliable = CheckIfHasSomthingInSlot();
+                                    InventoryModel.Gun gun = Player.GetGun();
+                                    avaliable.gun = gun;
+
+                                    InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
+                                    InventoryModel.Item item = Player.GetItem();
+                                    available2.item = item;
+
+                                    Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
+                                    Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
+                                    InventoryModel.RefreshInventory(slotsList, InventorySlotsList);
+                                }
+                            }
+                            cat++;
+                        }
 
                     }
-                    else if (x.Target.Shield == 0)
-                    {
-                        x.Target.shieldBar.Value = 0;
-                        x.Target.Shield = 0;
-                    }
+                  
                 }
             }
 
         }
+
+        public InventoryModel.InventorySlot CheckIfHasSomthingInSlot()
+        {
+
+
+            if (InventorySlotsList[0].hasGun() == false && InventorySlotsList[0].hasItem() == false)
+            {
+                return InventorySlotsList[0];
+            }
+            else if (InventorySlotsList[1].hasGun() == false && InventorySlotsList[1].hasItem() == false)
+            {
+                return InventorySlotsList[1];
+            }
+            else if (InventorySlotsList[2].hasGun() == false || InventorySlotsList[2].hasItem() == false)
+            {
+                return InventorySlotsList[2];
+            }
+            else if (InventorySlotsList[3].hasGun() == false || InventorySlotsList[3].hasItem() == false)
+            {
+                return InventorySlotsList[3];
+            }
+            else if (InventorySlotsList[4].hasGun() == false || InventorySlotsList[4].hasItem() == false)
+            {
+                return InventorySlotsList[4];
+            }
+            else
+            {
+                return InventorySlotsList[5]; 
+            }
+
+        }
+
     }
 }

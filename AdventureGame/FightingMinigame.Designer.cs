@@ -156,6 +156,7 @@
             healthBar = new ProgressBar();
             enemyShoot = new System.Windows.Forms.Timer(components);
             enemyPickaxe = new System.Windows.Forms.Timer(components);
+            Reload = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)player).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gameBoxPicture).BeginInit();
             ((System.ComponentModel.ISupportInitialize)slot6).BeginInit();
@@ -1614,6 +1615,11 @@
             enemyPickaxe.Interval = 1300;
             enemyPickaxe.Tick += enemyPickaxe_Tick;
             // 
+            // Reload
+            // 
+            Reload.Interval = 5000;
+            Reload.Tick += Reload_Tick;
+            // 
             // FightingMinigame
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1995,5 +2001,6 @@
         private ProgressBar healthBar;
         private System.Windows.Forms.Timer enemyShoot;
         private System.Windows.Forms.Timer enemyPickaxe;
+        private System.Windows.Forms.Timer Reload;
     }
 }
