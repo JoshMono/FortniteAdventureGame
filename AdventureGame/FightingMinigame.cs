@@ -89,8 +89,6 @@ namespace AdventureGame
             shieldBar.ForeColor = Color.Blue;
             healthBar.ForeColor = Color.Blue;
 
-            shieldBar.SetState(3);
-
             shieldBar.Value = currentPlayer.Shield;
             healthBar.Value = currentPlayer.Health;
 
@@ -118,8 +116,6 @@ namespace AdventureGame
             slotsList.Add(slot6);
 
             Ammo = players.Player.Ammo;
-
-            Ammo = 500;
 
             if (InventorySlotsList[activeSlot].gun != null)
             {
@@ -1043,6 +1039,10 @@ namespace AdventureGame
             {
                 slot6.BackColor = Color.White;
             }
+            if (InventorySlotsList[activeSlot].gun == null)
+            {
+                ammoLabel.Text = "";
+            }
         }
 
         private void FightingMinigame_KeyUp(object sender, KeyEventArgs e)
@@ -1127,6 +1127,7 @@ namespace AdventureGame
                 {
                     currentPlayer.Reloading = true;
                     System.Windows.Forms.Timer reloadingTimer = new System.Windows.Forms.Timer();
+                    int CureentThingy = activeSlot;
                     reloadingTimer.Interval = 3000;
                     reloadingTimer.Tick += new EventHandler(ReloadPlayerTimer);
                     reloadingTimer.Start();
@@ -1138,10 +1139,10 @@ namespace AdventureGame
 
                         if (Magazine == 0)
                         {
-                            if (InventorySlotsList[activeSlot].gun.Magazine >= Ammo)
+                            if (InventorySlotsList[CureentThingy].gun.Magazine >= Ammo)
                             {
                                 Magazine = Ammo;
-                                InventorySlotsList[activeSlot].gun.Ammo = Magazine;
+                                InventorySlotsList[CureentThingy].gun.Ammo = Magazine;
                                 Ammo = 0;
                                 ammoLabel.Text = $"{Magazine}/{Ammo}";
                                 Console.WriteLine(Ammo);
@@ -1152,9 +1153,9 @@ namespace AdventureGame
                             }
                             else
                             {
-                                Ammo = Ammo - InventorySlotsList[activeSlot].gun.Magazine;
-                                Magazine = InventorySlotsList[activeSlot].gun.Magazine;
-                                InventorySlotsList[activeSlot].gun.Ammo = Magazine;
+                                Ammo = Ammo - InventorySlotsList[CureentThingy].gun.Magazine;
+                                Magazine = InventorySlotsList[CureentThingy].gun.Magazine;
+                                InventorySlotsList[CureentThingy].gun.Ammo = Magazine;
                                 ammoLabel.Text = $"{Magazine}/{Ammo}";
                                 reloadingTimer.Enabled = false;
                                 reloadingTimer.Dispose();
@@ -1164,11 +1165,11 @@ namespace AdventureGame
                         }
                         else
                         {
-                            if (InventorySlotsList[activeSlot].gun.Magazine >= Ammo)
+                            if (InventorySlotsList[CureentThingy].gun.Magazine >= Ammo)
                             {
                                 Magazine = Ammo;
                                 Ammo = 0;
-                                InventorySlotsList[activeSlot].gun.Ammo = Magazine;
+                                InventorySlotsList[CureentThingy].gun.Ammo = Magazine;
                                 ammoLabel.Text = $"{Magazine}/{Ammo}";
                                 reloadingTimer.Enabled = false;
                                 reloadingTimer.Dispose();
@@ -1177,8 +1178,8 @@ namespace AdventureGame
                             }
                             else
                             {
-                                int x = InventorySlotsList[activeSlot].gun.Magazine - Magazine;
-                                InventorySlotsList[activeSlot].gun.Ammo = Magazine;
+                                int x = InventorySlotsList[CureentThingy].gun.Magazine - Magazine;
+                                InventorySlotsList[CureentThingy].gun.Ammo = Magazine;
                                 Ammo = Ammo - x;
                                 Magazine = Magazine + x;
                                 ammoLabel.Text = $"{Magazine}/{Ammo}";
@@ -1204,6 +1205,56 @@ namespace AdventureGame
                         InventorySlotsList[activeSlot].gun.Ammo = Magazine;
                         ammoLabel.Text = $"{Magazine}/{Ammo}";
 
+                    }
+                    else if (InventorySlotsList[activeSlot].item != null && !currentPlayer.Healing)
+                    {
+                        if (InventorySlotsList[activeSlot].item.Name == "Mini")
+                        {
+                            if (currentPlayer.Shield == 50) 
+                            {
+
+                            }
+                            else if (currentPlayer.Shield >= 25)
+                            {
+                                currentPlayer.Healing = true;
+                                System.Windows.Forms.Timer healingTimer = new System.Windows.Forms.Timer();
+                                healingTimer.Interval = 2000;
+                                healingTimer.Tick += new EventHandler(HealingTimer);
+                                healingTimer.Start();
+                                Console.WriteLine(currentPlayer.Shield);
+
+                                void HealingTimer(object sender, EventArgs e)
+                                {
+                                    currentPlayer.Shield = 50;
+                                    shieldBar.Value = currentPlayer.Shield;
+                                    InventorySlotsList[activeSlot].item = null;
+                                    InventoryModel.RefreshInventory(slotsList, InventorySlotsList);
+                                    currentPlayer.Healing = false;
+                                    healingTimer.Stop();
+                                    healingTimer.Dispose();
+                                }
+
+                            }
+                            else
+                            {
+                                currentPlayer.Healing = true;
+                                System.Windows.Forms.Timer healingTimer = new System.Windows.Forms.Timer();
+                                healingTimer.Interval = 2000;
+                                healingTimer.Tick += new EventHandler(HealingTimer);
+                                healingTimer.Start();
+
+                                void HealingTimer(object sender, EventArgs e)
+                                {
+                                    currentPlayer.Shield = currentPlayer.Shield+25;
+                                    shieldBar.Value = currentPlayer.Shield;
+                                    InventorySlotsList[activeSlot].item = null;
+                                    InventoryModel.RefreshInventory(slotsList, InventorySlotsList);
+                                    currentPlayer.Healing = false;
+                                    healingTimer.Stop();
+                                    healingTimer.Dispose();
+                                }
+                            }
+                        }
                     }
 
                     
@@ -1462,7 +1513,7 @@ namespace AdventureGame
                 player.BringToFront();
 
 
-                Player enemyPlayer = new Player(100, shieldChance, 10, null, true, player, 30, false, true, health, shield, false);
+                Player enemyPlayer = new Player(100, shieldChance, 10, null, true, player, 30, false, true, health, shield, false, false);
 
                 winningList.Add(enemyPlayer);
                 allTargets.Add(enemyPlayer);
@@ -1930,10 +1981,8 @@ namespace AdventureGame
                         }
 
                     }
-                  
                 }
             }
-
         }
 
         public InventoryModel.InventorySlot CheckIfHasSomthingInSlot()

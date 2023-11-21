@@ -138,6 +138,7 @@ namespace AdventureGame
                 else
                 {
                     slotslist[i].BackColor = Color.White;
+                    slotslist[i].BackgroundImage = null;
                 }
             }
         }
@@ -159,8 +160,9 @@ namespace AdventureGame
         public ProgressBar healthBar { get; set; }
         public ProgressBar shieldBar { get; set; }
         public bool Reloading { get; set; }
+        public bool Healing { get; set; }
 
-        public Player(int health, int shield,  int ammo, Player Target , bool Alive, PictureBox playerBox, int materials, bool isClient, bool canWin, ProgressBar healthBar, ProgressBar shieldBar, bool Reloading)
+        public Player(int health, int shield,  int ammo, Player Target , bool Alive, PictureBox playerBox, int materials, bool isClient, bool canWin, ProgressBar healthBar, ProgressBar shieldBar, bool Reloading, bool Healing)
         {
             Health = health;
             Shield = shield;
@@ -174,6 +176,7 @@ namespace AdventureGame
             this.healthBar = healthBar;
             this.shieldBar = shieldBar;
             this.Reloading = Reloading;
+            this.Healing = Healing;
         }
     }
 
