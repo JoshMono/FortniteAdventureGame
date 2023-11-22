@@ -137,83 +137,45 @@ namespace AdventureGame
         private void btn0x0_Click(object sender, EventArgs e)
         {
 
-            if (map[0, 0].hasChest)
-            {
-                btn0x0.BackColor = Color.Yellow;
-                InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
-                InventoryModel.Gun gun = Player.GetGun();
-                available.gun = gun;
-                InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
-                InventoryModel.Item item = Player.GetItem();
-                available2.item = item;
-                Player.Player.Materials = Player.Player.Materials + random.Next(30,100);
-                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
-                InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[0, 0].playersLanding);
-                this.Hide();
-                miniGame.Show();
-            }
-            else
-            {
-
-                btn0x0.BackColor = Color.Black;
-                retryBTN.Visible = true;
-                if (healthBar.Value <= 0)
-                {
-                    this.Close();
-                    Map main = new Map(Player);
-                    main.Show();
-                }
-                else
-                {
-                    Player.Player.Health = Player.Player.Health - 50;
-                    healthBar.Value = Player.Player.Health;
-                }
-            }
+            btn0x0.BackColor = Color.Yellow;
+            InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
+            InventoryModel.Gun gun = Player.GetGun();
+            available.gun = gun;
+            InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
+            InventoryModel.Item item = Player.GetItem();
+            available2.item = item;
+            Player.Player.Materials = Player.Player.Materials + random.Next(30,100);
+            Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
+            InventoryModel.RefreshInventory(slotsList, inventorySlots);
+            FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[0, 0].playersLanding);
+            this.Hide();
+            miniGame.Show();
+            
         }
 
         private void btn1x0_Click(object sender, EventArgs e)
         {
-            if (map[1, 0].hasChest)
-            {
-                InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
-                InventoryModel.Gun gun = Player.GetGun();
-                available.gun = gun;
+            
+            InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
+            InventoryModel.Gun gun = Player.GetGun();
+            available.gun = gun;
 
-                InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
-                InventoryModel.Item item = Player.GetItem();
-                available2.item = item;
+            InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
+            InventoryModel.Item item = Player.GetItem();
+            available2.item = item;
 
-                Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
-                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
-                InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[1, 0].playersLanding);
-                this.Hide();
-                miniGame.Show();
-            }
-            else
-            {
-                btn1x0.BackColor = Color.Black;
-                retryBTN.Visible = true;
-                if (healthBar.Value <= 0)
-                {
-                    this.Close();
-                    Map main = new Map(Player);
-                    main.Show();
-                }
-                else
-                {
-                    Player.Player.Health = Player.Player.Health - 50;
-                    healthBar.Value = Player.Player.Health;
-                }
-
-            }
+            Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
+            Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
+            InventoryModel.RefreshInventory(slotsList, inventorySlots);
+            FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[1, 0].playersLanding);
+            this.Hide();
+            miniGame.Show();
+            
         }
 
         private void btn2x0_Click(object sender, EventArgs e)
         {
-            if (map[2, 0].hasChest)
-            {
+            
                 InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
                 InventoryModel.Gun gun = Player.GetGun();
                 available.gun = gun;
@@ -226,242 +188,107 @@ namespace AdventureGame
                 FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[2, 0].playersLanding);
                 this.Hide();
                 miniGame.Show();
-            }
-            else
-            {
-                btn2x0.BackColor = Color.Black;
-                retryBTN.Visible = true;
-                if (healthBar.Value <= 0)
-                {
-                    this.Close();
-                    Map main = new Map(Player);
-                    main.Show();
-                }
-                else
-                {
-                    Player.Player.Health = Player.Player.Health - 50;
-                    healthBar.Value = Player.Player.Health;
-                }
-
-            }
         }
 
         private void btn0x1_Click(object sender, EventArgs e)
         {
-            if (map[0, 1].hasChest)
-            {
-                InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
-                InventoryModel.Gun gun = Player.GetGun();
-                available.gun = gun;
-                InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
-                InventoryModel.Item item = Player.GetItem();
-                available2.item = item;
-                Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
-                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
-                InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[0, 1].playersLanding);
-                this.Hide();
-                miniGame.Show();
-            }
-            else
-            {
-                btn0x1.BackColor = Color.Black;
-                retryBTN.Visible = true;
-                if (healthBar.Value <= 0)
-                {
-                    this.Close();
-                    Map main = new Map(Player);
-                    main.Show();
-                }
-                else
-                {
-                    Player.Player.Health = Player.Player.Health - 50;
-                    healthBar.Value = Player.Player.Health;
-                }
-
-            }
+            
+            InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
+            InventoryModel.Gun gun = Player.GetGun();
+            available.gun = gun;
+            InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
+            InventoryModel.Item item = Player.GetItem();
+            available2.item = item;
+            Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
+            Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
+            InventoryModel.RefreshInventory(slotsList, inventorySlots);
+            FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[0, 1].playersLanding);
+            this.Hide();
+            miniGame.Show();
         }
 
         bool settingsOn = false;
         private void btn1x1_Click(object sender, EventArgs e)
         {
-            if (map[1, 1].hasChest)
-            {
-                InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
-                InventoryModel.Gun gun = Player.GetGun();
-                available.gun = gun;
-                InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
-                InventoryModel.Item item = Player.GetItem();
-                available2.item = item;
-                Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
-                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
-                InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[1, 1].playersLanding);
-                this.Hide();
-                miniGame.Show();
-            }
-            else
-            {
-                btn1x1.BackColor = Color.Black;
-                retryBTN.Visible = true;
-                if (healthBar.Value <= 0)
-                {
-                    this.Close();
-                    Map main = new Map(Player);
-                    main.Show();
-                }
-                else
-                {
-                    Player.Player.Health = Player.Player.Health - 50;
-                    healthBar.Value = Player.Player.Health;
-                }
-
-            }
+            InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
+            InventoryModel.Gun gun = Player.GetGun();
+            available.gun = gun;
+            InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
+            InventoryModel.Item item = Player.GetItem();
+            available2.item = item;
+            Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
+            Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
+            InventoryModel.RefreshInventory(slotsList, inventorySlots);
+            FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[1, 1].playersLanding);
+            this.Hide();
+            miniGame.Show();
         }
 
         private void btn2x1_Click(object sender, EventArgs e)
         {
-            if (map[2, 1].hasChest)
-            {
-                InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
-                InventoryModel.Gun gun = Player.GetGun();
-                available.gun = gun;
-                InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
-                InventoryModel.Item item = Player.GetItem();
-                available2.item = item;
-                Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
-                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
-                InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[2, 1].playersLanding);
-                this.Hide();
-                miniGame.Show();
-            }
-            else
-            {
-                btn2x1.BackColor = Color.Black;
-                retryBTN.Visible = true;
-                if (healthBar.Value <= 0)
-                {
-                    this.Close();
-                    Map main = new Map(Player);
-                    main.Show();
-                }
-                else
-                {
-                    Player.Player.Health = Player.Player.Health - 50;
-                    healthBar.Value = Player.Player.Health;
-                }
-
-            }
+            InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
+            InventoryModel.Gun gun = Player.GetGun();
+            available.gun = gun;
+            InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
+            InventoryModel.Item item = Player.GetItem();
+            available2.item = item;
+            Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
+            Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
+            InventoryModel.RefreshInventory(slotsList, inventorySlots);
+            FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[2, 1].playersLanding);
+            this.Hide();
+            miniGame.Show();
         }
 
         private void btn0x2_Click(object sender, EventArgs e)
         {
-            if (map[0, 2].hasChest)
-            {
-                InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
-                InventoryModel.Gun gun = Player.GetGun();
-                available.gun = gun;
-                InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
-                InventoryModel.Item item = Player.GetItem();
-                available2.item = item;
-                Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
-                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
-                InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[0, 2].playersLanding);
-                this.Hide();
-                miniGame.Show();
-            }
-            else
-            {
-                btn0x2.BackColor = Color.Black;
-                retryBTN.Visible = true;
-                if (healthBar.Value <= 0)
-                {
-                    this.Close();
-                    Map main = new Map(Player);
-                    main.Show();
-                }
-                else
-                {
-                    Player.Player.Health = Player.Player.Health - 50;
-                    healthBar.Value = Player.Player.Health;
-                }
-
-            }
+            InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
+            InventoryModel.Gun gun = Player.GetGun();
+            available.gun = gun;
+            InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
+            InventoryModel.Item item = Player.GetItem();
+            available2.item = item;
+            Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
+            Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
+            InventoryModel.RefreshInventory(slotsList, inventorySlots);
+            FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[0, 2].playersLanding);
+            this.Hide();
+            miniGame.Show();
         }
 
         private void btn1x2_Click(object sender, EventArgs e)
         {
-            if (map[1, 2].hasChest)
-            {
-                InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
-                InventoryModel.Gun gun = Player.GetGun();
-                available.gun = gun;
-                InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
-                InventoryModel.Item item = Player.GetItem();
-                available2.item = item;
-                Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
-                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
-                InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[1,2].playersLanding);
-                this.Hide();
-                miniGame.Show();
-            }
-            else
-            {
-                btn1x2.BackColor = Color.Black;
-                retryBTN.Visible = true;
-                if (healthBar.Value <= 0)
-                {
-                    this.Close();
-                    Map main = new Map(Player);
-                    main.Show();
-                }
-                else
-                {
-                    Player.Player.Health = Player.Player.Health - 50;
-                    healthBar.Value = Player.Player.Health;
-                }
-
-            }
+            
+            InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
+            InventoryModel.Gun gun = Player.GetGun();
+            available.gun = gun;
+            InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
+            InventoryModel.Item item = Player.GetItem();
+            available2.item = item;
+            Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
+            Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
+            InventoryModel.RefreshInventory(slotsList, inventorySlots);
+            FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[1,2].playersLanding);
+            this.Hide();
+            miniGame.Show();
+           
         }
 
         private void btn2x2_Click(object sender, EventArgs e)
         {
-            if (map[2, 2].hasChest)
-            {
-                InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
-                InventoryModel.Gun gun = Player.GetGun();
-                available.gun = gun;
-                InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
-                InventoryModel.Item item = Player.GetItem();
-                available2.item = item;
-                Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
-                Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
-                InventoryModel.RefreshInventory(slotsList, inventorySlots);
-                FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[2, 2].playersLanding);
-                this.Hide();
-                miniGame.Show();
-            }
-            else
-            {
+            InventoryModel.InventorySlot available = CheckIfHasSomthingInSlot();
+            InventoryModel.Gun gun = Player.GetGun();
+            available.gun = gun;
+            InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
+            InventoryModel.Item item = Player.GetItem();
+            available2.item = item;
+            Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
+            Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
+            InventoryModel.RefreshInventory(slotsList, inventorySlots);
+            FightingMinigame miniGame = new FightingMinigame(inventorySlots, Player, map[2, 2].playersLanding);
+            this.Hide();
+            miniGame.Show();
 
-                btn2x2.BackColor = Color.Black;
-                retryBTN.Visible = true;
-                if (healthBar.Value <= 0)
-                {
-                    this.Close();
-                    Map main = new Map(Player);
-                    main.Show();
-                }
-                else
-                {
-                    Player.Player.Health = Player.Player.Health - 50;
-                    healthBar.Value = Player.Player.Health;
-                }
-
-            }
         }
 
         private void retryBTN_Click(object sender, EventArgs e)

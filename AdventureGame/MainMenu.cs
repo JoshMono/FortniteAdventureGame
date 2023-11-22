@@ -14,7 +14,7 @@ namespace AdventureGame
 
         private void BattleRoyalBTN_Click(object sender, EventArgs e)
         {
-            Player clientPlayer = new Player(100, 0, 0, null, false, null, 0, true, true, null, null, false, false);
+            Player clientPlayer = new Player(100, 0, 0, null, false, null, 0, true, true, null, null, false, false, false);
             InventoryModel Player = new InventoryModel(100, Properties.Resources.defaultSkin, clientPlayer);
             Lobby lobby = new Lobby(Player);
             this.Hide();

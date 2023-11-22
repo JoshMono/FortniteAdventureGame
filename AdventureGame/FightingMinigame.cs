@@ -141,6 +141,7 @@ namespace AdventureGame
             MakeEnemy(PlayersLanding);
 
             allTargets.Add(currentPlayer);
+            winningList.Add(currentPlayer);
 
             InventoryModel.RefreshInventory(slotsList, inventorySlots);
             player.BackgroundImage = Player.Skin;
@@ -860,10 +861,10 @@ namespace AdventureGame
 
         private void mainGameTimerEvent(object sender, EventArgs e)
         {
-
-            movePlayer();
-
-
+            if (currentPlayer.Alive)
+            {
+                movePlayer();
+            }
         }
 
 
@@ -932,7 +933,7 @@ namespace AdventureGame
                 {
                     ammoLabel.Text = "Reloading";
                 }
-                
+
 
             }
 
@@ -1101,7 +1102,7 @@ namespace AdventureGame
             {
                 direction = "left";
             }
-            
+
 
             if (e.KeyValue == (char)Keys.Q)
             {
@@ -1210,7 +1211,7 @@ namespace AdventureGame
                     {
                         if (InventorySlotsList[activeSlot].item.Name == "Mini")
                         {
-                            if (currentPlayer.Shield == 50) 
+                            if (currentPlayer.Shield == 50)
                             {
 
                             }
@@ -1245,7 +1246,7 @@ namespace AdventureGame
 
                                 void HealingTimer(object sender, EventArgs e)
                                 {
-                                    currentPlayer.Shield = currentPlayer.Shield+25;
+                                    currentPlayer.Shield = currentPlayer.Shield + 25;
                                     shieldBar.Value = currentPlayer.Shield;
                                     InventorySlotsList[activeSlot].item = null;
                                     InventoryModel.RefreshInventory(slotsList, InventorySlotsList);
@@ -1257,7 +1258,7 @@ namespace AdventureGame
                         }
                     }
 
-                    
+
                 }
                 else if (buildingOn && Materials >= 10)
                 {
@@ -1415,6 +1416,12 @@ namespace AdventureGame
             List<Player> targetList = new List<Player>(allTargets);
             targetList.Remove(player);
             player.Target = targetList[random.Next(0, targetList.Count)];
+            winningList.Remove(player);
+            if (winningList.Count == 1)
+            {
+                enemyTimer.Stop();
+
+            }
         }
 
         ////
@@ -1513,7 +1520,7 @@ namespace AdventureGame
                 player.BringToFront();
 
 
-                Player enemyPlayer = new Player(100, shieldChance, 10, null, true, player, 30, false, true, health, shield, false, false);
+                Player enemyPlayer = new Player(100, shieldChance, 10, null, true, player, 30, false, true, health, shield, false, false, false);
 
                 winningList.Add(enemyPlayer);
                 allTargets.Add(enemyPlayer);
@@ -1530,6 +1537,11 @@ namespace AdventureGame
 
         private void enemyTimer_Tick(object sender, EventArgs e)
         {
+            if (winningList.Count == 1)
+            {
+                enemyTimer.Stop();
+                enemyTimer.Dispose();
+            }
 
             foreach (Player x in allTargets)
             {
@@ -1797,14 +1809,21 @@ namespace AdventureGame
             foreach (Player x in allTargets)
             {
 
-                if (x.PlayerBox.Bounds.IntersectsWith(x.Target.PlayerBox.Bounds) && x.Alive)
+
+                if (x.PlayerBox.Bounds.IntersectsWith(x.Target.PlayerBox.Bounds) && x.Alive && x.Target.Alive && !x.Pickaxing)
                 {
+                    x.Pickaxing = true;
+                    System.Windows.Forms.Timer pickaxeTimer = new System.Windows.Forms.Timer();
+                    pickaxeTimer.Interval = 1300;
+                    pickaxeTimer.Tick += new EventHandler(enemyPickaxe_Tick);
+                    pickaxeTimer.Start();
 
                 }
 
+
                 else if (x.Ammo != 8 && x.Alive && !x.isClient)
                 {
-                    
+
                     if (x.PlayerBox.Location.X <= x.Target.PlayerBox.Location.X && x.PlayerBox.Location.Y == x.Target.PlayerBox.Location.Y || x.PlayerBox.Location.X >= x.Target.PlayerBox.Location.X && x.PlayerBox.Location.Y == x.Target.PlayerBox.Location.Y || EhitWallR || EhitWallL)
                     {
 
@@ -1822,9 +1841,9 @@ namespace AdventureGame
                         }
                     }
 
-                    if (x.PlayerBox.Location.Y <= x.Target.PlayerBox.Location.Y && x.PlayerBox.Location.X == x.Target.PlayerBox.Location.X || x.PlayerBox.Location.Y >= x.Target.PlayerBox.Location.Y && x.PlayerBox.Location.X == x.Target.PlayerBox.Location.X || EhitWallU || EhitWallD)
+                    else if (x.PlayerBox.Location.Y <= x.Target.PlayerBox.Location.Y && x.PlayerBox.Location.X == x.Target.PlayerBox.Location.X || x.PlayerBox.Location.Y >= x.Target.PlayerBox.Location.Y && x.PlayerBox.Location.X == x.Target.PlayerBox.Location.X || EhitWallU || EhitWallD)
                     {
-                        
+
                         if (x.PlayerBox.Top > x.Target.PlayerBox.Top || EhitWallU)
                         {
                             ShootEnemyBullet("up", 5, 30, x.PlayerBox, x);
@@ -1837,45 +1856,41 @@ namespace AdventureGame
                         }
                     }
 
-                }
-                if (x.Ammo == 8 && x.Alive && x.Reloading == false && !x.isClient)
-                {
-                    x.Reloading = true;
-                    System.Windows.Forms.Timer reloadingTimer = new System.Windows.Forms.Timer();
-                    reloadingTimer.Interval = 5000;
-                    reloadingTimer.Tick += new EventHandler(ReloadingTimerEvent);
-                    reloadingTimer.Start();
-                    void ReloadingTimerEvent(object sender, EventArgs e)
+
+                    if (x.Ammo == 8 && x.Alive && x.Reloading == false && !x.isClient)
                     {
-                        x.Ammo = 10;
-                        x.Reloading = false;
-                        reloadingTimer.Enabled = false;
-                        reloadingTimer.Dispose();
-                        reloadingTimer.Stop();
+                        x.Reloading = true;
+                        System.Windows.Forms.Timer reloadingTimer = new System.Windows.Forms.Timer();
+                        reloadingTimer.Interval = 5000;
+                        reloadingTimer.Tick += new EventHandler(ReloadingTimerEvent);
+                        reloadingTimer.Start();
+                        void ReloadingTimerEvent(object sender, EventArgs e)
+                        {
+                            x.Ammo = 10;
+                            x.Reloading = false;
+                            reloadingTimer.Enabled = false;
+                            reloadingTimer.Dispose();
+                            reloadingTimer.Stop();
+                        }
                     }
                 }
-                
             }
         }
-
-        
-
-        private void Reload_Tick(object sender, EventArgs e)
-        {
-            
-        }
-
 
         private void enemyPickaxe_Tick(object sender, EventArgs e)
         {
             foreach (Player x in allTargets)
-            {       
+            {
                 if (x.PlayerBox.Bounds.IntersectsWith(x.Target.PlayerBox.Bounds) && x.Alive && x.Target.Alive)
                 {
+                    Console.WriteLine(x.Target.Shield);
                     if (x.Target.Shield >= 50)
                     {
                         x.Target.Shield = x.Target.Shield - 50;
                         x.Target.shieldBar.Value = x.Target.Shield;
+                        x.Pickaxing = false;
+                        enemyPickaxe.Stop();
+                        enemyPickaxe.Dispose();
                     }
                     else if (x.Target.Shield < 50 && x.Target.Shield != 0)
                     {
@@ -1883,17 +1898,23 @@ namespace AdventureGame
                         x.Target.Health = x.Target.Health - 50;
                         x.Target.shieldBar.Value = 0;
                         x.Target.Shield = 0;
+                        enemyPickaxe.Stop();
+                        enemyPickaxe.Dispose();
+
 
                         x.Target.healthBar.Value = x.Target.Health;
+                        x.Pickaxing = false;
                     }
                     else if (x.Target.Health > 50)
                     {
                         x.Target.Health = x.Target.Health - 50;
                         x.Target.healthBar.Value = x.Target.Health;
+                        x.Pickaxing = false;
+                        enemyPickaxe.Stop();
+                        enemyPickaxe.Dispose();
                     }
                     else if (x.Target.Health <= 50)
                     {
-                       
 
                         x.Target.shieldBar.Value = 0;
                         x.Target.Shield = 0;
@@ -1901,72 +1922,87 @@ namespace AdventureGame
                         x.Target.healthBar.Value = 0;
                         x.Target.Health = 0;
                         int cat = 0;
+                        enemyPickaxe.Dispose();
+                        enemyPickaxe.Stop();
 
+                        x.Pickaxing = false;
                         System.Windows.Forms.Timer explosion = new System.Windows.Forms.Timer();
                         explosion.Interval = 50;
                         explosion.Tick += new EventHandler(ExplosionTimerEvent);
                         explosion.Start();
 
+                        x.Target.shieldBar.Visible = false;
+                        x.Target.healthBar.Visible = false;
 
                         void ExplosionTimerEvent(object sender, EventArgs e)
                         {
-                            Console.WriteLine(cat);
                             if (cat == 0)
                             {
                                 x.Target.PlayerBox.Size = new Size(11, 11);
+                                cat++;
                             }
                             else if (cat == 1)
                             {
                                 x.Target.PlayerBox.Size = new Size(12, 12);
+                                cat++;
                             }
-                            else if(cat == 2)
+                            else if (cat == 2)
                             {
                                 x.Target.PlayerBox.Size = new Size(13, 13);
+                                cat++;
                             }
 
-                            else if(cat == 3)
+                            else if (cat == 3)
                             {
                                 x.Target.PlayerBox.Size = new Size(14, 14);
+                                cat++;
                             }
-                            else if(cat == 4)
+                            else if (cat == 4)
                             {
                                 x.Target.PlayerBox.Size = new Size(15, 15);
+                                cat++;
                             }
-                            else if(cat == 5)
+                            else if (cat == 5)
                             {
                                 x.Target.PlayerBox.Size = new Size(15, 15);
+                                cat++;
                             }
-                            else if(cat == 6)
+                            else if (cat == 6)
                             {
                                 x.Target.PlayerBox.Size = new Size(16, 16);
+                                cat++;
                             }
-                            else if(cat == 7)
+                            else if (cat == 7)
                             {
                                 x.Target.PlayerBox.Size = new Size(17, 17);
+                                cat++;
                             }
-                            else if(cat == 8)
+                            else if (cat == 8)
                             {
                                 x.Target.PlayerBox.Size = new Size(18, 18);
+                                cat++;
                             }
-                            else if(cat == 9)
+                            else if (cat == 9)
                             {
+                                cat++;
                             }
-                            else if(cat == 10)
+                            else if (cat == 10)
                             {
                                 x.Target.PlayerBox.Visible = false;
-                                Console.WriteLine(x.Target.PlayerBox.Visible);
-                                x.Target.Alive = false;
-                                x.Target.shieldBar.Visible = false;
-                                x.Target.healthBar.Visible = false;
+                                winningList.Remove(x);
                                 explosion.Enabled = false;
                                 explosion.Dispose();
                                 explosion.Stop();
+                                x.Target.Alive = false;
 
                                 if (x.isClient)
                                 {
                                     InventorySlot avaliable = CheckIfHasSomthingInSlot();
                                     InventoryModel.Gun gun = Player.GetGun();
                                     avaliable.gun = gun;
+
+
+                                    InventoryModel.RefreshInventory(slotsList, InventorySlotsList);
 
                                     InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
                                     InventoryModel.Item item = Player.GetItem();
@@ -1975,14 +2011,20 @@ namespace AdventureGame
                                     Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
                                     Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
                                     InventoryModel.RefreshInventory(slotsList, InventorySlotsList);
+
+                                    Console.WriteLine(CheckIfHasSomthingInSlot());
                                 }
                             }
-                            cat++;
                         }
 
                     }
                 }
             }
+        }
+
+        private void Reload_Tick(object sender, EventArgs e)
+        {
+
         }
 
         public InventoryModel.InventorySlot CheckIfHasSomthingInSlot()
@@ -1997,24 +2039,29 @@ namespace AdventureGame
             {
                 return InventorySlotsList[1];
             }
-            else if (InventorySlotsList[2].hasGun() == false || InventorySlotsList[2].hasItem() == false)
+            else if (InventorySlotsList[2].hasGun() == false && InventorySlotsList[2].hasItem() == false)
             {
                 return InventorySlotsList[2];
             }
-            else if (InventorySlotsList[3].hasGun() == false || InventorySlotsList[3].hasItem() == false)
+            else if (InventorySlotsList[3].hasGun() == false && InventorySlotsList[3].hasItem() == false)
             {
                 return InventorySlotsList[3];
             }
-            else if (InventorySlotsList[4].hasGun() == false || InventorySlotsList[4].hasItem() == false)
+            else if (InventorySlotsList[4].hasGun() == false && InventorySlotsList[4].hasItem() == false)
             {
                 return InventorySlotsList[4];
             }
             else
             {
-                return InventorySlotsList[5]; 
+                return InventorySlotsList[5];
             }
 
         }
 
+        private void enemyPickaxe_Tick_1(object sender, EventArgs e)
+        {
+
+        }
     }
+
 }
