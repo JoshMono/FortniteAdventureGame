@@ -284,7 +284,6 @@
             player.Size = new Size(20, 30);
             player.TabIndex = 0;
             player.TabStop = false;
-            player.Click += pictureBox1_Click;
             // 
             // timer1
             // 
@@ -1826,7 +1825,6 @@
             Name = "FightingMinigame";
             Text = "FightingMinigame";
             KeyDown += FightingMinigame_KeyDown;
-            KeyPress += FightingMinigame_KeyPress;
             KeyUp += FightingMinigame_KeyUp;
             ((System.ComponentModel.ISupportInitialize)player).EndInit();
             ((System.ComponentModel.ISupportInitialize)gameBoxPicture).EndInit();

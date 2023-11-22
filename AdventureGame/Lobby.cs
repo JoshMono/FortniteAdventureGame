@@ -27,7 +27,7 @@ namespace AdventureGame
         public Lobby(InventoryModel player)
         {
             InitializeComponent();
-            
+
             // Sets the zBucks label to the players ammount of zBucks
             zBucksLabel.Text = player.ZBucks.ToString();
 
@@ -105,14 +105,14 @@ namespace AdventureGame
             skinAvaterIMG.Show();
         }
 
-/*
-        private void shopBTN_Click(object sender, EventArgs e)
-        {
-            itemShopPannel.Hide();
-            lobbyBTN.BackColor = Color.FromArgb(255, 255, 128);
-            shopBTN.BackColor = Color.Transparent;
-            BackgroundImage = (Image)Properties.Resources.lobbyBG;
-        }*/
+        /*
+                private void shopBTN_Click(object sender, EventArgs e)
+                {
+                    itemShopPannel.Hide();
+                    lobbyBTN.BackColor = Color.FromArgb(255, 255, 128);
+                    shopBTN.BackColor = Color.Transparent;
+                    BackgroundImage = (Image)Properties.Resources.lobbyBG;
+                }*/
 
     }
 }

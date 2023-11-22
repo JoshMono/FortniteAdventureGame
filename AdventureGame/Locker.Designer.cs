@@ -34,37 +34,45 @@
             // 
             // defaultSkinBTN
             // 
+            defaultSkinBTN.BackColor = Color.Gray;
             defaultSkinBTN.BackgroundImage = Properties.Resources.defaultSkin;
             defaultSkinBTN.BackgroundImageLayout = ImageLayout.Stretch;
             defaultSkinBTN.ForeColor = SystemColors.ActiveCaptionText;
-            defaultSkinBTN.Location = new Point(28, 28);
+            defaultSkinBTN.Location = new Point(24, 21);
+            defaultSkinBTN.Margin = new Padding(3, 2, 3, 2);
             defaultSkinBTN.Name = "defaultSkinBTN";
-            defaultSkinBTN.Size = new Size(120, 170);
+            defaultSkinBTN.Size = new Size(105, 128);
             defaultSkinBTN.TabIndex = 0;
-            defaultSkinBTN.UseVisualStyleBackColor = true;
+            defaultSkinBTN.UseVisualStyleBackColor = false;
             defaultSkinBTN.Click += deafaultSkinBTN_Click;
             // 
             // skullTrooperBTN
             // 
+            skullTrooperBTN.BackColor = Color.Gray;
             skullTrooperBTN.BackgroundImage = Properties.Resources.skullTrooper;
             skullTrooperBTN.BackgroundImageLayout = ImageLayout.Stretch;
-            skullTrooperBTN.ForeColor = SystemColors.ActiveCaptionText;
-            skullTrooperBTN.Location = new Point(627, 28);
+            skullTrooperBTN.Font = new Font("Franklin Gothic Heavy", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            skullTrooperBTN.ForeColor = Color.DeepSkyBlue;
+            skullTrooperBTN.Image = Properties.Resources.lockIcon;
+            skullTrooperBTN.Location = new Point(549, 21);
+            skullTrooperBTN.Margin = new Padding(3, 2, 3, 2);
             skullTrooperBTN.Name = "skullTrooperBTN";
-            skullTrooperBTN.Size = new Size(120, 170);
+            skullTrooperBTN.Size = new Size(105, 128);
             skullTrooperBTN.TabIndex = 1;
-            skullTrooperBTN.UseVisualStyleBackColor = true;
+            skullTrooperBTN.Text = "Need 5 Wins";
+            skullTrooperBTN.UseVisualStyleBackColor = false;
             skullTrooperBTN.Click += skullTrooperBTN_Click;
             // 
             // Locker
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 192, 255);
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(776, 450);
+            ClientSize = new Size(679, 338);
             Controls.Add(skullTrooperBTN);
             Controls.Add(defaultSkinBTN);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Locker";
             Text = "Locker";
             ResumeLayout(false);

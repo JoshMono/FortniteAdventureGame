@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Lobby));
             lobbyBTN = new Button();
             lockerBTN = new Button();
-            shopBTN = new Button();
             settingsBTN = new Button();
             settingsPannel = new Panel();
             zBucksLabel = new Label();
@@ -56,7 +55,7 @@
             lobbyBTN.FlatStyle = FlatStyle.Flat;
             lobbyBTN.Font = new Font("Franklin Gothic Demi Cond", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             lobbyBTN.ForeColor = Color.Black;
-            lobbyBTN.Location = new Point(238, 17);
+            lobbyBTN.Location = new Point(271, 17);
             lobbyBTN.Margin = new Padding(3, 2, 3, 2);
             lobbyBTN.Name = "lobbyBTN";
             lobbyBTN.Size = new Size(100, 38);
@@ -73,7 +72,7 @@
             lockerBTN.FlatStyle = FlatStyle.Flat;
             lockerBTN.Font = new Font("Franklin Gothic Demi Cond", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             lockerBTN.ForeColor = Color.Black;
-            lockerBTN.Location = new Point(337, 17);
+            lockerBTN.Location = new Point(370, 17);
             lockerBTN.Margin = new Padding(3, 2, 3, 2);
             lockerBTN.Name = "lockerBTN";
             lockerBTN.Size = new Size(100, 38);
@@ -81,22 +80,6 @@
             lockerBTN.Text = "Locker";
             lockerBTN.UseVisualStyleBackColor = false;
             lockerBTN.Click += lockerBTN_Click;
-            // 
-            // shopBTN
-            // 
-            shopBTN.BackColor = Color.Transparent;
-            shopBTN.FlatAppearance.BorderColor = Color.FromArgb(255, 255, 192);
-            shopBTN.FlatAppearance.BorderSize = 2;
-            shopBTN.FlatStyle = FlatStyle.Flat;
-            shopBTN.Font = new Font("Franklin Gothic Demi Cond", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            shopBTN.ForeColor = Color.Black;
-            shopBTN.Location = new Point(435, 17);
-            shopBTN.Margin = new Padding(3, 2, 3, 2);
-            shopBTN.Name = "shopBTN";
-            shopBTN.Size = new Size(100, 38);
-            shopBTN.TabIndex = 2;
-            shopBTN.Text = "Shop";
-            shopBTN.UseVisualStyleBackColor = false;
             // 
             // settingsBTN
             // 
@@ -179,7 +162,6 @@
             itemShopPannel.Size = new Size(681, 273);
             itemShopPannel.TabIndex = 8;
             itemShopPannel.Visible = false;
-
             // 
             // skinAvaterIMG
             // 
@@ -203,7 +185,6 @@
             winsLabel.TabIndex = 9;
             winsLabel.Text = "0";
             winsLabel.TextAlign = ContentAlignment.MiddleLeft;
-
             // 
             // pictureBox1
             // 
@@ -215,7 +196,6 @@
             pictureBox1.Size = new Size(106, 41);
             pictureBox1.TabIndex = 8;
             pictureBox1.TabStop = false;
-
             // 
             // Lobby
             // 
@@ -233,14 +213,12 @@
             Controls.Add(zBucksLabel);
             Controls.Add(playBTN);
             Controls.Add(pictureBox2);
-            Controls.Add(shopBTN);
             Controls.Add(lockerBTN);
             Controls.Add(lobbyBTN);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "Lobby";
             Text = "Lobby";
-
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             lockerPannel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)skinAvaterIMG).EndInit();
@@ -252,7 +230,6 @@
 
         private Button lobbyBTN;
         private Button lockerBTN;
-        private Button shopBTN;
         private Button settingsBTN;
         private Panel settingsPannel;
         private Button playBTN;

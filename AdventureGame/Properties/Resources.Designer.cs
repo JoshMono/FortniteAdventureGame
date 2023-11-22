@@ -202,6 +202,16 @@ namespace AdventureGame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap lockIcon {
+            get {
+                object obj = ResourceManager.GetObject("lockIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap miniIcon {
             get {
                 object obj = ResourceManager.GetObject("miniIcon", resourceCulture);
