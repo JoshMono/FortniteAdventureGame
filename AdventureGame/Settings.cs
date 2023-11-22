@@ -18,22 +18,25 @@ namespace AdventureGame
 {
     public partial class Settings : Form
     {
-
+        // DllImports winmm.dll
         [DllImport("winmm.dll")]
         public static extern int waveOutGetVolume(IntPtr hwo, out uint dwVolume);
 
+        // DllImports winmm.dll
         [DllImport("winmm.dll")]
         public static extern int waveOutSetVolume(IntPtr hwo, uint dwVolume);
 
 
         public bool musicChecked;
 
+        // Sets soundplayer to null
         private SoundPlayer Player = null;
         public Settings()
         {
 
             InitializeComponent();
             Player = new SoundPlayer(Properties.Resources.LobbyMusic);
+
             musicOn_CheckedChanged(null, null);
 
             // By the default set the volume to 0
@@ -41,9 +44,11 @@ namespace AdventureGame
 
             // CurrVol gets assigned the volume
             waveOutGetVolume(IntPtr.Zero, out CurrVol);
+
             // Calculate the volume
             ushort CalcVol = (ushort)(CurrVol & 0x0000ffff);
-            // Get the volume on a scale of 1 to 10 (to fit the trackbar)
+
+            // Get the volume on a scale of 1 to 10 to fit the trackbar
             musicVolumeSlider.Value = CalcVol / (ushort.MaxValue / 10);
 
         }
@@ -64,10 +69,12 @@ namespace AdventureGame
 
         private void musicVolumeSlider_Scroll(object sender, EventArgs e)
         {
-            // Calculate the volume that's being set
+            // Calculate the volume thats being set
             int NewVolume = ((ushort.MaxValue / 10) * musicVolumeSlider.Value);
+
             // Set the same volume for both the left and the right channels
             uint NewVolumeAllChannels = (((uint)NewVolume & 0x0000ffff) | ((uint)NewVolume << 16));
+
             // Set the volume
             waveOutSetVolume(IntPtr.Zero, NewVolumeAllChannels);
         }

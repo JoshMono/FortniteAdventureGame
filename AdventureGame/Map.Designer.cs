@@ -168,7 +168,6 @@
             retryBTN.Text = "Retry";
             retryBTN.UseVisualStyleBackColor = false;
             retryBTN.Visible = false;
-            retryBTN.Click += retryBTN_Click;
             // 
             // healthBar
             // 
@@ -316,7 +315,6 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Map";
             Text = "Map";
-            Load += Map_Load;
             ((System.ComponentModel.ISupportInitialize)slot1).EndInit();
             ((System.ComponentModel.ISupportInitialize)slot3).EndInit();
             ((System.ComponentModel.ISupportInitialize)slot5).EndInit();

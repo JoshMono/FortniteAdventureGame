@@ -20,7 +20,6 @@ namespace AdventureGame
 {
     public partial class Lobby : Form
     {
-        int zBucks;
         Settings settings;
         Locker locker;
         public InventoryModel Player;
@@ -28,25 +27,35 @@ namespace AdventureGame
         public Lobby(InventoryModel player)
         {
             InitializeComponent();
-            zBucks = player.ZBucks;
-            zBucksLabel.Text = Convert.ToString(zBucks);
+            
+            // Sets the zBucks label to the players ammount of zBucks
+            zBucksLabel.Text = player.ZBucks.ToString();
+
 
             Player = player;
+
+            // Sets the avatar to the players avatar
             skinAvaterIMG.BackgroundImage = Player.Skin;
 
-
+            // Creates a new pannel with the settings form inside of it
             settings = new Settings() { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             settings.FormBorderStyle = FormBorderStyle.None;
             this.settingsPannel.Controls.Add(settings);
 
+            // Creates a new pannel with the locker form inside of it
             locker = new Locker(Player) { Dock = DockStyle.Fill, TopLevel = false, TopMost = true };
             locker.FormBorderStyle = FormBorderStyle.None;
             this.lockerPannel.Controls.Add(locker);
 
+            // Sets the wins label to the players amount of wins
+            winsLabel.Text = player.Wins.ToString();
+
 
         }
+
         bool settingsOn = false;
 
+        // On click either makes the settings pannel visible or not
         private void settingsBTN_Click(object sender, EventArgs e)
         {
 
@@ -65,24 +74,15 @@ namespace AdventureGame
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            zBucks = zBucks + 100;
-            zBucksLabel.Text = Convert.ToString(zBucks);
-        }
-
+        // Loads the form Map and closes this form
         private void playBTN_Click(object sender, EventArgs e)
         {
             Map map = new Map(Player);
-            this.Hide();
+            this.Close();
             map.Show();
         }
 
+        // On click shows the locker pannel, makes the buttons a new colour and hides the avatar
         private void lockerBTN_Click(object sender, EventArgs e)
         {
             locker.Show();
@@ -91,14 +91,9 @@ namespace AdventureGame
             lockerBTN.BackColor = Color.FromArgb(255, 255, 128);
             BackgroundImage = (Image)Properties.Resources.download__2_;
             skinAvaterIMG.Hide();
-
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        // On click shows the lobby pannel, makes the buttons a new colour and hides the avatar
         private void lobbyBTN_Click(object sender, EventArgs e)
         {
             lockerPannel.Hide();
@@ -108,25 +103,16 @@ namespace AdventureGame
 
             skinAvaterIMG.BackgroundImage = Player.Skin;
             skinAvaterIMG.Show();
-
         }
 
-        private void Lobby_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void itemShopPannel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+/*
         private void shopBTN_Click(object sender, EventArgs e)
         {
             itemShopPannel.Hide();
             lobbyBTN.BackColor = Color.FromArgb(255, 255, 128);
             shopBTN.BackColor = Color.Transparent;
             BackgroundImage = (Image)Properties.Resources.lobbyBG;
-        }
+        }*/
+
     }
 }

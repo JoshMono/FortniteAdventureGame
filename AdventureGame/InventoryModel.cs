@@ -12,6 +12,7 @@ using System.Drawing.Configuration;
 using System.Runtime.CompilerServices;
 using System.Diagnostics.Tracing;
 using System.Runtime.InteropServices;
+using static AdventureGame.InventoryModel;
 
 namespace AdventureGame
 {
@@ -19,20 +20,26 @@ namespace AdventureGame
 
     public class InventoryModel
     {
+
+        // Makes a new Inventory Model
         public int ZBucks { get; set; }
+        public int Wins { get; set; }
         public Image Skin { get; set; }
         public Player Player { get; set; }
+        
 
 
 
 
-        public InventoryModel(int zBucks ,Image skin, Player player)
+        public InventoryModel(int zBucks, int wins ,Image skin, Player player)
         {
             ZBucks = zBucks;
+            Wins = wins;
             Skin = skin;
             Player = player;
         }
 
+        // Makes a new Gun Model
         public class Gun
         {
             public string Name { get; set; }
@@ -55,6 +62,7 @@ namespace AdventureGame
             }
         }
 
+        // Makes a new Item model
         public class Item
         {
             public string Name { get; set; }
@@ -73,6 +81,7 @@ namespace AdventureGame
             }
         }
 
+        // Makes an new Inventory slot
         public class InventorySlot
         {
             public int slot { get; set; }
@@ -87,11 +96,13 @@ namespace AdventureGame
                 this.item = item;
             }
 
+            // Checks if the slot has a gun
             public bool hasGun()
             {
                 if (gun == null) return false; return true;
             }
 
+            // Checks if the slot has a item
             public bool hasItem()
             {
                 if (item == null) return false; return true;
@@ -99,6 +110,7 @@ namespace AdventureGame
 
         }   
 
+        // Gets a random Item
         public Item GetItem()
         {
             Dictionary<int, Item> itemDict = new Dictionary<int, Item>();
@@ -108,6 +120,7 @@ namespace AdventureGame
             return itemDict[itemId];
         }
 
+        // Gets a random Gun
         public Gun GetGun()
         {
             Dictionary<int, Gun> gunsDict = new Dictionary<int, Gun>();
@@ -121,6 +134,7 @@ namespace AdventureGame
             return gunsDict[gunId];
         }
 
+        // Refreshes the slot icons
         public static void RefreshInventory(List<PictureBox> slotslist, List<InventoryModel.InventorySlot> inventorySlots)
         {
             for (int i = 0; i < slotslist.Count; i++)
@@ -145,9 +159,9 @@ namespace AdventureGame
 
     }
 
+    // Makes a new Player Model
     public class Player
     {
-       
         public int Health { get; set; }
         public int Shield { get; set; }
         public int Ammo { get; set; }
@@ -182,6 +196,7 @@ namespace AdventureGame
         }
     }
 
+    // Makes a new Wall Model
     public class Wall
     {
         public int Health;
@@ -199,6 +214,7 @@ namespace AdventureGame
 
     }
 
+    // Makes a new Map Location
     public class MapLocation
     {
         public string locationName { get; set; }
@@ -207,34 +223,22 @@ namespace AdventureGame
 
         public MapLocation(string locationName)
         {
-            playersLanding = PlayersLandingChance();
-            Random rand = new Random();
-            float oddsOfChestFloat = playersLanding * 0.7F;
-            int oddsOfChest = (int)oddsOfChestFloat;
-            int hasChestNum = rand.Next(0, oddsOfChest);
-            if (hasChestNum == 0) 
-            {
-                hasChest = true;
-                    
-            } 
-            else 
-            {
-                hasChest = false;
-            }
             this.locationName = locationName;
-
+            playersLanding = PlayersLandingChance();
         }
 
+        // Randomises how many players are landing at a location
         public int PlayersLandingChance()
         {
             Random rand = new Random();
-            playersLanding = rand.Next(1, 11);
+            playersLanding = rand.Next(1, 6);
             return playersLanding;
         }
 
 
     }
 
+    // Makes a new bullet
     public class Bullet
     {
         public string facingDirection {  get; set; }
@@ -248,6 +252,9 @@ namespace AdventureGame
         public List<Player> enemyList { get; set; }
         public PictureBox gameBoxPicture { get; set; }
         public PictureBox player { get; set; }
+        public InventoryModel inventoryModel { get; set; }
+        public List<InventoryModel.InventorySlot> InventorySlotsList { get; set; }
+        public List<PictureBox> slotsList { get; set; } 
 
         public Wall[,] horizontalWall { get; set; }
 
@@ -258,10 +265,11 @@ namespace AdventureGame
         public int colourB;
 
         
-
+        // Creates the bullet and timer
         public PictureBox bullet = new PictureBox();
         private System.Windows.Forms.Timer bulletTimer = new System.Windows.Forms.Timer();
 
+        // Makes the picturebox on the form then starts the bulletTimer
         public void MakeBullet(Form form)
         {
             bullet.BackColor = Color.Black;
@@ -276,53 +284,63 @@ namespace AdventureGame
             bulletTimer.Interval = speed;
             bulletTimer.Tick += new EventHandler(BulletTimerEvent);
             bulletTimer.Start();
-            colourG = colour.G;
-            colourB = colour.B;
-            ammo = 0;
-
-            
         }      
 
         private void BulletTimerEvent(object sender, EventArgs e)
         {
+            // If the players facing direction is left it will travel left
             if (facingDirection == "left")
             {
                 bullet.Left -= speed;
             }
+
+            // If the players facing direction is right it will travel right
             if (facingDirection == "right")
             {
                 bullet.Left += speed;
             }
+
+            // If the players facing direction is up it will travel up
             if (facingDirection == "up")
             {
                 bullet.Top -= speed;
             }
+
+            // If the players facing direction is down it will travel down
             if (facingDirection == "down")
             {
                 bullet.Top += speed;
             }
+
+            // If the players facing direction is Up and Right it will travel Up and Right
             if (facingDirection == "WD")
             {
                 bullet.Top -= speed;
                 bullet.Left += speed;
             }
+
+            // If the players facing direction is Up and Left it will travel Up and Left
             if (facingDirection == "WA")
             {
                 bullet.Top -= speed;
                 bullet.Left -= speed;
             }
+
+            // If the players facing direction is Down and Right it will travel Down and Right
             if (facingDirection == "SD")
             {
                 bullet.Top += speed;
                 bullet.Left += speed;
             }
+
+            // If the players facing direction is Down and Left it will travel Down and Left
             if (facingDirection == "SA")
             {
                 bullet.Top += speed;
                 bullet.Left -= speed;
             }
 
-
+            // Checks all the horizontal walls to see if the bullet has hit one of them and if it has it will take some of its health off
             for (int k = 0; k < horizontalWall.GetLength(0); k++)
             {
                 for (int c = 0; c < horizontalWall.GetLength(1); c++)
@@ -368,8 +386,8 @@ namespace AdventureGame
                                 }
 
                             }
-                            
-                                
+
+                            // Kills the bullet and stops the timer
                             bulletTimer.Stop();
                             bulletTimer.Dispose();
                             bullet.Dispose();
@@ -381,6 +399,8 @@ namespace AdventureGame
                             
                 }
             }
+
+            // Checks all the vertical walls to see if the bullet has hit one of them and if it has it will take some of its health off
             for (int k = 0; k < verticalWall.GetLength(0); k++)
             {
                 for (int c = 0; c < verticalWall.GetLength(1); c++)
@@ -425,6 +445,8 @@ namespace AdventureGame
                                 }
 
                             }
+
+                            // Kills the bullet and stops the timer
                             bulletTimer.Stop();
                             bulletTimer.Dispose();
                             bullet.Dispose();
@@ -437,15 +459,18 @@ namespace AdventureGame
                 }
             }
 
+            // Loops through all the enemys too see if the bullet has hit one
             foreach (Player player in enemyList)
             {
-
+                // Runs when the enemy who had shot the bullet isnt the user
                 if (player.Alive && player.PlayerBox.Bounds.IntersectsWith(bullet.Bounds) && player.PlayerBox != playerShooter.PlayerBox && playerShooter.isClient == false)
                 {
-
+                    // Kills the bullet and stops the timer
                     bulletTimer.Stop();
                     bulletTimer.Dispose();
                     bullet.Dispose();
+
+                    // Decides if the enemy is dead or how much to take off their shield and health
                     if (player.Shield >= 10)
                     {
                         player.Shield = player.Shield - 10;
@@ -467,6 +492,7 @@ namespace AdventureGame
                     }
                     else if (player.Health + player.Shield <= 10)
                     {
+                        // Kills the enemy
                         player.Alive = false;
                         player.shieldBar.Visible = false;
                         player.healthBar.Visible = false;
@@ -477,77 +503,82 @@ namespace AdventureGame
                         player.healthBar.Value = 0;
                         player.Health = 0;
 
-                        int cat = 0;
+                        int number = 0;
 
                         System.Windows.Forms.Timer explosion = new System.Windows.Forms.Timer();
                         explosion.Interval = 50;
                         explosion.Tick += new EventHandler(ShootExplosionTimerEvent);
                         explosion.Start();
 
-
+                        // Does a sort of animation when the enemy dies
                         void ShootExplosionTimerEvent(object sender, EventArgs e)
                         {
-                            if (cat == 0)
+                            if (number == 0)
                             {
-                                player.PlayerBox.Size = new Size(11, 11);
+                                player.PlayerBox.Size = new Size(21, 21);
                             }
-                            if (cat == 1)
+                            if (number == 1)
                             {
-                                player.PlayerBox.Size = new Size(12, 12);
+                                player.PlayerBox.Size = new Size(22, 22);
                             }
-                            if (cat == 2)
+                            if (number == 2)
                             {
-                                player.PlayerBox.Size = new Size(13, 13);
+                                player.PlayerBox.Size = new Size(23, 23);
                             }
 
-                            if (cat == 3)
+                            if (number == 3)
                             {
-                                player.PlayerBox.Size = new Size(14, 14);
+                                player.PlayerBox.Size = new Size(24, 24);
                             }
-                            if (cat == 4)
+                            if (number == 4)
                             {
-                                player.PlayerBox.Size = new Size(15, 15);
+                                player.PlayerBox.Size = new Size(25, 25);
                             }
-                            if (cat == 5)
+                            if (number == 5)
                             {
-                                player.PlayerBox.Size = new Size(15, 15);
+                                player.PlayerBox.Size = new Size(25, 25);
                             }
-                            if (cat == 6)
+                            if (number == 6)
                             {
-                                player.PlayerBox.Size = new Size(16, 16);
+                                player.PlayerBox.Size = new Size(26, 26);
                             }
-                            if (cat == 7)
+                            if (number == 7)
                             {
-                                player.PlayerBox.Size = new Size(17, 17);
+                                player.PlayerBox.Size = new Size(27, 27);
                             }
-                            if (cat == 8)
+                            if (number == 8)
                             {
-                                player.PlayerBox.Size = new Size(18, 18);
+                                player.PlayerBox.Size = new Size(28, 28);
                             }
-                            if (cat == 9)
+                            if (number == 9)
                             {
                                 player.PlayerBox.Visible = false;
                                 
                             }
-                            cat++;
+                            number++;
                         }
                     }
                 }
+
+                // Runs when the enemy who had shot the bullet is the user
                 else if (player.Alive && player.PlayerBox.Bounds.IntersectsWith(bullet.Bounds) && player.PlayerBox != playerShooter.PlayerBox && playerShooter.isClient)
                 {
+                    // Kills the bullet and stops the timer
                     bulletTimer.Stop();
                     bulletTimer.Dispose();
                     bullet.Dispose();
 
+                    // Sets the players health and shield progress bar to their health and shield
                     player.healthBar.Value = player.Health;
                     player.shieldBar.Value = player.Shield;
 
-                    Console.WriteLine(damage);
+                    // Decides if the enemy is dead or how much to take off their shield and health
                     if (player.Shield >= damage)
                     {
                         player.Shield = player.Shield - damage;
                         player.shieldBar.Value = player.Shield;
                     }
+
                     else if (player.Shield < damage && player.Shield != 0)
                     {
                         player.Health = player.Health + player.Shield;
@@ -556,9 +587,8 @@ namespace AdventureGame
 
                         player.shieldBar.Value = player.Shield;
                         player.healthBar.Value = player.Health;
-                        Console.WriteLine(player.shieldBar.Value);
-                        Console.WriteLine(player.Health);
                     }
+
                     else if (player.Health > damage && player.Shield == 0)
                     {
                         player.Health = player.Health - damage;
@@ -566,7 +596,7 @@ namespace AdventureGame
                     }
                     else if (player.Health + player.Shield <= damage)
                     {
-
+                        // Kills the enemy
                         player.Alive = false;                        
                         player.healthBar.Visible = false;
                         player.shieldBar.Visible = false;
@@ -576,59 +606,76 @@ namespace AdventureGame
 
                         player.healthBar.Value = 0;
                         player.Health = 0;
-                        int cat = 0;
+                        int number = 0;
 
                         System.Windows.Forms.Timer explosion = new System.Windows.Forms.Timer();
                         explosion.Interval = 50;
                         explosion.Tick += new EventHandler(ReloadingTimerEvent);
                         explosion.Start();
 
-
+                        // Does a sort of animation when the enemy dies
                         void ReloadingTimerEvent(object sender, EventArgs e)
-                        { 
-                            if (cat == 0)
+                        {
+                            if (number == 0)
                             {
-                                player.PlayerBox.Size = new Size(11, 11);
+                                player.PlayerBox.Size = new Size(21, 21);
                             }
-                            if (cat == 1)
+                            if (number == 1)
                             {
-                                player.PlayerBox.Size = new Size(12, 12);
+                                player.PlayerBox.Size = new Size(22, 22);
                             }
-                            if (cat == 2)
+                            if (number == 2)
                             {
-                                player.PlayerBox.Size = new Size(13, 13);
+                                player.PlayerBox.Size = new Size(23, 23);
                             }
 
-                            if (cat == 3)
+                            if (number == 3)
                             {
-                                player.PlayerBox.Size = new Size(14, 14);
+                                player.PlayerBox.Size = new Size(24, 24);
                             }
-                            if (cat == 4)
+                            if (number == 4)
                             {
-                                player.PlayerBox.Size = new Size(15, 15);
+                                player.PlayerBox.Size = new Size(25, 25);
                             }
-                            if (cat == 5)
+                            if (number == 5)
                             {
-                                player.PlayerBox.Size = new Size(15, 15);
+                                player.PlayerBox.Size = new Size(25, 25);
                             }
-                            if (cat == 6)
+                            if (number == 6)
                             {
-                                player.PlayerBox.Size = new Size(16, 16);
+                                player.PlayerBox.Size = new Size(26, 26);
                             }
-                            if (cat == 7)
+                            if (number == 7)
                             {
-                                player.PlayerBox.Size = new Size(17, 17);
+                                player.PlayerBox.Size = new Size(27, 27);
                             }
-                            if (cat == 8)
+                            if (number == 8)
                             {
-                                player.PlayerBox.Size = new Size(18, 18);
+                                player.PlayerBox.Size = new Size(28, 28);
                             }
-                            if (cat == 9)
+                            if (number == 9)
                             {
                                 player.PlayerBox.Visible = false;
 
+                                // Gives the player a new gun and a new item and more ammo and materials
+
+                                InventorySlot avaliable = CheckIfHasSomthingInSlot();
+                                InventoryModel.Gun gun = inventoryModel.GetGun();
+                                avaliable.gun = gun;
+
+                                Random random = new Random();
+
+                                InventoryModel.RefreshInventory(slotsList, InventorySlotsList);
+
+                                InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
+                                InventoryModel.Item item = inventoryModel.GetItem();
+                                available2.item = item;
+                                player.Ammo = player.Ammo + random.Next(10, 50);
+                                player.Materials = player.Materials + random.Next(30, 100);
+                                InventoryModel.RefreshInventory(slotsList, InventorySlotsList);
+
                             }
-                            cat++;
+                            number++;
                         }
 
                     }
@@ -636,26 +683,49 @@ namespace AdventureGame
 
             }
 
+            // Checks if a slot has an item or gun in it
+            InventoryModel.InventorySlot CheckIfHasSomthingInSlot()
+            {
 
+
+                if (InventorySlotsList[0].hasGun() == false && InventorySlotsList[0].hasItem() == false)
+                {
+                    return InventorySlotsList[0];
+                }
+                else if (InventorySlotsList[1].hasGun() == false && InventorySlotsList[1].hasItem() == false)
+                {
+                    return InventorySlotsList[1];
+                }
+                else if (InventorySlotsList[2].hasGun() == false && InventorySlotsList[2].hasItem() == false)
+                {
+                    return InventorySlotsList[2];
+                }
+                else if (InventorySlotsList[3].hasGun() == false && InventorySlotsList[3].hasItem() == false)
+                {
+                    return InventorySlotsList[3];
+                }
+                else if (InventorySlotsList[4].hasGun() == false && InventorySlotsList[4].hasItem() == false)
+                {
+                    return InventorySlotsList[4];
+                }
+                else
+                {
+                    return InventorySlotsList[5];
+                }
+            }
+
+            // Kills the bullet and timer if it goes outside the gamebox
             if (bullet.Location.Y >= gameBoxPicture.Location.Y + gameBoxPicture.Height - bullet.Height - 1 || bullet.Location.Y <= gameBoxPicture.Location.Y + 1 || bullet.Location.X <= gameBoxPicture.Location.X + 1 || bullet.Location.X >= gameBoxPicture.Location.X + gameBoxPicture.Width - bullet.Width - 1)
             {
-                
+
                 bulletTimer.Stop();
                 bulletTimer.Dispose();
                 bullet.Dispose();
-                
+
             }
             
+            
 
-        }
-    }
-    public static class ModifyProgressBarColor
-    {
-        [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
-        static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr w, IntPtr l);
-        public static void SetState(this ProgressBar pBar, int state)
-        {
-            SendMessage(pBar.Handle, 1040, (IntPtr)state, IntPtr.Zero);
         }
     }
 

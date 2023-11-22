@@ -41,17 +41,17 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(213, 33);
+            label1.Location = new Point(186, 25);
             label1.Name = "label1";
-            label1.Size = new Size(0, 20);
+            label1.Size = new Size(0, 15);
             label1.TabIndex = 0;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(189, 37);
+            label2.Location = new Point(165, 28);
             label2.Name = "label2";
-            label2.Size = new Size(0, 20);
+            label2.Size = new Size(0, 15);
             label2.TabIndex = 1;
             // 
             // label3
@@ -59,9 +59,9 @@
             label3.AutoSize = true;
             label3.BackColor = Color.White;
             label3.Font = new Font("Franklin Gothic Heavy", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(165, 53);
+            label3.Location = new Point(144, 40);
             label3.Name = "label3";
-            label3.Size = new Size(490, 47);
+            label3.Size = new Size(396, 37);
             label3.TabIndex = 2;
             label3.Text = "Fortnite Adventure Game";
             // 
@@ -69,9 +69,10 @@
             // 
             BattleRoyalBTN.BackColor = Color.Khaki;
             BattleRoyalBTN.Font = new Font("Franklin Gothic Heavy", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            BattleRoyalBTN.Location = new Point(190, 189);
+            BattleRoyalBTN.Location = new Point(166, 142);
+            BattleRoyalBTN.Margin = new Padding(3, 2, 3, 2);
             BattleRoyalBTN.Name = "BattleRoyalBTN";
-            BattleRoyalBTN.Size = new Size(198, 71);
+            BattleRoyalBTN.Size = new Size(173, 53);
             BattleRoyalBTN.TabIndex = 3;
             BattleRoyalBTN.Text = "Battle Royal";
             BattleRoyalBTN.UseVisualStyleBackColor = false;
@@ -81,9 +82,10 @@
             // 
             SaveWorldBTN.BackColor = Color.Khaki;
             SaveWorldBTN.Font = new Font("Franklin Gothic Heavy", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            SaveWorldBTN.Location = new Point(437, 189);
+            SaveWorldBTN.Location = new Point(382, 142);
+            SaveWorldBTN.Margin = new Padding(3, 2, 3, 2);
             SaveWorldBTN.Name = "SaveWorldBTN";
-            SaveWorldBTN.Size = new Size(194, 71);
+            SaveWorldBTN.Size = new Size(170, 53);
             SaveWorldBTN.TabIndex = 4;
             SaveWorldBTN.Text = "Save The World";
             SaveWorldBTN.UseVisualStyleBackColor = false;
@@ -92,10 +94,9 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(437, 128);
-            checkBox1.Margin = new Padding(3, 4, 3, 4);
+            checkBox1.Location = new Point(382, 96);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(101, 24);
+            checkBox1.Size = new Size(83, 19);
             checkBox1.TabIndex = 5;
             checkBox1.Text = "checkBox1";
             checkBox1.UseVisualStyleBackColor = true;
@@ -103,19 +104,20 @@
             // 
             // ipAdress
             // 
-            ipAdress.Location = new Point(437, 159);
+            ipAdress.Location = new Point(382, 119);
+            ipAdress.Margin = new Padding(3, 2, 3, 2);
             ipAdress.Name = "ipAdress";
-            ipAdress.Size = new Size(194, 27);
+            ipAdress.Size = new Size(170, 23);
             ipAdress.TabIndex = 6;
             // 
             // MainMenu
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.PaleTurquoise;
             BackgroundImage = Properties.Resources.download__2_;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(800, 451);
+            ClientSize = new Size(700, 338);
             Controls.Add(ipAdress);
             Controls.Add(checkBox1);
             Controls.Add(SaveWorldBTN);
@@ -124,6 +126,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 2, 3, 2);
             Name = "MainMenu";
             Text = " ";
             Load += MainMenu_Load;

@@ -22,11 +22,13 @@ namespace AdventureGame
             InitializeComponent();
         }
 
+        // Sets the players skin to the deafult skin on click
         private void deafaultSkinBTN_Click(object sender, EventArgs e)
         {
             Player.Skin = (Image)Properties.Resources.defaultSkin;
         }
 
+        // Sets the players skin to the skull trooper skin on click
         private void skullTrooperBTN_Click(object sender, EventArgs e)
         {
             Player.Skin = (Image)Properties.Resources.skullTrooper;

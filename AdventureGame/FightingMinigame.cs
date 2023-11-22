@@ -54,7 +54,7 @@ namespace AdventureGame
         public InventoryModel Player;
 
 
-
+        // Creates 2 2d arrays for the walls
         Wall[,] verticalWall = new Wall[8, 6];
         Wall[,] horizontalWall = new Wall[9, 5];
 
@@ -74,28 +74,30 @@ namespace AdventureGame
             InitializeComponent();
             Player = players;
 
+            // Sets all the players attributes
             currentPlayer = Player.Player;
             currentPlayer.Alive = true;
             currentPlayer.PlayerBox = player;
             currentPlayer.isClient = true;
             currentPlayer.healthBar = healthBar;
             currentPlayer.shieldBar = shieldBar;
-
             Materials = currentPlayer.Materials;
 
+            // Sets materials and ammo to their labels
             materialLabel.Text = Materials.ToString();
             ammoLabel.Text = Ammo.ToString();
 
-            shieldBar.ForeColor = Color.Blue;
-            healthBar.ForeColor = Color.Blue;
-
+            // Sets health and shield progress bars to the players shield and health
             shieldBar.Value = currentPlayer.Shield;
             healthBar.Value = currentPlayer.Health;
 
+            // Sets playerX and playerY to the pictureBox player 
             playerX = player.Location.X;
             playerY = player.Location.Y;
+
             slot1.BackColor = Color.SkyBlue;
 
+            // Sets all the vision boxes
             xVisionR = visionBoxR.Location.X;
             xVisionL = visionBoxL.Location.X;
             xVisionU = visionBoxU.Location.X;
@@ -108,6 +110,7 @@ namespace AdventureGame
 
             InventorySlotsList = inventorySlots;
 
+            // Adds all the slots to the slotList
             slotsList.Add(slot1);
             slotsList.Add(slot2);
             slotsList.Add(slot3);
@@ -117,6 +120,7 @@ namespace AdventureGame
 
             Ammo = players.Player.Ammo;
 
+            // Sets the magazing too the guns magazine size
             if (InventorySlotsList[activeSlot].gun != null)
             {
                 if (InventorySlotsList[activeSlot].gun.Magazine > Ammo)
@@ -134,18 +138,21 @@ namespace AdventureGame
                 }
             }
 
-
-
             ammoLabel.Text = $"{Magazine}/{Ammo}";
 
+            // Makes how many enemys that PlayersLanding is equal too
             MakeEnemy(PlayersLanding);
 
+            // Ats the users player too the allTargets and winning list
             allTargets.Add(currentPlayer);
             winningList.Add(currentPlayer);
 
+            // Refreshes the slot icons and sets the skin
             InventoryModel.RefreshInventory(slotsList, inventorySlots);
             player.BackgroundImage = Player.Skin;
 
+
+            // Creates all the walls
 
             Wall posR0x0 = new Wall(100, "Wood", false, R0x0);
             Wall posR1x0 = new Wall(100, "Wood", false, R1x0);
@@ -251,6 +258,9 @@ namespace AdventureGame
             Wall posL7x4 = new Wall(100, "Wood", false, L7x4);
             Wall posL8x4 = new Wall(100, "Wood", false, L8x4);
 
+
+            // Adds all the walls too the arrays
+
             verticalWall[0, 0] = posR0x0;
             verticalWall[1, 0] = posR1x0;
             verticalWall[2, 0] = posR2x0;
@@ -304,7 +314,8 @@ namespace AdventureGame
             verticalWall[5, 5] = posR5x5;
             verticalWall[6, 5] = posR6x5;
             verticalWall[7, 5] = posR7x5;
-            //
+            
+
             horizontalWall[0, 0] = posL0x0;
             horizontalWall[1, 0] = posL1x0;
             horizontalWall[2, 0] = posL2x0;
@@ -356,29 +367,7 @@ namespace AdventureGame
             horizontalWall[8, 4] = posL8x4;
         }
 
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        /* private PictureBox randomOponent(Enemy enemy)
-         {
-             enemyList.Remove(enemy);
-             int enemys = enemyList.Count;
-             int target = random.Next(0, enemys+1);
-             if (target == enemys + 1)
-             {
-                 enemy = player;
-             }
-             else
-             {
-                 enemy = enemyList[target].enemy;
-             }
-             return enemy;
-
-         }*/
-
+        // Creates a bullet for the user
         private void ShootBullet(string direction, int Speed, int damage)
         {
             Bullet bullet = new Bullet();
@@ -394,11 +383,15 @@ namespace AdventureGame
             bullet.hitWall = bulletHitWall;
             bullet.enemyList = allTargets;
             bullet.playerShooter = currentPlayer;
+            bullet.slotsList = slotsList;
+            bullet.InventorySlotsList = InventorySlotsList;
+            bullet.inventoryModel = Player;
 
             bullet.MakeBullet(this);
             bullet.bullet.BringToFront();
         }
 
+        // Creates a bullet for the enemy
         private void ShootEnemyBullet(string direction, int Speed, int damage, PictureBox enemy, Player shooterPlayer)
         {
             Bullet bullet = new Bullet();
@@ -418,12 +411,13 @@ namespace AdventureGame
             bullet.bullet.BringToFront();
         }
 
+        // Checks all the alive walls and what if u can place a wall
         private void checkAliveWalls()
         {
             if (buildingOn)
             {
 
-
+                // Loops through all the vertical walls
                 for (int k = 0; k < verticalWall.GetLength(0); k++)
                 {
                     for (int c = 0; c < verticalWall.GetLength(1); c++)
@@ -475,6 +469,7 @@ namespace AdventureGame
                     }
                 }
 
+                // Loops through all the horizontal walls
                 for (int k = 0; k < horizontalWall.GetLength(0); k++)
                 {
                     for (int c = 0; c < horizontalWall.GetLength(1); c++)
@@ -483,18 +478,7 @@ namespace AdventureGame
                         if (horizontalWall[k, c].Alive == false)
                         {
 
-                            /*if (direction == "right" && visionBoxR.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "WD" && visionBoxR.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "SD" && visionBoxR.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxR.Bottom)
-                            {
-                                horizontalWall[k, c].formWall.BackColor = Color.Blue;
-                                horizontalWall[k, c].formWall.Visible = true;
-                            }
-                            else if (direction == "left" && visionBoxL.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "WA" && visionBoxL.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "SA" && visionBoxL.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxL.Bottom)
-                            {
-                                horizontalWall[k, c].formWall.BackColor = Color.Blue;
-                                horizontalWall[k, c].formWall.Visible = true;
-                            }*/
-
-                            // Up
+                            //Up
                             if (direction == "up" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom || direction == "WA" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom || direction == "WD" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom)
                             {
                                 if (player.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= player.Right && player.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= player.Bottom)
@@ -541,6 +525,7 @@ namespace AdventureGame
                     }
                 }
             }
+            // If building isnt on
             else
             {
                 for (int k = 0; k < verticalWall.GetLength(0); k++)
@@ -581,11 +566,14 @@ namespace AdventureGame
         public bool noHitWall = true;
 
         public int Testtstst;
+
+        // Makes the player move when a key is pressed
         private void movePlayer()
         {
-            // Move Back
-
             checkAliveWalls();
+
+
+            // Move Down
 
             if (back && playerY <= gameBoxPicture.Location.Y + gameBoxPicture.Height - player.Height - 1)
             {
@@ -625,6 +613,7 @@ namespace AdventureGame
                     }
                 }
 
+                // If your not hitting a wall
                 if (!hitWallD)
                 {
 
@@ -693,6 +682,7 @@ namespace AdventureGame
                     }
                 }
 
+                // If your not hitting a wall
                 if (!hitWallU)
                 {
 
@@ -762,7 +752,7 @@ namespace AdventureGame
                     }
                 }
 
-
+                // If your not hitting a wall
                 if (!hitWallL)
                 {
                     playerX = playerX - 1;
@@ -829,7 +819,7 @@ namespace AdventureGame
                     }
                 }
 
-
+                // If your not hitting a wall
                 if (!hitWallR)
                 {
                     playerX = playerX + 1;
@@ -865,60 +855,99 @@ namespace AdventureGame
             {
                 movePlayer();
             }
-        }
 
+            // Loops through all the target and removes the ones who arnt alive
+            foreach (Player player in allTargets)
+            {
+                if (!player.Alive && player.CanWin)
+                {
+                    player.CanWin = false;
+                    winningList.Remove(player);
+                }
+            }
 
-        private void FightingMinigame_KeyPress(object sender, KeyPressEventArgs e)
-        {
+            // If the player dies the game ends
+            if (!currentPlayer.Alive)
+            {
+                loseLabel.Visible = true;
+                backToLobbyBTN.Visible = true;
+                Player.ZBucks += 50;
+                timer1.Stop();
+            }
 
-
+            // If the player is the last person standing the player wins
+            else if (winningList.Count == 1)
+            {
+                victoryLabel.Visible = true;
+                backToLobbyBTN.Visible = true;
+                Player.ZBucks += 200;
+                Player.Wins++;
+                timer1.Stop();
+            }
         }
 
         public bool buildingOn = false;
 
         public int activeSlot = 0;
 
+
         private void FightingMinigame_KeyDown(object sender, KeyEventArgs e)
         {
+            // If the key W is pressed it moves you foward
             if (e.KeyValue == (char)Keys.W)
             {
                 foward = true;
                 direction = "up";
             }
+
+            // If the key A is pressed it moves you left
             if (e.KeyValue == (char)Keys.A)
             {
                 left = true;
                 direction = "left";
             }
+
+            // If the key S is pressed it moves you down
             if (e.KeyValue == (char)Keys.S)
             {
                 back = true;
                 direction = "down";
             }
+
+            // If the key D is pressed it moves you right
             if (e.KeyValue == (char)Keys.D)
             {
                 right = true;
                 direction = "right";
             }
 
+
+            // If the key W and A is pressed it sets ur direction too WA
             if (foward == true && left == true)
             {
                 direction = "WA";
             }
+
+            // If the key W and D is pressed it sets ur direction too WD
             if (foward == true && right == true)
             {
                 direction = "WD";
             }
+
+            // If the key S and A is pressed it sets ur direction too SA
             if (back == true && left == true)
             {
                 direction = "SA";
             }
+
+            // If the key S and D is pressed it sets ur direction too SD
             if (back == true && right == true)
             {
                 direction = "SD";
             }
 
-            // Active Slot
+
+            // Sets the active slot
 
             if (e.KeyValue == (char)Keys.D1 || activeSlot == 0)
             {
@@ -1012,6 +1041,7 @@ namespace AdventureGame
                 }
             }
 
+            // Sets all the non active slots to a white background
             if (activeSlot != 0)
             {
                 slot1.BackColor = Color.White;
@@ -1049,64 +1079,85 @@ namespace AdventureGame
         private void FightingMinigame_KeyUp(object sender, KeyEventArgs e)
         {
 
-
+            // If the key W is let go foward is false
             if (e.KeyValue == (char)Keys.W)
             {
                 foward = false;
 
             }
+
+            // If the key A is let go left is false
             if (e.KeyValue == (char)Keys.A)
             {
                 left = false;
 
             }
+
+            // If the key S is let go back is false
             if (e.KeyValue == (char)Keys.S)
             {
                 back = false;
 
             }
+
+            // If the key D is let go right is false
             if (e.KeyValue == (char)Keys.D)
             {
                 right = false;
             }
 
+            // Sets a new direction
             if (foward == true && left == true)
             {
                 direction = "WA";
             }
+
+            // Sets a new direction
             else if (foward == true && right == true)
             {
                 direction = "WD";
             }
+
+            // Sets a new direction
             else if (back == true && left == true)
             {
                 direction = "SA";
             }
+
+            // Sets a new direction
             else if (back == true && right == true)
             {
                 direction = "SD";
             }
+
+            // Sets a new direction
             else if (foward)
             {
                 direction = "up";
             }
+
+            // Sets a new direction
             else if (right)
             {
                 direction = "right";
             }
+
+            // Sets a new direction
             else if (back)
             {
                 direction = "down";
             }
+
+            // Sets a new direction
             else if (left)
             {
                 direction = "left";
             }
 
-
+            // Toggles building and shooting
             if (e.KeyValue == (char)Keys.Q)
             {
-
+                // Toggles if the building is on or off
                 if (buildingOn)
                 {
                     buildingOn = false;
@@ -1122,10 +1173,12 @@ namespace AdventureGame
 
             }
 
+            // Reloades
             if (e.KeyValue == (char)Keys.R)
             {
                 if (currentPlayer.Reloading == false && Ammo != 0 && InventorySlotsList[activeSlot].gun != null && InventorySlotsList[activeSlot].gun.Magazine != Magazine)
                 {
+                    // Creates reload timer
                     currentPlayer.Reloading = true;
                     System.Windows.Forms.Timer reloadingTimer = new System.Windows.Forms.Timer();
                     int CureentThingy = activeSlot;
@@ -1135,9 +1188,10 @@ namespace AdventureGame
 
                     ammoLabel.Text = "Reloading";
 
+                    // Runs the reload timer
                     void ReloadPlayerTimer(object sender, EventArgs e)
                     {
-
+                        // Calculates weather you have enough ammo to fill ur magazine or partially fill it
                         if (Magazine == 0)
                         {
                             if (InventorySlotsList[CureentThingy].gun.Magazine >= Ammo)
@@ -1195,8 +1249,10 @@ namespace AdventureGame
                 }
             }
 
+            // Building or Shooting
             if (e.KeyValue == (char)Keys.Space)
             {
+                // Shoots or heals is building isnt on
                 if (!buildingOn)
                 {
                     if (InventorySlotsList[activeSlot].gun != null && Magazine != 0)
@@ -1217,42 +1273,64 @@ namespace AdventureGame
                             }
                             else if (currentPlayer.Shield >= 25)
                             {
+                                // Makes a healing timer
                                 currentPlayer.Healing = true;
+                                healingBar.Visible = true;
                                 System.Windows.Forms.Timer healingTimer = new System.Windows.Forms.Timer();
-                                healingTimer.Interval = 2000;
+                                healingTimer.Interval = 20;
                                 healingTimer.Tick += new EventHandler(HealingTimer);
                                 healingTimer.Start();
-                                Console.WriteLine(currentPlayer.Shield);
 
                                 void HealingTimer(object sender, EventArgs e)
                                 {
-                                    currentPlayer.Shield = 50;
-                                    shieldBar.Value = currentPlayer.Shield;
-                                    InventorySlotsList[activeSlot].item = null;
-                                    InventoryModel.RefreshInventory(slotsList, InventorySlotsList);
-                                    currentPlayer.Healing = false;
-                                    healingTimer.Stop();
-                                    healingTimer.Dispose();
+                                    // Updates the healing bar
+                                    healingBar.Value++;
+                                    if (healingBar.Value == 100)
+                                    {
+
+                                        currentPlayer.Shield = 50;
+                                        shieldBar.Value = currentPlayer.Shield;
+                                        InventorySlotsList[activeSlot].item = null;
+                                        InventoryModel.RefreshInventory(slotsList, InventorySlotsList);
+                                        currentPlayer.Healing = false;
+                                        healingTimer.Stop();
+                                        healingTimer.Dispose();
+                                        healingBar.Value = 0;
+                                        healingBar.Visible = false;
+                                    }
+
                                 }
 
                             }
                             else
                             {
+                                // Makes a healing timer
                                 currentPlayer.Healing = true;
                                 System.Windows.Forms.Timer healingTimer = new System.Windows.Forms.Timer();
-                                healingTimer.Interval = 2000;
+                                int currentThingy = activeSlot;
+                                healingBar.Visible = true;
+                                int i = 0;
+                                healingTimer.Interval = 20;
                                 healingTimer.Tick += new EventHandler(HealingTimer);
                                 healingTimer.Start();
 
                                 void HealingTimer(object sender, EventArgs e)
                                 {
-                                    currentPlayer.Shield = currentPlayer.Shield + 25;
-                                    shieldBar.Value = currentPlayer.Shield;
-                                    InventorySlotsList[activeSlot].item = null;
-                                    InventoryModel.RefreshInventory(slotsList, InventorySlotsList);
-                                    currentPlayer.Healing = false;
-                                    healingTimer.Stop();
-                                    healingTimer.Dispose();
+                                    // Updates the healing bar
+                                    healingBar.Value++;
+                                    if (healingBar.Value == 100)
+                                    {
+                                        currentPlayer.Shield = currentPlayer.Shield + 25;
+                                        shieldBar.Value = currentPlayer.Shield;
+                                        InventorySlotsList[currentThingy].item = null;
+                                        InventoryModel.RefreshInventory(slotsList, InventorySlotsList);
+                                        currentPlayer.Healing = false;
+                                        healingTimer.Stop();
+                                        healingTimer.Dispose();
+                                        healingBar.Value = 0;
+                                        healingBar.Visible = false;
+                                    }
+
                                 }
                             }
                         }
@@ -1260,6 +1338,7 @@ namespace AdventureGame
 
 
                 }
+                // If building is on and you have enough materials
                 else if (buildingOn && Materials >= 10)
                 {
 
@@ -1270,7 +1349,7 @@ namespace AdventureGame
 
                             if (verticalWall[k, c].Alive == false)
                             {
-
+                                // Check if you can place wall right
                                 if (direction == "right" && visionBoxR.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "WD" && visionBoxR.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxR.Bottom || direction == "SD" && visionBoxR.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxR.Right && visionBoxR.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxR.Bottom)
                                 {
                                     if (player.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= player.Right && player.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= player.Bottom)
@@ -1291,6 +1370,8 @@ namespace AdventureGame
 
                                     }
                                 }
+
+                                // Check if you can place wall left
                                 else if (direction == "left" && visionBoxL.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "SA" && visionBoxL.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxL.Bottom || direction == "WA" && visionBoxL.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= visionBoxL.Right && visionBoxL.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= visionBoxL.Bottom)
                                 {
                                     if (player.Left <= verticalWall[k, c].formWall.Right && verticalWall[k, c].formWall.Left <= player.Right && player.Top <= verticalWall[k, c].formWall.Bottom && verticalWall[k, c].formWall.Top <= player.Bottom)
@@ -1327,6 +1408,7 @@ namespace AdventureGame
                             if (horizontalWall[k, c].Alive == false)
                             {
 
+                                // Check if you can place wall up
                                 if (direction == "up" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom || direction == "WA" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom || direction == "WD" && visionBoxU.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxU.Right && visionBoxU.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxU.Bottom)
                                 {
                                     if (player.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= player.Right && player.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= player.Bottom)
@@ -1346,6 +1428,8 @@ namespace AdventureGame
                                         materialLabel.Text = Materials.ToString();
                                     }
                                 }
+
+                                // Check if you can place wall down
                                 else if (direction == "down" && visionBoxD.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxD.Bottom || direction == "SA" && visionBoxD.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxD.Bottom || direction == "SD" && visionBoxD.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= visionBoxD.Right && visionBoxD.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= visionBoxD.Bottom)
                                 {
                                     if (player.Left <= horizontalWall[k, c].formWall.Right && horizontalWall[k, c].formWall.Left <= player.Right && player.Top <= horizontalWall[k, c].formWall.Bottom && horizontalWall[k, c].formWall.Top <= player.Bottom)
@@ -1390,10 +1474,7 @@ namespace AdventureGame
         public List<Player> allTargets = new List<Player>();
         public List<Player> winningList = new List<Player>();
 
-        ///
-        // Gives all players a target
-        ///
-
+        // Gives all the enemys a target
         private void GivePlayersTargets()
         {
 
@@ -1406,42 +1487,30 @@ namespace AdventureGame
             }
         }
 
-
-        ///
-        // Gives new a new target
-        ///
-
+        // Gives a enemy a new target
         private void GiveNewTarget(Player player)
         {
             List<Player> targetList = new List<Player>(allTargets);
             targetList.Remove(player);
             player.Target = targetList[random.Next(0, targetList.Count)];
-            winningList.Remove(player);
-            if (winningList.Count == 1)
-            {
-                enemyTimer.Stop();
-
-            }
         }
-
-        ////
-        ///
-        // Make Enemy
-        ///
-        ////
-
+        
+        // Makes a enemy
         private void MakeEnemy(int number)
         {
             for (int i = 0; i < number; i++)
             {
+                // Creates pictureBox
                 PictureBox player = new PictureBox();
                 player.Tag = "enemy";
                 player.Left = random.Next(gameBoxPicture.Location.X, gameBoxPicture.Location.X + gameBoxPicture.Width - player.Width);
                 player.Top = random.Next(gameBoxPicture.Location.Y, gameBoxPicture.Location.Y + gameBoxPicture.Height - player.Height);
-                player.Size = new Size(10, 10);
+                player.Size = new Size(20, 20);
 
                 int colourChoice = random.Next(1, 6);
                 Color colour;
+
+                // Random Colour
                 if (colourChoice == 1)
                 {
                     colour = Color.Green;
@@ -1470,6 +1539,7 @@ namespace AdventureGame
                 player.BackColor = colour;
                 this.Controls.Add(player);
 
+                // Health bar and shield bar
                 ProgressBar health = new ProgressBar();
                 health.Value = 100;
                 health.Visible = true;
@@ -1519,7 +1589,7 @@ namespace AdventureGame
 
                 player.BringToFront();
 
-
+                // Creates a Player model
                 Player enemyPlayer = new Player(100, shieldChance, 10, null, true, player, 30, false, true, health, shield, false, false, false);
 
                 winningList.Add(enemyPlayer);
@@ -1529,32 +1599,28 @@ namespace AdventureGame
 
         }
 
-        ////
-        ///
+        
         // Enemy Movement Timer
-        ///
-        ////
-
         private void enemyTimer_Tick(object sender, EventArgs e)
         {
-            if (winningList.Count == 1)
-            {
-                enemyTimer.Stop();
-                enemyTimer.Dispose();
-            }
-
+            // Loops through all the enemys
             foreach (Player x in allTargets)
             {
+                // Gives all enemys targets at the start
                 if (x.Target == null)
                 {
                     GivePlayersTargets();
                     break;
                 }
+
+                // Gives a new target if the enemys target is dead
                 if (!x.Target.Alive)
                 {
                     GiveNewTarget(x);
 
                 }
+
+                // Moves all enemys towards target
                 if (x.Alive && x.Target.Alive && !x.isClient)
                 {
 
@@ -1800,33 +1866,19 @@ namespace AdventureGame
             }
         }
 
+        // Enemy shoot and reload
         private void enemyReload_Tick(object sender, EventArgs e)
         {
-            ///
-            // Check if has ammo
-            ///
-
+            // Loops through all the enemys
             foreach (Player x in allTargets)
             {
-
-
-                if (x.PlayerBox.Bounds.IntersectsWith(x.Target.PlayerBox.Bounds) && x.Alive && x.Target.Alive && !x.Pickaxing)
-                {
-                    x.Pickaxing = true;
-                    System.Windows.Forms.Timer pickaxeTimer = new System.Windows.Forms.Timer();
-                    pickaxeTimer.Interval = 1300;
-                    pickaxeTimer.Tick += new EventHandler(enemyPickaxe_Tick);
-                    pickaxeTimer.Start();
-
-                }
-
-
-                else if (x.Ammo != 8 && x.Alive && !x.isClient)
+                // If the enemy dosnt have 0 ammo and is inline with the target it will shoot
+                if (x.Ammo != 0 && x.Alive && !x.isClient)
                 {
 
                     if (x.PlayerBox.Location.X <= x.Target.PlayerBox.Location.X && x.PlayerBox.Location.Y == x.Target.PlayerBox.Location.Y || x.PlayerBox.Location.X >= x.Target.PlayerBox.Location.X && x.PlayerBox.Location.Y == x.Target.PlayerBox.Location.Y || EhitWallR || EhitWallL)
                     {
-
+                        // Shoot Left
                         if (x.PlayerBox.Left > x.Target.PlayerBox.Left || EhitWallL)
                         {
                             ShootEnemyBullet("left", 5, 20, x.PlayerBox, x);
@@ -1834,6 +1886,8 @@ namespace AdventureGame
                             x.Ammo--;
 
                         }
+
+                        // Shoot Right
                         else if (x.PlayerBox.Left < x.Target.PlayerBox.Left || EhitWallR)
                         {
                             ShootEnemyBullet("right", 5, 20, x.PlayerBox, x);
@@ -1844,11 +1898,14 @@ namespace AdventureGame
                     else if (x.PlayerBox.Location.Y <= x.Target.PlayerBox.Location.Y && x.PlayerBox.Location.X == x.Target.PlayerBox.Location.X || x.PlayerBox.Location.Y >= x.Target.PlayerBox.Location.Y && x.PlayerBox.Location.X == x.Target.PlayerBox.Location.X || EhitWallU || EhitWallD)
                     {
 
+                        // Shoot Up
                         if (x.PlayerBox.Top > x.Target.PlayerBox.Top || EhitWallU)
                         {
                             ShootEnemyBullet("up", 5, 30, x.PlayerBox, x);
                             x.Ammo--;
                         }
+
+                        // Shoot Down
                         else if (x.PlayerBox.Top < x.Target.PlayerBox.Top || EhitWallD)
                         {
                             ShootEnemyBullet("down", 5, 30, x.PlayerBox, x);
@@ -1856,9 +1913,10 @@ namespace AdventureGame
                         }
                     }
 
-
-                    if (x.Ammo == 8 && x.Alive && x.Reloading == false && !x.isClient)
+                    // If the enemy has no ammo
+                    if (x.Ammo == 0 && x.Alive && x.Reloading == false && !x.isClient)
                     {
+                        // Creates a timer
                         x.Reloading = true;
                         System.Windows.Forms.Timer reloadingTimer = new System.Windows.Forms.Timer();
                         reloadingTimer.Interval = 5000;
@@ -1877,156 +1935,7 @@ namespace AdventureGame
             }
         }
 
-        private void enemyPickaxe_Tick(object sender, EventArgs e)
-        {
-            foreach (Player x in allTargets)
-            {
-                if (x.PlayerBox.Bounds.IntersectsWith(x.Target.PlayerBox.Bounds) && x.Alive && x.Target.Alive)
-                {
-                    Console.WriteLine(x.Target.Shield);
-                    if (x.Target.Shield >= 50)
-                    {
-                        x.Target.Shield = x.Target.Shield - 50;
-                        x.Target.shieldBar.Value = x.Target.Shield;
-                        x.Pickaxing = false;
-                        enemyPickaxe.Stop();
-                        enemyPickaxe.Dispose();
-                    }
-                    else if (x.Target.Shield < 50 && x.Target.Shield != 0)
-                    {
-                        x.Target.Health = x.Target.Health + x.Target.Shield;
-                        x.Target.Health = x.Target.Health - 50;
-                        x.Target.shieldBar.Value = 0;
-                        x.Target.Shield = 0;
-                        enemyPickaxe.Stop();
-                        enemyPickaxe.Dispose();
-
-
-                        x.Target.healthBar.Value = x.Target.Health;
-                        x.Pickaxing = false;
-                    }
-                    else if (x.Target.Health > 50)
-                    {
-                        x.Target.Health = x.Target.Health - 50;
-                        x.Target.healthBar.Value = x.Target.Health;
-                        x.Pickaxing = false;
-                        enemyPickaxe.Stop();
-                        enemyPickaxe.Dispose();
-                    }
-                    else if (x.Target.Health <= 50)
-                    {
-
-                        x.Target.shieldBar.Value = 0;
-                        x.Target.Shield = 0;
-
-                        x.Target.healthBar.Value = 0;
-                        x.Target.Health = 0;
-                        int cat = 0;
-                        enemyPickaxe.Dispose();
-                        enemyPickaxe.Stop();
-
-                        x.Pickaxing = false;
-                        System.Windows.Forms.Timer explosion = new System.Windows.Forms.Timer();
-                        explosion.Interval = 50;
-                        explosion.Tick += new EventHandler(ExplosionTimerEvent);
-                        explosion.Start();
-
-                        x.Target.shieldBar.Visible = false;
-                        x.Target.healthBar.Visible = false;
-
-                        void ExplosionTimerEvent(object sender, EventArgs e)
-                        {
-                            if (cat == 0)
-                            {
-                                x.Target.PlayerBox.Size = new Size(11, 11);
-                                cat++;
-                            }
-                            else if (cat == 1)
-                            {
-                                x.Target.PlayerBox.Size = new Size(12, 12);
-                                cat++;
-                            }
-                            else if (cat == 2)
-                            {
-                                x.Target.PlayerBox.Size = new Size(13, 13);
-                                cat++;
-                            }
-
-                            else if (cat == 3)
-                            {
-                                x.Target.PlayerBox.Size = new Size(14, 14);
-                                cat++;
-                            }
-                            else if (cat == 4)
-                            {
-                                x.Target.PlayerBox.Size = new Size(15, 15);
-                                cat++;
-                            }
-                            else if (cat == 5)
-                            {
-                                x.Target.PlayerBox.Size = new Size(15, 15);
-                                cat++;
-                            }
-                            else if (cat == 6)
-                            {
-                                x.Target.PlayerBox.Size = new Size(16, 16);
-                                cat++;
-                            }
-                            else if (cat == 7)
-                            {
-                                x.Target.PlayerBox.Size = new Size(17, 17);
-                                cat++;
-                            }
-                            else if (cat == 8)
-                            {
-                                x.Target.PlayerBox.Size = new Size(18, 18);
-                                cat++;
-                            }
-                            else if (cat == 9)
-                            {
-                                cat++;
-                            }
-                            else if (cat == 10)
-                            {
-                                x.Target.PlayerBox.Visible = false;
-                                winningList.Remove(x);
-                                explosion.Enabled = false;
-                                explosion.Dispose();
-                                explosion.Stop();
-                                x.Target.Alive = false;
-
-                                if (x.isClient)
-                                {
-                                    InventorySlot avaliable = CheckIfHasSomthingInSlot();
-                                    InventoryModel.Gun gun = Player.GetGun();
-                                    avaliable.gun = gun;
-
-
-                                    InventoryModel.RefreshInventory(slotsList, InventorySlotsList);
-
-                                    InventoryModel.InventorySlot available2 = CheckIfHasSomthingInSlot();
-                                    InventoryModel.Item item = Player.GetItem();
-                                    available2.item = item;
-
-                                    Player.Player.Ammo = Player.Player.Ammo + random.Next(10, 50);
-                                    Player.Player.Materials = Player.Player.Materials + random.Next(30, 100);
-                                    InventoryModel.RefreshInventory(slotsList, InventorySlotsList);
-
-                                    Console.WriteLine(CheckIfHasSomthingInSlot());
-                                }
-                            }
-                        }
-
-                    }
-                }
-            }
-        }
-
-        private void Reload_Tick(object sender, EventArgs e)
-        {
-
-        }
-
+        // Checks if a slot has an item or gun in it
         public InventoryModel.InventorySlot CheckIfHasSomthingInSlot()
         {
 
@@ -2058,9 +1967,12 @@ namespace AdventureGame
 
         }
 
-        private void enemyPickaxe_Tick_1(object sender, EventArgs e)
+        // On click creates a new lobby form then closes this
+        private void backToLobbyBTN_Click(object sender, EventArgs e)
         {
-
+            Form form = new Lobby(Player);
+            this.Close();
+            form.Show();
         }
     }
 

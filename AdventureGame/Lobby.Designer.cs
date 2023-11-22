@@ -38,11 +38,14 @@
             pictureBox2 = new PictureBox();
             playBTN = new Button();
             lockerPannel = new Panel();
-            skinAvaterIMG = new PictureBox();
             itemShopPannel = new Panel();
+            skinAvaterIMG = new PictureBox();
+            winsLabel = new Label();
+            pictureBox1 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             lockerPannel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)skinAvaterIMG).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lobbyBTN
@@ -53,9 +56,10 @@
             lobbyBTN.FlatStyle = FlatStyle.Flat;
             lobbyBTN.Font = new Font("Franklin Gothic Demi Cond", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             lobbyBTN.ForeColor = Color.Black;
-            lobbyBTN.Location = new Point(227, 25);
+            lobbyBTN.Location = new Point(238, 17);
+            lobbyBTN.Margin = new Padding(3, 2, 3, 2);
             lobbyBTN.Name = "lobbyBTN";
-            lobbyBTN.Size = new Size(114, 51);
+            lobbyBTN.Size = new Size(100, 38);
             lobbyBTN.TabIndex = 0;
             lobbyBTN.Text = "Lobby";
             lobbyBTN.UseVisualStyleBackColor = false;
@@ -69,9 +73,10 @@
             lockerBTN.FlatStyle = FlatStyle.Flat;
             lockerBTN.Font = new Font("Franklin Gothic Demi Cond", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             lockerBTN.ForeColor = Color.Black;
-            lockerBTN.Location = new Point(341, 25);
+            lockerBTN.Location = new Point(337, 17);
+            lockerBTN.Margin = new Padding(3, 2, 3, 2);
             lockerBTN.Name = "lockerBTN";
-            lockerBTN.Size = new Size(114, 51);
+            lockerBTN.Size = new Size(100, 38);
             lockerBTN.TabIndex = 1;
             lockerBTN.Text = "Locker";
             lockerBTN.UseVisualStyleBackColor = false;
@@ -85,13 +90,13 @@
             shopBTN.FlatStyle = FlatStyle.Flat;
             shopBTN.Font = new Font("Franklin Gothic Demi Cond", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             shopBTN.ForeColor = Color.Black;
-            shopBTN.Location = new Point(453, 25);
+            shopBTN.Location = new Point(435, 17);
+            shopBTN.Margin = new Padding(3, 2, 3, 2);
             shopBTN.Name = "shopBTN";
-            shopBTN.Size = new Size(114, 51);
+            shopBTN.Size = new Size(100, 38);
             shopBTN.TabIndex = 2;
             shopBTN.Text = "Shop";
             shopBTN.UseVisualStyleBackColor = false;
-            shopBTN.Click += shopBTN_Click;
             // 
             // settingsBTN
             // 
@@ -103,9 +108,10 @@
             settingsBTN.FlatStyle = FlatStyle.Flat;
             settingsBTN.Font = new Font("Franklin Gothic Demi Cond", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             settingsBTN.ForeColor = Color.Black;
-            settingsBTN.Location = new Point(21, 25);
+            settingsBTN.Location = new Point(18, 19);
+            settingsBTN.Margin = new Padding(3, 2, 3, 2);
             settingsBTN.Name = "settingsBTN";
-            settingsBTN.Size = new Size(45, 51);
+            settingsBTN.Size = new Size(39, 38);
             settingsBTN.TabIndex = 3;
             settingsBTN.UseVisualStyleBackColor = false;
             settingsBTN.Click += settingsBTN_Click;
@@ -113,8 +119,9 @@
             // settingsPannel
             // 
             settingsPannel.Location = new Point(0, 0);
+            settingsPannel.Margin = new Padding(3, 2, 3, 2);
             settingsPannel.Name = "settingsPannel";
-            settingsPannel.Size = new Size(205, 459);
+            settingsPannel.Size = new Size(179, 344);
             settingsPannel.TabIndex = 4;
             settingsPannel.Visible = false;
             // 
@@ -123,32 +130,32 @@
             zBucksLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             zBucksLabel.FlatStyle = FlatStyle.Flat;
             zBucksLabel.Font = new Font("Franklin Gothic Heavy", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
-            zBucksLabel.Location = new Point(713, 19);
+            zBucksLabel.Location = new Point(624, 14);
             zBucksLabel.Name = "zBucksLabel";
-            zBucksLabel.Size = new Size(85, 44);
+            zBucksLabel.Size = new Size(74, 33);
             zBucksLabel.TabIndex = 1;
             zBucksLabel.Text = "0";
             zBucksLabel.TextAlign = ContentAlignment.MiddleLeft;
-            zBucksLabel.Click += label1_Click;
             // 
             // pictureBox2
             // 
             pictureBox2.BackgroundImage = Properties.Resources.download__4_;
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox2.Location = new Point(661, 12);
+            pictureBox2.Location = new Point(578, 9);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(49, 55);
+            pictureBox2.Size = new Size(43, 41);
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
             // 
             // playBTN
             // 
             playBTN.BackColor = Color.Yellow;
             playBTN.Font = new Font("Franklin Gothic Heavy", 19.8000011F, FontStyle.Regular, GraphicsUnit.Point);
-            playBTN.Location = new Point(563, 353);
+            playBTN.Location = new Point(493, 265);
+            playBTN.Margin = new Padding(3, 2, 3, 2);
             playBTN.Name = "playBTN";
-            playBTN.Size = new Size(225, 93);
+            playBTN.Size = new Size(197, 70);
             playBTN.TabIndex = 6;
             playBTN.Text = "Play";
             playBTN.UseVisualStyleBackColor = false;
@@ -157,41 +164,71 @@
             // lockerPannel
             // 
             lockerPannel.Controls.Add(itemShopPannel);
-            lockerPannel.Location = new Point(15, 82);
+            lockerPannel.Location = new Point(13, 62);
+            lockerPannel.Margin = new Padding(3, 2, 3, 2);
             lockerPannel.Name = "lockerPannel";
-            lockerPannel.Size = new Size(778, 364);
+            lockerPannel.Size = new Size(681, 273);
             lockerPannel.TabIndex = 7;
             lockerPannel.Visible = false;
+            // 
+            // itemShopPannel
+            // 
+            itemShopPannel.Location = new Point(-1, 0);
+            itemShopPannel.Margin = new Padding(3, 2, 3, 2);
+            itemShopPannel.Name = "itemShopPannel";
+            itemShopPannel.Size = new Size(681, 273);
+            itemShopPannel.TabIndex = 8;
+            itemShopPannel.Visible = false;
+
             // 
             // skinAvaterIMG
             // 
             skinAvaterIMG.BackColor = Color.Transparent;
             skinAvaterIMG.BackgroundImageLayout = ImageLayout.Stretch;
-            skinAvaterIMG.Location = new Point(330, 188);
+            skinAvaterIMG.Location = new Point(289, 141);
+            skinAvaterIMG.Margin = new Padding(3, 2, 3, 2);
             skinAvaterIMG.Name = "skinAvaterIMG";
-            skinAvaterIMG.Size = new Size(150, 212);
+            skinAvaterIMG.Size = new Size(131, 159);
             skinAvaterIMG.TabIndex = 0;
             skinAvaterIMG.TabStop = false;
             // 
-            // itemShopPannel
+            // winsLabel
             // 
-            itemShopPannel.Location = new Point(-1, 0);
-            itemShopPannel.Name = "itemShopPannel";
-            itemShopPannel.Size = new Size(778, 364);
-            itemShopPannel.TabIndex = 8;
-            itemShopPannel.Visible = false;
-            itemShopPannel.Paint += itemShopPannel_Paint;
+            winsLabel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            winsLabel.FlatStyle = FlatStyle.Flat;
+            winsLabel.Font = new Font("Franklin Gothic Heavy", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            winsLabel.Location = new Point(172, 22);
+            winsLabel.Name = "winsLabel";
+            winsLabel.Size = new Size(46, 33);
+            winsLabel.TabIndex = 9;
+            winsLabel.Text = "0";
+            winsLabel.TextAlign = ContentAlignment.MiddleLeft;
+
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackgroundImage = Properties.Resources.winsIcon;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Location = new Point(63, 17);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(106, 41);
+            pictureBox1.TabIndex = 8;
+            pictureBox1.TabStop = false;
+
             // 
             // Lobby
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.lobbyBG;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(801, 453);
-            Controls.Add(skinAvaterIMG);
+            ClientSize = new Size(701, 340);
             Controls.Add(settingsBTN);
             Controls.Add(settingsPannel);
+            Controls.Add(winsLabel);
+            Controls.Add(pictureBox1);
+            Controls.Add(skinAvaterIMG);
             Controls.Add(lockerPannel);
             Controls.Add(zBucksLabel);
             Controls.Add(playBTN);
@@ -200,12 +237,14 @@
             Controls.Add(lockerBTN);
             Controls.Add(lobbyBTN);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Lobby";
             Text = "Lobby";
-            Load += Lobby_Load;
+
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             lockerPannel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)skinAvaterIMG).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -222,5 +261,7 @@
         private Panel lockerPannel;
         private PictureBox skinAvaterIMG;
         private Panel itemShopPannel;
+        private Label winsLabel;
+        private PictureBox pictureBox1;
     }
 }
