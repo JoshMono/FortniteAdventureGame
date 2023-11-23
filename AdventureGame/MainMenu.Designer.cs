@@ -69,7 +69,7 @@
             // 
             BattleRoyalBTN.BackColor = Color.Khaki;
             BattleRoyalBTN.Font = new Font("Franklin Gothic Heavy", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            BattleRoyalBTN.Location = new Point(166, 142);
+            BattleRoyalBTN.Location = new Point(251, 142);
             BattleRoyalBTN.Margin = new Padding(3, 2, 3, 2);
             BattleRoyalBTN.Name = "BattleRoyalBTN";
             BattleRoyalBTN.Size = new Size(173, 53);
@@ -89,6 +89,7 @@
             SaveWorldBTN.TabIndex = 4;
             SaveWorldBTN.Text = "Save The World";
             SaveWorldBTN.UseVisualStyleBackColor = false;
+            SaveWorldBTN.Visible = false;
             SaveWorldBTN.Click += SaveWorldBTN_Click;
             // 
             // checkBox1
@@ -100,6 +101,7 @@
             checkBox1.TabIndex = 5;
             checkBox1.Text = "checkBox1";
             checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.Visible = false;
             checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // ipAdress
@@ -109,6 +111,7 @@
             ipAdress.Name = "ipAdress";
             ipAdress.Size = new Size(170, 23);
             ipAdress.TabIndex = 6;
+            ipAdress.Visible = false;
             // 
             // MainMenu
             // 
