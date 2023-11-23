@@ -82,6 +82,8 @@ namespace AdventureGame
             currentPlayer.healthBar = healthBar;
             currentPlayer.shieldBar = shieldBar;
             Materials = currentPlayer.Materials;
+            currentPlayer.Health = 100;
+            currentPlayer.Shield = 0;
 
             // Sets materials and ammo to their labels
             materialLabel.Text = Materials.ToString();
